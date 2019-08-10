@@ -9,7 +9,7 @@ import android.view.MenuItem
 import androidx.core.content.ContextCompat
 
 import kotlinx.android.synthetic.main.activity_main.*
-
+import java.util.concurrent.ThreadLocalRandom
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         fab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this,R.color.Btncolor)))
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            var score = RandomUtils.randInt(1,20)
+            Snackbar.make(view, String.format("You rolled a %d",score), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
     }
