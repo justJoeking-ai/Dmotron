@@ -3,6 +3,7 @@ package com.justjoeking.dmotron
 import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.text.InputType
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
@@ -14,6 +15,8 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.util.concurrent.ThreadLocalRandom
+import android.widget.LinearLayout
+import android.widget.EditText
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,14 +65,30 @@ class MainActivity : AppCompatActivity() {
         }
         fab2.setOnClickListener { view ->
             var builder = AlertDialog.Builder(this)
+
+            val crinput = EditText(this)
+            val lp = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+            )
+            crinput.layoutParams = lp
+            crinput.setInputType(
+                InputType.TYPE_CLASS_NUMBER
+            )
+            crinput.setText("2")
+
+            builder.setView(crinput)
+
             builder.setTitle("Create an Encounter!")
             builder.setPositiveButton("Let's Roll(fuck yea)") { dialog, which ->
                 Toast.makeText(
                     applicationContext,
-                    android.R.string.yes, Toast.LENGTH_SHORT
+                    crinput.text, Toast.LENGTH_SHORT
                 ).show()
 
                 // TODO: Generate encounter
+                // TODO: Match names to not create duplicates
+
 
             }
             builder.setNegativeButton("Let's not Roll(fuck No)") { dialog, which ->
@@ -80,7 +99,8 @@ class MainActivity : AppCompatActivity() {
             }
             builder.show()
 //            Snackbar.make(view, String.format("You rolled a %d",score), Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
+//                .setAction("Action", nul
+//                l).show()
 
 //            rollhistory.add(score)
             centertext.text =
