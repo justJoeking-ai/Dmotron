@@ -24,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N){
+            // Do something for lollipop and above versions
+//            centertext.
+        } else{
+            // do something for phones running an SDK before lollipop
+        }
         fab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.Btncolor)))
         var rollhistory = ArrayList<Int>(0)
         fab.setOnClickListener { view ->
