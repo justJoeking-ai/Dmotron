@@ -155,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         // assume four party members and an average difficulty for now
 
 
-        return ceil(party_level/monstercr)
+        return ceil(party_level/monstercr).toInt()
     }
 
 }
