@@ -1,6 +1,5 @@
 package com.justjoeking.dmotron
 
-import android.app.Dialog
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
@@ -12,22 +11,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.ceil
-import kotlin.math.floor
-import android.content.DialogInterface
 
 
 class MainActivity : AppCompatActivity() {
 
     // https://www.reddit.com/r/StrangePlanet/
-
     // https://fragmentedpodcast.com/
-
     // https://www.stilldrinking.org/programming-sucks
+
     enum class status {
         // just for science
         EASY,
@@ -50,11 +47,8 @@ class MainActivity : AppCompatActivity() {
         monsterlist.add(Monster("Shark", 2f))
         monsterlist.add(Monster("Hobgoblin", 1f))
 
-
-
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            // Do something for lollipop and above versions
-//            centertext.
+            // Do something for lollipop and above versions centertext.
         } else {
             // do something for phones running an SDK before lollipop
         }
@@ -72,35 +66,31 @@ class MainActivity : AppCompatActivity() {
         fab2.setOnClickListener { view ->
             var builder = AlertDialog.Builder(this)
 
-            val crinput = EditText(this)
+            val encounterCRInput = EditText(this)
             val lp = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
             )
-            crinput.layoutParams = lp
-            crinput.setInputType(
-                InputType.TYPE_CLASS_NUMBER
-            )
-            // todo: spinner for EL?
-            crinput.setText("")
-            crinput.setHint(getString(R.string.party_level_hint))
+            encounterCRInput.layoutParams = lp
+            encounterCRInput.inputType = InputType.TYPE_CLASS_NUMBER
 
-            builder.setView(crinput)
-            val dragon = "🐉"
-            builder.setTitle("Create an Encounter! $dragon")
-//
-
+            // TODO: spinner for EL?
+            encounterCRInput.setText("")
+            encounterCRInput.hint = getString(R.string.party_level_hint)
+            builder.setView(encounterCRInput)
+            builder.setTitle("Create an Encounter! $DRAGON")
 
             builder.setPositiveButton(getString(R.string.let_roll)) { dialog, which ->
-                // todo rn: grab random monster and figure out how many
+                // TODO rn: grab random monster and figure out how many
+                // TODO: Match names to not create duplicates
 
-                if (crinput.text.toString().isEmpty()) {
+                if (encounterCRInput.text.toString().isEmpty()) {
                     Toast.makeText(
                         applicationContext,
                         "What are you a NPC?", Toast.LENGTH_LONG
                     ).show()
                     return@setPositiveButton
-                } else if (Integer.parseInt(crinput.text.toString()) == 0) {
+                } else if (Integer.parseInt(encounterCRInput.text.toString()) == 0) {
                     Toast.makeText(
                         applicationContext,
                         "What are you a commoner", Toast.LENGTH_LONG
@@ -112,19 +102,15 @@ class MainActivity : AppCompatActivity() {
                 val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
 
                 var numberOfMonsters =
-                    howManyMonstersforEncounter(Integer.parseInt(crinput.text.toString()), randomMonster.fl)
+                    howManyMonstersforEncounter(Integer.parseInt(encounterCRInput.text.toString()), randomMonster.fl)
 
-                Toast.makeText(
-                    applicationContext,
-                    "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s", Toast.LENGTH_LONG
+                Snackbar.make(
+                    view,
+                    "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s", Snackbar.LENGTH_LONG
                 ).show()
 
-
-                // TODO: Generate encounter
-                // TODO: Match names to not create duplicates
-
-
             }
+
             builder.setNegativeButton(getString(R.string.no_thanks)) { dialog, which ->
                 Toast.makeText(
                     applicationContext,
@@ -132,17 +118,17 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
             builder.show()
+
 //            Snackbar.make(view, String.format("You rolled a %d",score), Snackbar.LENGTH_LONG)
 //                .setAction("Action", nul
 //                l).show()
-
 //            rollhistory.add(score)
+
             centertext.text =
                 String.format("You encountered a %s \n", rollhistory.joinToString("\n You encountered a "))
 
         }
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -165,4 +151,7 @@ class MainActivity : AppCompatActivity() {
         return ceil(party_level / monstercr).toInt()
     }
 
+    companion object {
+        const val DRAGON = "🐉"
+    }
 }
