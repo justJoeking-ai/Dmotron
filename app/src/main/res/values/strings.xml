@@ -6,4 +6,5 @@
     <string name="no_thanks">No thanks</string>
     <string name="let_roll">Let\'s Roll!</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="you_encountered">\n You encountered a </string>
 </resources>

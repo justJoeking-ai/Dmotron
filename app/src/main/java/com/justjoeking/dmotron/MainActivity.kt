@@ -104,11 +104,17 @@ class MainActivity : AppCompatActivity() {
                 var numberOfMonsters =
                     howManyMonstersforEncounter(Integer.parseInt(encounterCRInput.text.toString()), randomMonster.fl)
 
+                val snackbarText = String.format(
+                    "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
+                    Snackbar.LENGTH_LONG
+                )
+
                 Snackbar.make(
                     view,
-                    "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s", Snackbar.LENGTH_LONG
+                    snackbarText, Snackbar.LENGTH_LONG
                 ).show()
 
+                centertext.text = "${centertext.text}${String.format("You encountered a %s \n", snackbarText)}"
             }
 
             builder.setNegativeButton(getString(R.string.no_thanks)) { dialog, which ->
@@ -118,15 +124,6 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
             builder.show()
-
-//            Snackbar.make(view, String.format("You rolled a %d",score), Snackbar.LENGTH_LONG)
-//                .setAction("Action", nul
-//                l).show()
-//            rollhistory.add(score)
-
-            centertext.text =
-                String.format("You encountered a %s \n", rollhistory.joinToString("\n You encountered a "))
-
         }
     }
 
