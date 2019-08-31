@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
+import java.util.Arrays.asList
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +25,11 @@ class MainActivity : AppCompatActivity() {
     // https://fragmentedpodcast.com/
 
     // https://www.stilldrinking.org/programming-sucks
+
+    fun givenList_shouldReturnARandomElement() {
+
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,15 +89,18 @@ class MainActivity : AppCompatActivity() {
 
             val dragon = "🐉"
             builder.setTitle("Create an Encounter! $dragon")
-            builder.setPositiveButton("Let's Roll(fuck yea)") { dialog, which ->
-               // todo rn: grab random monster and figure out how many
+            builder.setPositiveButton(getString(R.string.let_roll)) { dialog, which ->
+                // todo rn: grab random monster and figure out how many
 
 
+                val rand = Random()
+                val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
 
+                var numberOfMonsters = howManyMonstersforEncounter(crinput.text, randomMonster.fl)
 
                 Toast.makeText(
                     applicationContext,
-                    crinput.text, Toast.LENGTH_SHORT
+                    "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s", Toast.LENGTH_LONG
                 ).show()
 
                 // TODO: Generate encounter
@@ -97,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
 
             }
-            builder.setNegativeButton("Let's not Roll(fuck No)") { dialog, which ->
+            builder.setNegativeButton(getString(R.string.no_thanks)) { dialog, which ->
                 Toast.makeText(
                     applicationContext,
                     android.R.string.no, Toast.LENGTH_SHORT
