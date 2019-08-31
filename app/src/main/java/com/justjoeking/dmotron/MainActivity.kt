@@ -1,22 +1,18 @@
 package com.justjoeking.dmotron
 
-import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import java.util.concurrent.ThreadLocalRandom
-import android.widget.LinearLayout
-import android.widget.EditText
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     // https://www.reddit.com/r/StrangePlanet/
 
     // https://fragmentedpodcast.com/
+
+    // https://www.stilldrinking.org/programming-sucks
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,12 +73,20 @@ class MainActivity : AppCompatActivity() {
             crinput.setInputType(
                 InputType.TYPE_CLASS_NUMBER
             )
-            crinput.setText("2")
+            // todo: spinner for EL?
+            crinput.setText("")
+            crinput.setHint(getString(R.string.monster_name_hint))
 
             builder.setView(crinput)
 
-            builder.setTitle("Create an Encounter!")
+            val dragon = "🐉"
+            builder.setTitle("Create an Encounter! $dragon")
             builder.setPositiveButton("Let's Roll(fuck yea)") { dialog, which ->
+               // todo rn: grab random monster and figure out how many
+
+
+
+
                 Toast.makeText(
                     applicationContext,
                     crinput.text, Toast.LENGTH_SHORT
