@@ -14,8 +14,9 @@ import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
-import java.util.Arrays.asList
 import kotlin.collections.ArrayList
+import kotlin.math.ceil
+import kotlin.math.floor
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,12 @@ class MainActivity : AppCompatActivity() {
     // https://fragmentedpodcast.com/
 
     // https://www.stilldrinking.org/programming-sucks
+    enum class status {
+        // just for science
+        NORMAL,
+        BLOODIED,
+        DEAD
+    }
 
     fun givenList_shouldReturnARandomElement() {
 
@@ -83,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             )
             // todo: spinner for EL?
             crinput.setText("")
-            crinput.setHint(getString(R.string.monster_name_hint))
+            crinput.setHint(getString(R.string.party_level_hint))
 
             builder.setView(crinput)
 
@@ -92,11 +99,12 @@ class MainActivity : AppCompatActivity() {
             builder.setPositiveButton(getString(R.string.let_roll)) { dialog, which ->
                 // todo rn: grab random monster and figure out how many
 
-
+                // todo: throw in error handling
                 val rand = Random()
                 val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
 
-                var numberOfMonsters = howManyMonstersforEncounter(crinput.text, randomMonster.fl)
+                var numberOfMonsters =
+                    howManyMonstersforEncounter(Integer.parseInt(crinput.text.toString()), randomMonster.fl)
 
                 Toast.makeText(
                     applicationContext,
@@ -142,4 +150,12 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    fun howManyMonstersforEncounter(party_level: Int, monstercr: Float): Number {
+        // assume four party members and an average difficulty for now
+
+
+        return ceil(party_level/monstercr)
+    }
+
 }

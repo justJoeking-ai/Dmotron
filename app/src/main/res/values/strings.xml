@@ -2,7 +2,8 @@
     <string name="app_name">DMOTRON</string>
     <string name="action_settings">Settings</string>
     <string name="dm_otron">DM Otron</string>
-    <string name="monster_name_hint">Input Monster name</string>
+    <string name="party_level_hint">Input party level</string>
     <string name="no_thanks">No thanks</string>
     <string name="let_roll">Let\'s Roll!</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>
