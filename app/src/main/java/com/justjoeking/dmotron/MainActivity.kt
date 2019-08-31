@@ -114,8 +114,11 @@ class MainActivity : AppCompatActivity() {
                     snackbarText, Snackbar.LENGTH_LONG
                 ).show()
 
-
-                centertext.text = "${centertext.text}${String.format("%s (%s) \n", snackbarText, getEncounterXP())}"
+                centertext.text = "${centertext.text}${String.format(
+                    "%s (%s) \n",
+                    snackbarText,
+                    getEncounterXP(numberOfMonsters.toLong() * randomMonster.fl.toLong())
+                )}"
             }
 
             builder.setNegativeButton(getString(R.string.no_thanks)) { dialog, which ->
@@ -125,6 +128,19 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
             builder.show()
+        }
+    }
+
+    private fun getEncounterXP(cr: Long): Int {
+        // todo return xp level
+
+        when (cr) {
+            .125.toLong() -> return crXPLookup.get(0)
+            .25.toLong() -> return crXPLookup.get(1)
+            .5.toLong() -> return crXPLookup.get(2)
+            1.toLong() -> return crXPLookup.get(3)
+            2.toLong() -> return crXPLookup.get(4)
+            else -> return crXPLookup.get((cr + 2).toInt())
         }
     }
 
@@ -151,10 +167,10 @@ class MainActivity : AppCompatActivity() {
 
     // CR
     val crXPLookup = arrayListOf(
-        25, // 1/8
-        50,  // 1/4
-        100, // 1/2
-        200, // 1
+        25, // 1/8 0
+        50,  // 1/4 1
+        100, // 1/2 2
+        200, // 1 3
         450,
         700,
         1100,
