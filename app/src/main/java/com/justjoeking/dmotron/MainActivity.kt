@@ -114,7 +114,8 @@ class MainActivity : AppCompatActivity() {
                     snackbarText, Snackbar.LENGTH_LONG
                 ).show()
 
-                centertext.text = "${centertext.text}${String.format("You encountered a %s \n", snackbarText)}"
+
+                centertext.text = "${centertext.text}${String.format("%s (%s) \n", snackbarText, getEncounterXP())}"
             }
 
             builder.setNegativeButton(getString(R.string.no_thanks)) { dialog, which ->
@@ -147,6 +148,43 @@ class MainActivity : AppCompatActivity() {
         // assume four party members and an average difficulty for now
         return ceil(party_level / monstercr).toInt()
     }
+
+    // CR
+    val crXPLookup = arrayListOf(
+        25, // 1/8
+        50,  // 1/4
+        100, // 1/2
+        200, // 1
+        450,
+        700,
+        1100,
+        1800,
+        2300,
+        2900,
+        3900,
+        5000,
+        5900,
+        7200,
+        8400,
+        10000,
+        11500,
+        13000, //15
+        15000,
+        18000,
+        20000,
+        22000,
+        25000, //20
+        33000,
+        41000,
+        50000,
+        62000,
+        75000,
+        90000,
+        105000,
+        120000,
+        135000,
+        155000
+    )
 
     companion object {
         const val DRAGON = "🐉"
