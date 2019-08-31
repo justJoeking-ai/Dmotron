@@ -1,5 +1,6 @@
 package com.justjoeking.dmotron
 
+import android.app.Dialog
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
@@ -17,6 +18,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.ceil
 import kotlin.math.floor
+import android.content.DialogInterface
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,14 +30,9 @@ class MainActivity : AppCompatActivity() {
     // https://www.stilldrinking.org/programming-sucks
     enum class status {
         // just for science
+        EASY,
         NORMAL,
-        BLOODIED,
-        DEAD
-    }
-
-    fun givenList_shouldReturnARandomElement() {
-
-
+        HARD
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,16 +63,12 @@ class MainActivity : AppCompatActivity() {
 
         var rollhistory = ArrayList<Int>(0)
 
-
         fab.setOnClickListener { view ->
             var score = RandomUtils.randInt(1, 20)
-//            Snackbar.make(view, String.format("You rolled a %d",score), Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-
             rollhistory.add(score)
             centertext.text = String.format("You rolled a %s \n", rollhistory.joinToString("\n You rolled a "))
-
         }
+
         fab2.setOnClickListener { view ->
             var builder = AlertDialog.Builder(this)
 
@@ -93,13 +86,28 @@ class MainActivity : AppCompatActivity() {
             crinput.setHint(getString(R.string.party_level_hint))
 
             builder.setView(crinput)
-
             val dragon = "🐉"
             builder.setTitle("Create an Encounter! $dragon")
+//
+
+
             builder.setPositiveButton(getString(R.string.let_roll)) { dialog, which ->
                 // todo rn: grab random monster and figure out how many
 
-                // todo: throw in error handling
+                if (crinput.text.toString().isEmpty()) {
+                    Toast.makeText(
+                        applicationContext,
+                        "What are you a NPC?", Toast.LENGTH_LONG
+                    ).show()
+                    return@setPositiveButton
+                } else if (Integer.parseInt(crinput.text.toString()) == 0) {
+                    Toast.makeText(
+                        applicationContext,
+                        "What are you a commoner", Toast.LENGTH_LONG
+                    ).show()
+                    return@setPositiveButton
+                }
+
                 val rand = Random()
                 val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
 
@@ -110,6 +118,7 @@ class MainActivity : AppCompatActivity() {
                     applicationContext,
                     "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s", Toast.LENGTH_LONG
                 ).show()
+
 
                 // TODO: Generate encounter
                 // TODO: Match names to not create duplicates
@@ -153,9 +162,7 @@ class MainActivity : AppCompatActivity() {
 
     fun howManyMonstersforEncounter(party_level: Int, monstercr: Float): Number {
         // assume four party members and an average difficulty for now
-
-
-        return ceil(party_level/monstercr).toInt()
+        return ceil(party_level / monstercr).toInt()
     }
 
 }
