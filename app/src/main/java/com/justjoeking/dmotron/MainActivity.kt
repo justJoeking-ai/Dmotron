@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.ceil
+import retrofit2.Retrofit
 
 
 class MainActivity : AppCompatActivity() {
@@ -52,15 +53,30 @@ class MainActivity : AppCompatActivity() {
         } else {
             // do something for phones running an SDK before lollipop
         }
-        fab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.Btncolor)))
-        fab2.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.Btncolor)))
+        fab.setBackgroundTintList(
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    this,
+                    R.color.Btncolor
+                )
+            )
+        )
+        fab2.setBackgroundTintList(
+            ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    this,
+                    R.color.Btncolor
+                )
+            )
+        )
 
         var rollhistory = ArrayList<Int>(0)
 
         fab.setOnClickListener { view ->
             var score = RandomUtils.randInt(1, 20)
             rollhistory.add(score)
-            centertext.text = String.format("You rolled a %s \n", rollhistory.joinToString("\n You rolled a "))
+            centertext.text =
+                String.format("You rolled a %s \n", rollhistory.joinToString("\n You rolled a "))
         }
 
         fab2.setOnClickListener { view ->
@@ -98,11 +114,14 @@ class MainActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
-                val rand = Random()
-                val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
+                //get monsters
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("http://dnd5eapi.co/api/")
+                    .build()
 
-                var numberOfMonsters =
-                    howManyMonstersforEncounter(Integer.parseInt(encounterCRInput.text.toString()), randomMonster.fl)
+                val service = retrofit.create<DNDService>(DNDService::class.java)
+
+                service.listMonsters()
 
                 val snackbarText = String.format(
                     "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
@@ -204,5 +223,18 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val DRAGON = "🐉"
+    }
+
+    fun getRandomMonsterFromList() {
+        val rand = Random()
+        val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
+
+        var numberOfMonsters =
+            howManyMonstersforEncounter(
+                Integer.parseInt(encounterCRInput.text.toString()),
+                randomMonster.fl
+            )
+
+
     }
 }
