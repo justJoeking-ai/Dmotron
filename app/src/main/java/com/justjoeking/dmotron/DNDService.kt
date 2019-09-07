@@ -7,7 +7,12 @@ import retrofit2.http.Path
 interface DNDService {
 
     //http://dnd5eapi.co/api/
+    // https://www.json.org
+
+    // @todo: get this one working
+//    @GET("monsters/")
+//    fun listMonsters(@Path(monster)): Call<List<Monster>>
 
     @GET("monsters/{monster}/")
-    fun listMonsters(@Path("monster") monster: String): Call<List<Monster>>
+    fun getMonster(@Path("monster") monster: Int): Call<Monster>
 }

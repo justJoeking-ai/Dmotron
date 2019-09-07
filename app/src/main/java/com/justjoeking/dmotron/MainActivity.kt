@@ -18,6 +18,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.ceil
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import android.R.string
+import android.util.Log
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,15 +44,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        var monsterlist = ArrayList<Monster>(0)
-        monsterlist.add(Monster("Goblin", .3f))
-        monsterlist.add(Monster("Werewolf", 2f))
-        monsterlist.add(Monster("Orc", 1f))
-        monsterlist.add(Monster("Dragon", 8f))
-        monsterlist.add(Monster("Lion", 3f))
-        monsterlist.add(Monster("Giant Beetle", 3f))
-        monsterlist.add(Monster("Shark", 2f))
-        monsterlist.add(Monster("Hobgoblin", 1f))
+//        var monsterlist = ArrayList<Monster>(0)
+//        monsterlist.add(Monster("Goblin", .3f))
+//        monsterlist.add(Monster("Werewolf", 2f))
+//        monsterlist.add(Monster("Orc", 1f))
+//        monsterlist.add(Monster("Dragon", 8f))
+//        monsterlist.add(Monster("Lion", 3f))
+//        monsterlist.add(Monster("Giant Beetle", 3f))
+//        monsterlist.add(Monster("Shark", 2f))
+//        monsterlist.add(Monster("Hobgoblin", 1f))
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             // Do something for lollipop and above versions centertext.
@@ -117,30 +123,44 @@ class MainActivity : AppCompatActivity() {
                 //get monsters
                 val retrofit = Retrofit.Builder()
                     .baseUrl("http://dnd5eapi.co/api/")
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build()
 
                 val service = retrofit.create<DNDService>(DNDService::class.java)
 
-                service.listMonsters()
+                var randomMonster = Monster()
 
-                val snackbarText = String.format(
-                    "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
-                    Snackbar.LENGTH_LONG
-                )
+                service.getMonster(72).enqueue(object : Callback<Monster> {
+                    override fun onFailure(call: Call<Monster>?, t: Throwable?) {
+                        Log.v("retrofit", "call failed")
+                    }
 
-                Snackbar.make(
-                    view,
-                    snackbarText, Snackbar.LENGTH_LONG
-                ).show()
+                    override fun onResponse(call: Call<Monster>?, response: Response<Monster>?) {
+                        randomMonster = response!!.body()!!
+                        Log.v("Monster", randomMonster.name)
 
-                centertext.text = "${centertext.text}${String.format(
-                    "%s (%s) \n",
-                    snackbarText,
-                    getEncounterXP(numberOfMonsters.toLong() * randomMonster.fl.toLong())
-                )}"
+                        val numberOfMonsters = 4
+                        val snackbarText = String.format(
+                            "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
+                            Snackbar.LENGTH_LONG
+                        )
+
+                        Snackbar.make(
+                            view,
+                            snackbarText, Snackbar.LENGTH_LONG
+                        ).show()
+
+                        centertext.text = "${centertext.text}${String.format(
+                            "%s (%s) \n",
+                            snackbarText,
+                            getEncounterXP(numberOfMonsters.toLong() * 2)
+                        )}"
+                    }
+                })
             }
 
-            builder.setNegativeButton(getString(R.string.no_thanks)) { dialog, which ->
+            builder.setNegativeButton(getString(R.string.no_thanks))
+            { dialog, which ->
                 Toast.makeText(
                     applicationContext,
                     android.R.string.no, Toast.LENGTH_SHORT
@@ -225,16 +245,16 @@ class MainActivity : AppCompatActivity() {
         const val DRAGON = "🐉"
     }
 
-    fun getRandomMonsterFromList() {
-        val rand = Random()
-        val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
+//fun getRandomMonsterFromList() {
+//val rand = Random()
+//val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
 
-        var numberOfMonsters =
-            howManyMonstersforEncounter(
-                Integer.parseInt(encounterCRInput.text.toString()),
-                randomMonster.fl
-            )
+//var numberOfMonsters =
+// howManyMonstersforEncounter(
+//    Integer.parseInt(encounterCRInput.text.toString()),
+//   randomMonster.fl
+//)
 
 
-    }
+//}
 }
