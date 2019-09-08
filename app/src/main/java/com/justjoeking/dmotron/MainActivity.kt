@@ -14,16 +14,15 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.ceil
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import android.R.string
 import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,16 +42,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-//        var monsterlist = ArrayList<Monster>(0)
-//        monsterlist.add(Monster("Goblin", .3f))
-//        monsterlist.add(Monster("Werewolf", 2f))
-//        monsterlist.add(Monster("Orc", 1f))
-//        monsterlist.add(Monster("Dragon", 8f))
-//        monsterlist.add(Monster("Lion", 3f))
-//        monsterlist.add(Monster("Giant Beetle", 3f))
-//        monsterlist.add(Monster("Shark", 2f))
-//        monsterlist.add(Monster("Hobgoblin", 1f))
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             // Do something for lollipop and above versions centertext.
@@ -174,12 +163,12 @@ class MainActivity : AppCompatActivity() {
         // todo return xp level
 
         when (cr) {
-            .125.toLong() -> return crXPLookup.get(0)
-            .25.toLong() -> return crXPLookup.get(1)
-            .5.toLong() -> return crXPLookup.get(2)
-            1.toLong() -> return crXPLookup.get(3)
-            2.toLong() -> return crXPLookup.get(4)
-            else -> return crXPLookup.get((cr + 2).toInt())
+            .125.toLong() -> return crXPLookup().get(0)
+            .25.toLong() -> return crXPLookup().get(1)
+            .5.toLong() -> return crXPLookup().get(2)
+            1.toLong() -> return crXPLookup().get(3)
+            2.toLong() -> return crXPLookup().get(4)
+            else -> return crXPLookup().get((cr + 2).toInt())
         }
     }
 
@@ -204,57 +193,61 @@ class MainActivity : AppCompatActivity() {
         return ceil(party_level / monstercr).toInt()
     }
 
-    // CR
-    val crXPLookup = arrayListOf(
-        25, // 1/8 0
-        50,  // 1/4 1
-        100, // 1/2 2
-        200, // 1 3
-        450,
-        700,
-        1100,
-        1800,
-        2300,
-        2900,
-        3900,
-        5000,
-        5900,
-        7200,
-        8400,
-        10000,
-        11500,
-        13000, //15
-        15000,
-        18000,
-        20000,
-        22000,
-        25000, //20
-        33000,
-        41000,
-        50000,
-        62000,
-        75000,
-        90000,
-        105000,
-        120000,
-        135000,
-        155000
-    )
+    // CR to XP converter
+    fun crXPLookup(): ArrayList<Int> {
+        return arrayListOf(
+            25, // 1/8
+            50, // 1/4
+            100, // 1/2
+            200, // 1
+            450,
+            700,
+            1100,
+            1800, // 5
+            2300,
+            2900,
+            3900,
+            5000,
+            5900, // 10
+            7200,
+            8400,
+            10000,
+            11500,
+            13000, // 15
+            15000,
+            18000,
+            20000,
+            22000,
+            25000, // 20
+            33000,
+            41000,
+            50000,
+            62000,
+            75000, // 25
+            90000,
+            105000,
+            120000,
+            135000,
+            155000 // 30
+        )
+    }
 
     companion object {
         const val DRAGON = "🐉"
     }
 
-//fun getRandomMonsterFromList() {
-//val rand = Random()
-//val randomMonster = monsterlist.get(rand.nextInt(monsterlist.size))
+    fun getRandomMonsterFromList(monsterList: ArrayList<Monster>): Monster {
+        val rand = Random()
+        val randomMonster = monsterList.get(rand.nextInt(monsterList.size))
+        return randomMonster
+    }
 
-//var numberOfMonsters =
-// howManyMonstersforEncounter(
-//    Integer.parseInt(encounterCRInput.text.toString()),
-//   randomMonster.fl
-//)
-
-
-//}
+    fun getNumberOfMonsters(encounterCR: Int, monsterCR: Float): Number {
+        val numberOfMonsters =
+            howManyMonstersforEncounter(
+                encounterCR,
+                monsterCR
+            )
+        return numberOfMonsters
+    }
 }
