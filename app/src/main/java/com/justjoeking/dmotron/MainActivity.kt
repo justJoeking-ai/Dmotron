@@ -27,13 +27,19 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    // remove as read:
     // https://www.reddit.com/r/StrangePlanet/
     // https://fragmentedpodcast.com/
     // https://www.stilldrinking.org/programming-sucks
 
     var rollhistory = ArrayList<Int>(0)
 
-    
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("http://dnd5eapi.co/api/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
     enum class status {
         // just for science
         EASY,
@@ -63,9 +69,25 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-
+        setupMonsterList()
         setupLeftFabClick()
         setupRightFabClick()
+    }
+
+    private fun setupMonsterList() {
+        retrofit.create<DNDService>(DNDService::class.java).listMonsters()
+            .enqueue(object : Callback<List<Monster>> {
+                override fun onFailure(call: Call<List<Monster>>?, t: Throwable?) {
+                    Log.v("retrofit", "call failed")
+                }
+
+                override fun onResponse(
+                    call: Call<List<Monster>>?,
+                    response: Response<List<Monster>>?
+                ) {
+                    Log.d("AllMonsters", response.toString())
+                }
+            })
     }
 
     private fun setupLeftFabClick() {
@@ -89,16 +111,14 @@ class MainActivity : AppCompatActivity() {
             encounterCRInput.layoutParams = lp
             encounterCRInput.inputType = InputType.TYPE_CLASS_NUMBER
 
-            // TODO: spinner for EL?
+            // TODO: spinner for EL instead of text?
             encounterCRInput.setText("")
             encounterCRInput.hint = getString(R.string.party_level_hint)
             var builder = AlertDialog.Builder(this)
             builder.setView(encounterCRInput)
             builder.setTitle("Create an Encounter! $DRAGON")
             builder.setPositiveButton(getString(R.string.let_roll)) { dialog, which ->
-                // TODO rn: grab random monster and figure out how many
                 // TODO: Match names to not create duplicates
-
                 if (encounterCRInput.text.toString().isEmpty()) {
                     Toast.makeText(
                         applicationContext,
@@ -113,43 +133,39 @@ class MainActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
-                //get monsters
-                val retrofit = Retrofit.Builder()
-                    .baseUrl("http://dnd5eapi.co/api/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
+                var randomMonster: Monster
 
-                val service = retrofit.create<DNDService>(DNDService::class.java)
+                retrofit.create<DNDService>(DNDService::class.java).getMonster(72)
+                    .enqueue(object : Callback<Monster> {
+                        override fun onFailure(call: Call<Monster>?, t: Throwable?) {
+                            Log.v("retrofit", "call failed")
+                        }
 
-                var randomMonster = Monster()
+                        override fun onResponse(
+                            call: Call<Monster>?,
+                            response: Response<Monster>?
+                        ) {
+                            randomMonster = response!!.body()!!
+                            Log.v("Monster", randomMonster.name)
 
-                service.getMonster(72).enqueue(object : Callback<Monster> {
-                    override fun onFailure(call: Call<Monster>?, t: Throwable?) {
-                        Log.v("retrofit", "call failed")
-                    }
+                            val numberOfMonsters = 4
+                            val snackbarText = String.format(
+                                "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
+                                Snackbar.LENGTH_LONG
+                            )
 
-                    override fun onResponse(call: Call<Monster>?, response: Response<Monster>?) {
-                        randomMonster = response!!.body()!!
-                        Log.v("Monster", randomMonster.name)
+                            Snackbar.make(
+                                view,
+                                snackbarText, Snackbar.LENGTH_LONG
+                            ).show()
 
-                        val numberOfMonsters = 4
-                        val snackbarText = String.format(
-                            "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
-                            Snackbar.LENGTH_LONG
-                        )
-
-                        Snackbar.make(
-                            view,
-                            snackbarText, Snackbar.LENGTH_LONG
-                        ).show()
-
-                        centertext.text = "${centertext.text}${String.format(
-                            "%s (%s) \n",
-                            snackbarText,
-                            getEncounterXP(numberOfMonsters.toLong() * 2)
-                        )}"
-                    }
-                })
+                            centertext.text = "${centertext.text}${String.format(
+                                "%s (%s) \n",
+                                snackbarText,
+                                getEncounterXP(numberOfMonsters.toLong() * 2)
+                            )}"
+                        }
+                    })
             }
 
             builder.setNegativeButton(getString(R.string.no_thanks))
