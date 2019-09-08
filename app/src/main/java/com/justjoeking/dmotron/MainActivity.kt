@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     // https://fragmentedpodcast.com/
     // https://www.stilldrinking.org/programming-sucks
 
+    var rollhistory = ArrayList<Int>(0)
+
+    
     enum class status {
         // just for science
         EASY,
@@ -43,11 +46,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            // Do something for lollipop and above versions centertext.
-        } else {
-            // do something for phones running an SDK before lollipop
-        }
         fab.setBackgroundTintList(
             ColorStateList.valueOf(
                 ContextCompat.getColor(
@@ -65,17 +63,23 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        var rollhistory = ArrayList<Int>(0)
 
+        setupLeftFabClick()
+        setupRightFabClick()
+    }
+
+    private fun setupLeftFabClick() {
         fab.setOnClickListener { view ->
             var score = RandomUtils.randInt(1, 20)
             rollhistory.add(score)
             centertext.text =
                 String.format("You rolled a %s \n", rollhistory.joinToString("\n You rolled a "))
         }
+    }
 
+
+    private fun setupRightFabClick() {
         fab2.setOnClickListener { view ->
-            var builder = AlertDialog.Builder(this)
 
             val encounterCRInput = EditText(this)
             val lp = LinearLayout.LayoutParams(
@@ -88,9 +92,9 @@ class MainActivity : AppCompatActivity() {
             // TODO: spinner for EL?
             encounterCRInput.setText("")
             encounterCRInput.hint = getString(R.string.party_level_hint)
+            var builder = AlertDialog.Builder(this)
             builder.setView(encounterCRInput)
             builder.setTitle("Create an Encounter! $DRAGON")
-
             builder.setPositiveButton(getString(R.string.let_roll)) { dialog, which ->
                 // TODO rn: grab random monster and figure out how many
                 // TODO: Match names to not create duplicates

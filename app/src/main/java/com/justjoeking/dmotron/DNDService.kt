@@ -10,8 +10,8 @@ interface DNDService {
     // https://www.json.org
 
     // @todo: get this one working
-//    @GET("monsters/")
-//    fun listMonsters(@Path(monster)): Call<List<Monster>>
+    @GET("monsters/")
+    fun listMonsters(): Call<List<Monster>>
 
     @GET("monsters/{monster}/")
     fun getMonster(@Path("monster") monster: Int): Call<Monster>
