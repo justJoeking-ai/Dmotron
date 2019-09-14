@@ -76,14 +76,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupMonsterList() {
         retrofit.create<DNDService>(DNDService::class.java).listMonsters()
-            .enqueue(object : Callback<List<Monster>> {
-                override fun onFailure(call: Call<List<Monster>>?, t: Throwable?) {
+            .enqueue(object : Callback<MonsterResponse> {
+                override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
                     Log.v("retrofit", "call failed")
                 }
 
                 override fun onResponse(
-                    call: Call<List<Monster>>?,
-                    response: Response<List<Monster>>?
+                    call: Call<MonsterResponse>?,
+                    response: Response<MonsterResponse>?
                 ) {
                     Log.d("AllMonsters", response.toString())
                 }
@@ -133,21 +133,25 @@ class MainActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
-                var randomMonster: Monster
-
-                //Fetch monsters
-                retrofit.create<DNDService>(DNDService::class.java).getMonster(73)
-                    .enqueue(object : Callback<Monster> {
-                        override fun onFailure(call: Call<Monster>?, t: Throwable?) {
+                // Fetch monsters
+                retrofit.create<DNDService>(DNDService::class.java).listMonsters()
+                    .enqueue(object : Callback<MonsterResponse> {
+                        override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
                             Log.v("retrofit", "call failed")
                         }
 
                         override fun onResponse(
-                            call: Call<Monster>?,
-                            response: Response<Monster>?
+                            call: Call<MonsterResponse>?,
+                            response: Response<MonsterResponse>?
                         ) {
-                            randomMonster = response!!.body()!!
-                            Log.v("Monster", randomMonster.name)
+                            var allMonsters = response!!.body()!!.results
+                            Log.v("Monster", allMonsters.get(0).name)
+                            Log.v("Monster", allMonsters.get(1).name)
+                            Log.v("Monster", allMonsters.get(2).name)
+                            Log.v("Monster", allMonsters.get(3).name)
+
+                            val randomMonster = allMonsters.get(RandomUtils.randInt(0, allMonsters.size))
+
 
                             val numberOfMonsters = 4
                             val snackbarText = String.format(

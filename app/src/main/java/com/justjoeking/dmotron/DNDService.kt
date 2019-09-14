@@ -11,7 +11,7 @@ interface DNDService {
 
     // @todo: get this one working
     @GET("monsters/")
-    fun listMonsters(): Call<List<Monster>>
+    fun listMonsters(): Call<MonsterResponse>
 
     @GET("monsters/{monster}/")
     fun getMonster(@Path("monster") monster: Int): Call<Monster>
