@@ -15,4 +15,10 @@ interface DNDService {
 
     @GET("monsters/{monster}/")
     fun getMonster(@Path("monster") monster: Int): Call<Monster>
+
+    @GET("spells/")
+    fun listSpell(): Call<SpellResponse>
+
+    @GET("spells/{spell}/")
+    fun getSpell(@Path("spell") spell: Int): Call<Spell>
 }

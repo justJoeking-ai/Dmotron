@@ -4,7 +4,7 @@ class Monster() {
 
 
 
-    val  id = ""
+    val id = ""
     val index = 0
     val name = ""
 //    val String size;
