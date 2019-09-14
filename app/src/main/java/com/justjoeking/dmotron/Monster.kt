@@ -2,14 +2,12 @@ package com.justjoeking.dmotron
 
 class Monster() {
 
-
-
     val id = ""
     val index = 0
     val name = ""
-//    val String size;
-//    val String type;
-//    val String subtype;
+    val size = ""
+    val type = ""
+    //    val String subtype;
 //    val String alignment;
 //    val Integer armorClass;
 //    val Integer hitPoints;
@@ -34,7 +32,7 @@ class Monster() {
 //    val String conditionImmunities;
 //    val String senses;
 //    val String languages;
-    val  challengeRating = 0
+    val challengeRating = 0
 //    val List<SpecialAbility> specialAbilities = null;
 //    val List<Action> actions = null;
 //    val List<LegendaryAction> legendaryActions = null;

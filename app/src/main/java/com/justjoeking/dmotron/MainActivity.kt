@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupMonsterList() {
-        retrofit.create<DNDService>(DNDService::class.java).listMonsters()
+        retrofit.create(DNDService::class.java).listMonsters()
             .enqueue(object : Callback<MonsterResponse> {
                 override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
                     Log.v("retrofit", "call failed")
@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 // Fetch monsters
-                retrofit.create<DNDService>(DNDService::class.java).listMonsters()
+                retrofit.create(DNDService::class.java).listMonsters()
                     .enqueue(object : Callback<MonsterResponse> {
                         override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
                             Log.v("retrofit", "call failed")
@@ -150,7 +150,41 @@ class MainActivity : AppCompatActivity() {
                             Log.v("Monster", allMonsters.get(2).name)
                             Log.v("Monster", allMonsters.get(3).name)
 
-                            val randomMonster = allMonsters.get(RandomUtils.randInt(0, allMonsters.size))
+                            // get a random monster
+                            val randomMonster =
+                                allMonsters.get(RandomUtils.randInt(0, allMonsters.size))
+                            val monsterId = randomMonster.getId()
+
+                            // Fetch monsters
+                            retrofit.create(DNDService::class.java).getMonster(monsterId)
+                                .enqueue(object : Callback<Monster> {
+                                    override fun onFailure(call: Call<Monster>?, t: Throwable?) {
+                                        Log.v("retrofit", "call failed")
+                                    }
+
+                                    override fun onResponse(
+                                        call: Call<Monster>?,
+                                        response: Response<Monster>?
+                                    ) {
+
+                                        val numberOfMonsters = 4
+                                        val snackbarText = String.format(
+                                            "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s: "+response!!.body()!!.size,
+                                            Snackbar.LENGTH_LONG
+                                        )
+
+                                        Snackbar.make(
+                                            view,
+                                            snackbarText, Snackbar.LENGTH_LONG
+                                        ).show()
+//
+//                                        centertext.text = "${centertext.text}${String.format(
+//                                            "%s (%s) \n",
+//                                            snackbarText,
+//                                            getEncounterXP(numberOfMonsters.toLong() * 2)
+//                                        )}"
+                                    }
+                                })
 
 
                             val numberOfMonsters = 4
@@ -159,10 +193,10 @@ class MainActivity : AppCompatActivity() {
                                 Snackbar.LENGTH_LONG
                             )
 
-                            Snackbar.make(
-                                view,
-                                snackbarText, Snackbar.LENGTH_LONG
-                            ).show()
+//                            Snackbar.make(
+//                                view,
+//                                snackbarText, Snackbar.LENGTH_LONG
+//                            ).show()
 
                             centertext.text = "${centertext.text}${String.format(
                                 "%s (%s) \n",
@@ -174,7 +208,7 @@ class MainActivity : AppCompatActivity() {
 
                 //Fetch Spells
                 var allSpells: List<SpellListing>
-                retrofit.create<DNDService>(DNDService::class.java).listSpell()
+                retrofit.create(DNDService::class.java).listSpell()
                     .enqueue(object : Callback<SpellResponse> {
                         override fun onFailure(call: Call<SpellResponse>?, t: Throwable?) {
                             Log.v("retrofit", "call failed")
