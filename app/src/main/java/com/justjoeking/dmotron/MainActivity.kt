@@ -52,14 +52,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setBackgroundTintList(
-            ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    this,
-                    R.color.Btncolor
-                )
-            )
-        )
+//        fab.setBackgroundTintList(
+//            ColorStateList.valueOf(
+//                ContextCompat.getColor(
+//                    this,
+//                    R.color.Btncolor
+//                )
+//            )
+//        )
         fab2.setBackgroundTintList(
             ColorStateList.valueOf(
                 ContextCompat.getColor(
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         setupMonsterList()
-        setupLeftFabClick()
+       // setupLeftFabClick()
         setupRightFabClick()
     }
 
@@ -90,14 +90,14 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private fun setupLeftFabClick() {
-        fab.setOnClickListener { view ->
-            var score = RandomUtils.randInt(1, 20)
-            rollhistory.add(score)
-            centertext.text =
-                String.format("You rolled a %s \n", rollhistory.joinToString("\n You rolled a "))
-        }
-    }
+//    private fun setupLeftFabClick() {
+//        fab.setOnClickListener { view ->
+//            var score = RandomUtils.randInt(1, 20)
+//            rollhistory.add(score)
+//            centertext.text =
+//                String.format("You rolled a %s \n", rollhistory.joinToString("\n You rolled a "))
+//        }
+//    }
 
 
     private fun setupRightFabClick() {
