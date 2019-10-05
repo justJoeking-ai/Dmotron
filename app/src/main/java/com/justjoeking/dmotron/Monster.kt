@@ -1,5 +1,7 @@
 package com.justjoeking.dmotron
 
+import com.google.gson.annotations.SerializedName
+
 class Monster() {
 
     val id = ""
@@ -7,13 +9,16 @@ class Monster() {
     val name = ""
     val size = ""
     val type = ""
+
+    val challenge_rating = 0
+
     //    val String subtype;
 //    val String alignment;
 //    val Integer armorClass;
 //    val Integer hitPoints;
 //    val String hitDice;
 //    val String speed;
-//    val Integer strength;
+//    valchallengeRating Integer strength;
 //    val Integer dexterity;
 //    val Integer constitution;
 //    val Integer intelligence;
@@ -32,7 +37,6 @@ class Monster() {
 //    val String conditionImmunities;
 //    val String senses;
 //    val String languages;
-    val challengeRating = 0
 //    val List<SpecialAbility> specialAbilities = null;
 //    val List<Action> actions = null;
 //    val List<LegendaryAction> legendaryActions = null;

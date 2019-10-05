@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         setupMonsterList()
-       // setupLeftFabClick()
+        // setupLeftFabClick()
         setupRightFabClick()
     }
 
@@ -167,42 +167,51 @@ class MainActivity : AppCompatActivity() {
                                         response: Response<Monster>?
                                     ) {
 
-                                        val numberOfMonsters = 4
-                                        val snackbarText = String.format(
-                                            "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s: "+response!!.body()!!.size,
-                                            Snackbar.LENGTH_LONG
-                                        )
+                                        if (response?.body() == null) {
+                                            // @todo: throw error
+                                            return
+                                        } else {
+                                            val monster = response.body()
+                                            val numberOfMonsters = encounterCRInput.text.toString().toInt()/monster!!.challenge_rating
+                                            val snackbarText = String.format(
+                                                "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s: " + response!!.body()!!.size,
+                                                Snackbar.LENGTH_LONG
+                                            )
 
-                                        Snackbar.make(
-                                            view,
-                                            snackbarText, Snackbar.LENGTH_LONG
-                                        ).show()
+//                                            val challenge_rating = 0
+//                                            val challengeRating = 0
+
+                                            Snackbar.make(
+                                                view,
+                                                snackbarText, Snackbar.LENGTH_LONG
+                                            ).show()
 //
 //                                        centertext.text = "${centertext.text}${String.format(
 //                                            "%s (%s) \n",
 //                                            snackbarText,
 //                                            getEncounterXP(numberOfMonsters.toLong() * 2)
 //                                        )}"
+                                        }
                                     }
                                 })
 
-
-                            val numberOfMonsters = 4
-                            val snackbarText = String.format(
-                                "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
-                                Snackbar.LENGTH_LONG
-                            )
+//
+//                            val numberOfMonsters =
+//                            val snackbarText = String.format(
+//                                "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
+//                                Snackbar.LENGTH_LONG
+//                            )
 
 //                            Snackbar.make(
 //                                view,
 //                                snackbarText, Snackbar.LENGTH_LONG
 //                            ).show()
 
-                            centertext.text = "${centertext.text}${String.format(
-                                "%s (%s) \n",
-                                snackbarText,
-                                getEncounterXP(numberOfMonsters.toLong() * 2)
-                            )}"
+//                            centertext.text = "${centertext.text}${String.format(
+//                                "%s (%s) \n",
+//                                snackbarText,
+//                                getEncounterXP(numberOfMonsters.toLong() * 2)
+//                            )}"
                         }
                     })
 
