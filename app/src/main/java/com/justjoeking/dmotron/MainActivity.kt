@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     var rollhistory = ArrayList<Int>(0)
 
+//    https://play.google.com/apps/publish/?account=9031693838262703476#AdminPlace
+
 
     val retrofit = Retrofit.Builder()
         .baseUrl("http://dnd5eapi.co/api/")
