@@ -172,11 +172,23 @@ class MainActivity : AppCompatActivity() {
                                             return
                                         } else {
                                             val monster = response.body()
-                                            val numberOfMonsters = encounterCRInput.text.toString().toInt()/monster!!.challenge_rating
+                                            val numberOfMonsters =
+                                                encounterCRInput.text.toString().toInt() / monster!!.challenge_rating
                                             val snackbarText = String.format(
                                                 "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s: " + response!!.body()!!.size,
                                                 Snackbar.LENGTH_LONG
                                             )
+
+                                            Snackbar.make(
+                                                view,
+                                                snackbarText, Snackbar.LENGTH_LONG
+                                            ).show()
+
+                                            centertext.text = "${centertext.text}${String.format(
+                                                "%s (%s) \n",
+                                                snackbarText,
+                                                getEncounterXP(numberOfMonsters.toLong() * 2)
+                                            )}"
 
 //                                            val challenge_rating = 0
 //                                            val challengeRating = 0
@@ -185,73 +197,49 @@ class MainActivity : AppCompatActivity() {
                                                 view,
                                                 snackbarText, Snackbar.LENGTH_LONG
                                             ).show()
-//
-//                                        centertext.text = "${centertext.text}${String.format(
-//                                            "%s (%s) \n",
-//                                            snackbarText,
-//                                            getEncounterXP(numberOfMonsters.toLong() * 2)
-//                                        )}"
                                         }
                                     }
                                 })
+                        }
+                    })
 
+//                //Fetch Spells
+//                var allSpells: List<SpellListing>
+//                retrofit.create(DNDService::class.java).listSpell()
+//                    .enqueue(object : Callback<SpellResponse> {
+//                        override fun onFailure(call: Call<SpellResponse>?, t: Throwable?) {
+//                            Log.v("retrofit", "call failed")
+//                        }
 //
-//                            val numberOfMonsters =
-//                            val snackbarText = String.format(
-//                                "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s",
-//                                Snackbar.LENGTH_LONG
-//                            )
-
-//                            Snackbar.make(
-//                                view,
-//                                snackbarText, Snackbar.LENGTH_LONG
-//                            ).show()
-
+//                        // fetch spell listing, use it to get a spell
+//                        override fun onResponse(
+//                            call: Call<SpellResponse>?,
+//                            response: Response<SpellResponse>?
+//                        ) {
+//                            allSpells = response!!.body()!!.results!!
+//                            Log.v("Spell", allSpells.get(0).name)
+//                            Log.v("Spell", allSpells.get(1).name)
+//                            Log.v("Spell", allSpells.get(2).name)
+//
+////                            val numberOfSpells = 4
+////                            val snackbarText = String.format(
+////                                "Encounter: " + numberOfSpells + " " + allSpells.name + "s",
+////                                Snackbar.LENGTH_LONG
+////                            )
+//
+////                            Snackbar.make(
+////                                view,
+////                                snackbarText, Snackbar.LENGTH_LONG
+////                            ).show()
+//
+//                            val randomSpell = allSpells.get(RandomUtils.randInt(0, allSpells.size))
+//
 //                            centertext.text = "${centertext.text}${String.format(
-//                                "%s (%s) \n",
-//                                snackbarText,
-//                                getEncounterXP(numberOfMonsters.toLong() * 2)
+//                                "(with a scroll of %s) \n",
+//                                randomSpell.name
 //                            )}"
-                        }
-                    })
-
-                //Fetch Spells
-                var allSpells: List<SpellListing>
-                retrofit.create(DNDService::class.java).listSpell()
-                    .enqueue(object : Callback<SpellResponse> {
-                        override fun onFailure(call: Call<SpellResponse>?, t: Throwable?) {
-                            Log.v("retrofit", "call failed")
-                        }
-
-                        // fetch spell listing, use it to get a spell
-                        override fun onResponse(
-                            call: Call<SpellResponse>?,
-                            response: Response<SpellResponse>?
-                        ) {
-                            allSpells = response!!.body()!!.results!!
-                            Log.v("Spell", allSpells.get(0).name)
-                            Log.v("Spell", allSpells.get(1).name)
-                            Log.v("Spell", allSpells.get(2).name)
-
-//                            val numberOfSpells = 4
-//                            val snackbarText = String.format(
-//                                "Encounter: " + numberOfSpells + " " + allSpells.name + "s",
-//                                Snackbar.LENGTH_LONG
-//                            )
-
-//                            Snackbar.make(
-//                                view,
-//                                snackbarText, Snackbar.LENGTH_LONG
-//                            ).show()
-
-                            val randomSpell = allSpells.get(RandomUtils.randInt(0, allSpells.size))
-
-                            centertext.text = "${centertext.text}${String.format(
-                                "(with a scroll of %s) \n",
-                                randomSpell.name
-                            )}"
-                        }
-                    })
+//                        }
+//                    })
             }
 
             builder.setNegativeButton(getString(R.string.no_thanks))
