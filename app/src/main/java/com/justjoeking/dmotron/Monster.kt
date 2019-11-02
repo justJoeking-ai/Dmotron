@@ -1,6 +1,5 @@
 package com.justjoeking.dmotron
 
-class Monster(var name: String, var fl: Float) {
-
-
+class Monster(public var name: String, public var url: String) {
+    var fl: Float = 1.0f
 }
