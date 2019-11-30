@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity() {
     ) {
         // get a random monster
         val randomMonster =
-            allMonsters.get(RandomUtils.randInt(0, allMonsters.size))
+            allMonsters.get(RandomUtils.randInt(0, allMonsters.size - 1))
         val monsterId = randomMonster.getId()
 
         // Fetch individual monster
@@ -198,8 +198,8 @@ class MainActivity : AppCompatActivity() {
                         return
                     } else {
                         val monster = response.body()
-                        if (monster!!.challenge_rating == 0L) {
-                            monster.challenge_rating = 1
+                        if (monster!!.challenge_rating == 0f) {
+                            monster.challenge_rating = 1f
                         }
 
                         if (monster!!.challenge_rating > encounterCR) {

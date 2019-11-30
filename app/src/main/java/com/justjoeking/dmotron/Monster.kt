@@ -1,15 +1,13 @@
 package com.justjoeking.dmotron
 
-import com.google.gson.annotations.SerializedName
-
-class Monster() {
+class Monster {
 
     val id = ""
     val index = 0
     val name = ""
     val size = ""
     val type = ""
-    var challenge_rating = 0L
+    var challenge_rating = 0f
 
 
 //    val String subtype;
