@@ -7,4 +7,5 @@
     <string name="let_roll">Let\'s Roll!</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="you_encountered">\n You encountered a </string>
+    <string name="MAX">MAX!!!</string>
 </resources>

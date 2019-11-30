@@ -9,10 +9,10 @@ class Monster() {
     val name = ""
     val size = ""
     val type = ""
+    var challenge_rating = 0L
 
-    val challenge_rating = 0
 
-    //    val String subtype;
+//    val String subtype;
 //    val String alignment;
 //    val Integer armorClass;
 //    val Integer hitPoints;
