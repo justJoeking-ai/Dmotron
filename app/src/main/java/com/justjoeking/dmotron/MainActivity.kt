@@ -18,6 +18,7 @@ import kotlin.collections.ArrayList
 import kotlin.math.ceil
 import retrofit2.Retrofit
 import android.util.Log
+import android.view.View
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -152,58 +153,15 @@ class MainActivity : AppCompatActivity() {
                             Log.v("Monster", allMonsters.get(2).name)
                             Log.v("Monster", allMonsters.get(3).name)
 
-                            // get a random monster
-                            val randomMonster =
-                                allMonsters.get(RandomUtils.randInt(0, allMonsters.size))
-                            val monsterId = randomMonster.getId()
-
-                            // Fetch monsters
-                            retrofit.create(DNDService::class.java).getMonster(monsterId)
-                                .enqueue(object : Callback<Monster> {
-                                    override fun onFailure(call: Call<Monster>?, t: Throwable?) {
-                                        Log.v("retrofit", "call failed")
-                                    }
-
-                                    override fun onResponse(
-                                        call: Call<Monster>?,
-                                        response: Response<Monster>?
-                                    ) {
-
-                                        if (response?.body() == null) {
-                                            // @todo: throw error
-                                            return
-                                        } else {
-                                            val monster = response.body()
-                                            val numberOfMonsters =
-                                                encounterCRInput.text.toString().toInt() / monster!!.challenge_rating
-                                            val snackbarText = String.format(
-                                                "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s: " + response!!.body()!!.size,
-                                                Snackbar.LENGTH_LONG
-                                            )
-
-                                            Snackbar.make(
-                                                view,
-                                                snackbarText, Snackbar.LENGTH_LONG
-                                            ).show()
-
-                                            centertext.text = "${centertext.text}${String.format(
-                                                "%s (%s) \n",
-                                                snackbarText,
-                                                getEncounterXP(numberOfMonsters.toLong() * 2)
-                                            )}"
-
-//                                            val challenge_rating = 0
-//                                            val challengeRating = 0
-
-                                            Snackbar.make(
-                                                view,
-                                                snackbarText, Snackbar.LENGTH_LONG
-                                            ).show()
-                                        }
-                                    }
-                                })
+                            // do this until we get a monster whose CR is not above the party level
+                            fetchIndividualMonster(
+                                encounterCRInput.text.toString().toInt(),
+                                allMonsters,
+                                view
+                            )
                         }
                     })
+
 
 //                //Fetch Spells
 //                var allSpells: List<SpellListing>
@@ -253,6 +211,78 @@ class MainActivity : AppCompatActivity() {
             }
             builder.show()
         }
+    }
+
+    private fun fetchIndividualMonster(
+        encounterCR: Int,
+        allMonsters: java.util.ArrayList<MonsterListing>,
+        view: View
+    ) {
+        // get a random monster
+        val randomMonster =
+            allMonsters.get(RandomUtils.randInt(0, allMonsters.size))
+        val monsterId = randomMonster.getId()
+
+        // Fetch individual monster
+        retrofit.create(DNDService::class.java).getMonster(monsterId)
+            .enqueue(object : Callback<Monster> {
+                override fun onFailure(
+                    call: Call<Monster>?,
+                    t: Throwable?
+                ) {
+                    Log.v("retrofit", "call failed")
+                    Log.e("Call failure", "Aw shit",t)
+                }
+
+                override fun onResponse(
+                    call: Call<Monster>?,
+                    response: Response<Monster>?
+                ) {
+
+                    if (response?.body() == null) {
+                        // @todo: throw error
+                        return
+                    } else {
+                        val monster = response.body()
+
+                        if (monster!!.challenge_rating > encounterCR) {
+                            // we need to check again
+                            return fetchIndividualMonster(
+                                encounterCR,
+                                allMonsters,
+                                view
+                            )
+                        }
+
+                        val numberOfMonsters =
+                            encounterCR / monster!!.challenge_rating
+                        val snackbarText = String.format(
+                            "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s: " + response!!.body()!!.size,
+                            Snackbar.LENGTH_LONG
+                        )
+
+                        Snackbar.make(
+                            view,
+                            snackbarText, Snackbar.LENGTH_LONG
+                        ).show()
+
+                        centertext.text =
+                            "${centertext.text}${String.format(
+                                "%s (%s) \n",
+                                snackbarText,
+                                getEncounterXP(numberOfMonsters.toLong() * 2)
+                            )}"
+
+//                                            val challenge_rating = 0
+//                                            val challengeRating = 0
+
+                        Snackbar.make(
+                            view,
+                            snackbarText, Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            })
     }
 
     private fun getEncounterXP(cr: Long): Int {
