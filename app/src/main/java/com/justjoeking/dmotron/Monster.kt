@@ -21,22 +21,22 @@ class Monster {
 //    val Integer intelligence
 //    val Integer wisdom
 //    val Integer charisma
-//    val Integer dexteritySave
-//    val Integer constitutionSave
-//    val Integer wisdomSave
-//    val Integer charismaSave
+//    val Integer dexterity_save
+//    val Integer constitution_save
+//    val Integer wisdom_save
+//    val Integer charisma_save
 //    val Integer perception
 //
 //    val Integer stealth
-//    val String damageVulnerabilities
-//    val String damageResistances
-//    val String damageImmunities
-//    val String conditionImmunities
+//    val String damage_vulnerabilities
+//    val String damage_resistances
+//    val String damage_immunities
+//    val String condition_immunities
 //    val String senses
 //    val String languages
-//    val List<SpecialAbility> specialAbilities = null
+    val special_abilities = ArrayList<SpecialAbility>()
 //    val List<Action> actions = null
-//    val List<LegendaryAction> legendaryActions = null
+//    val List<LegendaryAction> legendary_actions = null
 //    val String url
 
 }
