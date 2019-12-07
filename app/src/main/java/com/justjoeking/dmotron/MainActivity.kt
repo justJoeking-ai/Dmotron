@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://dnd5eapi.co/api/")
+        .baseUrl("http://www.dnd5eapi.co/api/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
