@@ -7,5 +7,3 @@ class Action {
     val name = ""
     val damage_dice = ""
 }
-
-}
