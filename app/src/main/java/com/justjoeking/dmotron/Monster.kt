@@ -35,8 +35,8 @@ class Monster {
 //    val String senses
 //    val String languages
     val special_abilities = ArrayList<SpecialAbility>()
-//    val List<Action> actions = null
-//    val List<LegendaryAction> legendary_actions = null
+    val actions = ArrayList<Action>()
+    val legendary_actions = ArrayList<LegendaryAction>()
 //    val String url
 
 }
