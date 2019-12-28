@@ -8,5 +8,5 @@ public class Retrofit {
         .baseUrl("http://dnd5eapi.co/api/")
         .build()
 
-    var service = retrofit.create(DNDApiService::class.java)
+    var service = retrofit.create(DNDService::class.java)
 }
