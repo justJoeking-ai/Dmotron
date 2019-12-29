@@ -8,33 +8,33 @@ class Monster(public var name: String, public var url: String) {
     val type = ""
     var challenge_rating = 0f
 
-//    val String subtype;
-//    val String alignment;
-//    val Integer armorClass;
-//    val Integer hitPoints;
-//    val String hitDice;
-//    val String speed;
-//    valchallengeRating Integer strength;
-//    val Integer dexterity;
-//    val Integer constitution;
-//    val Integer intelligence;
-//    val Integer wisdom;
-//    val Integer charisma;
-//    val Integer dexteritySave;
-//    val Integer constitutionSave;
-//    val Integer wisdomSave;
-//    val Integer charismaSave;
-//    val Integer perception;
-//    val Integer stealth;
-//    val String damageVulnerabilities;
-//    val String damageResistances;
-//    val String damageImmunities;
-//    val String conditionImmunities;
-//    val String senses;
-//    val String languages;
-//    val List<SpecialAbility> specialAbilities = null;
-//    val List<Action> actions = null;
-//    val List<LegendaryAction> legendaryActions = null;
-//    val String url;
+    val subtype = ""
+    val alignment = ""
+    val armor_class = 0f
+    val hit_points = 0f
+    val hit_dice = ""
+    val speed = ""
+    val strength = 0f
+    val dexterity = 0f
+    val constitution = 0f
+    val intelligence = 0f
+    val wisdom = 0f
+    val charisma = 0f
+    val dexterit_save = 0f
+    val constitution_save = 0f
+    val wisdom_save = 0f
+    val charisma_save = 0f
+    val perception = 0f
+    val stealth = 0f
+    val damage_vulnerabilities = ""
+    val damage_resistances = ""
+    val damage_immunities = ""
+    val condition_immunities = ""
+    val senses = ""
+    val languages = ""
+//    val List<SpecialAbility> special_abilities = null;
+    //  val List<Action> actions = null;
+    //val List<LegendaryAction> legendary_actions = null;
+    // val String url;
 
 }
