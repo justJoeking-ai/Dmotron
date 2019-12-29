@@ -210,11 +210,12 @@ class MainActivity : AppCompatActivity() {
                                 view
                             )
                         }
+                        
                         Log.d("Chosen Monster", monster.name)
                         val numberOfMonsters =
                             encounterCR / monster.challenge_rating
                         val snackbarText = String.format(
-                            "Encounter: " + numberOfMonsters + " " + randomMonster.name + "s: " + response!!.body()!!.size + " AC " + monster.armor_class + " HP " + monster.hit_points
+                            "Encounter for Party Level " + encounterCR + ":\n"+ numberOfMonsters + " " + randomMonster.name + "s \n" + "Size = " + response!!.body()!!.size +"\n" + "AC = " + monster.armor_class + "\n" +"HP = " + monster.hit_points
                         )
 
                         Snackbar.make(
