@@ -13,7 +13,7 @@ class Monster(public var name: String, public var url: String) {
     val armor_class = 0f
     val hit_points = 0f
     val hit_dice = ""
-    val speed = ""
+//    val speed = ""
     val strength = 0f
     val dexterity = 0f
     val constitution = 0f
@@ -26,12 +26,12 @@ class Monster(public var name: String, public var url: String) {
     val charisma_save = 0f
     val perception = 0f
     val stealth = 0f
-    val damage_vulnerabilities = ""
-    val damage_resistances = ""
-    val damage_immunities = ""
-    val condition_immunities = ""
-    val senses = ""
-    val languages = ""
+//    val damage_vulnerabilities = ""
+//    val damage_resistances = ""
+//    val damage_immunities = ""
+//    val condition_immunities = ""
+//    val senses = ""
+//    val languages = ""
 //    val List<SpecialAbility> special_abilities = null;
     //  val List<Action> actions = null;
     //val List<LegendaryAction> legendary_actions = null;
