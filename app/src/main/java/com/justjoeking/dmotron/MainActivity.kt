@@ -174,7 +174,8 @@ class MainActivity : AppCompatActivity() {
     ) {
         // get a random monster
         val randomMonster = allMonsters.get(RandomUtils.randInt(0, allMonsters.size - 1))
-        val monsterIndex = randomMonster.getIndex()
+        val monsterIndex = randomMonster.index
+        Log.v("retrofit", monsterIndex)
 
         // Fetch individual monster
         retrofit.create(DNDService::class.java).getMonster(monsterIndex)
