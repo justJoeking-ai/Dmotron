@@ -1,30 +1,30 @@
 package com.justjoeking.dmotron
 
-class Monster {
-    val name = ""
-    val size = ""
-    var challenge_rating = 0f
+class Monster(public var name: String, public var url: String) {
+    var fl: Float = 1.0f
     val id = ""
     val index = 0
+    val size = ""
     val type = ""
+    var challenge_rating = 0f
+
     val subtype = ""
     val alignment = ""
     val armor_class = 0f
     val hit_points = 0f
     val hit_dice = ""
     val speed = ""
-    val challengeRating = 0f
     val strength = 0f
     val dexterity = 0f
     val constitution = 0f
     val intelligence = 0f
     val wisdom = 0f
     val charisma = 0f
-    val dexterity_save = 0f
+    val dexterit_save = 0f
     val constitution_save = 0f
     val wisdom_save = 0f
     val charisma_save = 0f
-    val perception = ""
+    val perception = 0f
     val stealth = 0f
     val damage_vulnerabilities = ""
     val damage_resistances = ""
@@ -32,7 +32,9 @@ class Monster {
     val condition_immunities = ""
     val senses = ""
     val languages = ""
-    val special_abilities = ArrayList<SpecialAbility>()
-    val actions = ArrayList<Action>()
-    val legendary_actions = ArrayList<LegendaryAction>()
+//    val List<SpecialAbility> special_abilities = null;
+    //  val List<Action> actions = null;
+    //val List<LegendaryAction> legendary_actions = null;
+    // val String url;
+
 }
