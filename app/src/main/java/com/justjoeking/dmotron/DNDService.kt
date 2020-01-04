@@ -9,12 +9,12 @@ interface DNDService {
     @GET("monsters/")
     fun listMonsters(): Call<MonsterResponse>
 
-    @GET("monsters/{monster}/")
-    fun getMonster(@Path("monster") monster: Int): Call<Monster>
+    @GET("monsters/{monsterIndex}/")
+    fun getMonster(@Path("monsterIndex") monsterIndex: String): Call<Monster>
 
     @GET("spells/")
     fun listSpell(): Call<SpellResponse>
 
     @GET("spells/{spell}/")
-    fun getSpell(@Path("spell") spell: Int): Call<Spell>
+    fun getSpell(@Path("spell") spell: String): Call<Spell>
 }

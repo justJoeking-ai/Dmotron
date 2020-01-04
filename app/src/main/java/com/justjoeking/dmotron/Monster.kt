@@ -3,7 +3,7 @@ package com.justjoeking.dmotron
 class Monster(public var name: String, public var url: String) {
     var fl: Float = 1.0f
     val id = ""
-    val index = 0
+    val index = ""
     val size = ""
     val type = ""
     var challenge_rating = 0f

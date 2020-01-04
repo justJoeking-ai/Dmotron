@@ -173,12 +173,11 @@ class MainActivity : AppCompatActivity() {
         view: View
     ) {
         // get a random monster
-        val randomMonster =
-            allMonsters.get(RandomUtils.randInt(0, allMonsters.size - 1))
-        val monsterId = randomMonster.getId()
+        val randomMonster = allMonsters.get(RandomUtils.randInt(0, allMonsters.size - 1))
+        val monsterIndex = randomMonster.getIndex()
 
         // Fetch individual monster
-        retrofit.create(DNDService::class.java).getMonster(monsterId)
+        retrofit.create(DNDService::class.java).getMonster(monsterIndex)
             .enqueue(object : Callback<Monster> {
                 override fun onFailure(
                     call: Call<Monster>?,
