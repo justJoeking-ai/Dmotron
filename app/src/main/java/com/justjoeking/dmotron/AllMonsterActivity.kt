@@ -14,7 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 private lateinit var recyclerView: RecyclerView
-private lateinit var viewAdapter: RecyclerView.Adapter<*>
+private lateinit var viewAdapter: MonsterAdapter
 private lateinit var viewManager: RecyclerView.LayoutManager
 
 class AllMonsterActivity : AppCompatActivity() {
@@ -36,7 +36,7 @@ class AllMonsterActivity : AppCompatActivity() {
         }
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = MonsterAdapter(monsterDataset)
+        viewAdapter = MonsterAdapter()
 
         recyclerView = findViewById<RecyclerView>(R.id.monster_list).apply {
             // use this setting to improve performance if you know that changes
@@ -67,7 +67,7 @@ class AllMonsterActivity : AppCompatActivity() {
                 ) {
                     Log.d("AllMonsters", response.toString())
                     monsterDataset = response?.body()?.results ?: ArrayList()
-                    viewAdapter.my =
+                    viewAdapter.myDataset = monsterDataset
                     viewAdapter.notifyDataSetChanged()
                 }
             })
