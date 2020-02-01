@@ -210,6 +210,13 @@ class MainActivity : AppCompatActivity() {
                                 view
                             )
                         }
+                        if (!monster.isTerrestrial()) {
+                            return fetchIndividualMonster(
+                                encounterCR,
+                                allMonsters,
+                                view
+                            )
+                        }
 
                         Log.d("Chosen Monster", monster.name)
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)

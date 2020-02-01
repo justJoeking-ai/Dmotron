@@ -1,6 +1,16 @@
 package com.justjoeking.dmotron
 
 class Monster(public var name: String, public var url: String) {
+
+    fun isTerrestrial(): Boolean {
+        if (speed != null) {
+            if (speed.walk.isEmpty()) {
+                return false
+            }
+        }
+        return true
+    }
+
     var fl: Float = 1.0f
     val id = ""
     val index = ""
@@ -13,7 +23,7 @@ class Monster(public var name: String, public var url: String) {
     val armor_class = 0f
     val hit_points = 0f
     val hit_dice = ""
-//    val speed = ""
+    val speed: Speed? = null
     val strength = 0f
     val dexterity = 0f
     val constitution = 0f
