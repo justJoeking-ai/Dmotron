@@ -12,6 +12,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 private lateinit var recyclerView: RecyclerView
 private lateinit var viewAdapter: MonsterAdapter
@@ -49,6 +55,7 @@ class AllMonsterActivity : AppCompatActivity() {
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
 
+
         }
 
         setupMonsterList()
@@ -72,4 +79,6 @@ class AllMonsterActivity : AppCompatActivity() {
                 }
             })
     }
+
 }
+

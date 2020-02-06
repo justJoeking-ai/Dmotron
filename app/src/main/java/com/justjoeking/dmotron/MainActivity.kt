@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
+import android.content.Intent
+
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -19,6 +21,8 @@ import kotlin.math.ceil
 import retrofit2.Retrofit
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,7 +35,6 @@ class MainActivity : AppCompatActivity() {
 
     // remove as read:
     // https://www.reddit.com/r/StrangePlanet/
-    // https://fragmentedpodcast.com/
     // https://www.stilldrinking.org/programming-sucks
 
     var rollhistory = ArrayList<Int>(0)
@@ -52,21 +55,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
 
         main_fab.setBackgroundTintList(
             ColorStateList.valueOf(
                 ContextCompat.getColor(
                     this,
                     R.color.Btncolor
+
+
                 )
             )
         )
 
         setupMonsterList()
         setupRightFabClick()
+
+
+        toListedMonsters.setOnClickListener {
+            val intent = Intent(this, AllMonsterActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }
+
     }
 
     private fun setupMonsterList() {
@@ -343,4 +359,6 @@ class MainActivity : AppCompatActivity() {
             )
         return numberOfMonsters
     }
+
+
 }
