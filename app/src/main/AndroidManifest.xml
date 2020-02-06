@@ -13,6 +13,10 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
         <activity
+                android:name=".EncounterStatsActivity"
+                android:label="@string/title_activity_encounter_stats"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
                 android:name=".AllMonsterActivity"
                 android:label="@string/title_activity_all_monster"
                 android:theme="@style/AppTheme.NoActionBar">
@@ -25,7 +29,7 @@
         <activity
                 android:name=".MonsterDetails"
                 android:label="@string/title_activity_monster_details"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity
                 android:name=".TestActivity"
                 android:label="@string/title_activity_test"
