@@ -21,8 +21,7 @@ import kotlin.math.ceil
 import retrofit2.Retrofit
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import kotlinx.android.synthetic.*
+import com.justjoeking.dmotron.MonsterUtil.Companion.DRAGON
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -267,16 +266,16 @@ class MainActivity : AppCompatActivity() {
     private fun getEncounterXP(cr: Long): Int {
 
         when (cr) {
-            .125.toLong() -> return crXPLookup().get(0)
-            .25.toLong() -> return crXPLookup().get(1)
-            .5.toLong() -> return crXPLookup().get(2)
-            1.toLong() -> return crXPLookup().get(3)
-            2.toLong() -> return crXPLookup().get(4)
+            .125.toLong() -> return MonsterUtil().crXPLookup().get(0)
+            .25.toLong() -> return MonsterUtil().crXPLookup().get(1)
+            .5.toLong() -> return MonsterUtil().crXPLookup().get(2)
+            1.toLong() -> return MonsterUtil().crXPLookup().get(3)
+            2.toLong() -> return MonsterUtil().crXPLookup().get(4)
             else ->
-                if (cr + 2 > crXPLookup().size) {
+                if (cr + 2 > MonsterUtil().crXPLookup().size) {
                     return -1
                 } else {
-                    return crXPLookup().get((cr + 2).toInt())
+                    return MonsterUtil().crXPLookup().get((cr + 2).toInt())
                 }
         }
     }
@@ -296,69 +295,4 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    fun howManyMonstersforEncounter(party_level: Int, monstercr: Float): Number {
-        // assume four party members and an average difficulty for now
-        return ceil(party_level / monstercr).toInt()
-    }
-
-    // CR to XP converter
-    fun crXPLookup(): ArrayList<Int> {
-        return arrayListOf(
-            25, // 1/8
-            50, // 1/4
-            100, // 1/2
-            200, // 1
-            450,
-            700,
-            1100,
-            1800, // 5
-            2300,
-            2900,
-            3900,
-            5000,
-            5900, // 10
-            7200,
-            8400,
-            10000,
-            11500,
-            13000, // 15
-            15000,
-            18000,
-            20000,
-            22000,
-            25000, // 20
-            33000,
-            41000,
-            50000,
-            62000,
-            75000, // 25
-            90000,
-            105000,
-            120000,
-            135000,
-            155000 // 30
-        )
-    }
-
-    companion object {
-        const val DRAGON = "🐉"
-    }
-
-    fun getRandomMonsterFromList(monsterList: ArrayList<Monster>): Monster {
-        val rand = Random()
-        val randomMonster = monsterList.get(rand.nextInt(monsterList.size))
-        return randomMonster
-    }
-
-    fun getNumberOfMonsters(encounterCR: Int, monsterCR: Float): Number {
-        val numberOfMonsters =
-            howManyMonstersforEncounter(
-                encounterCR,
-                monsterCR
-            )
-        return numberOfMonsters
-    }
-
-
 }

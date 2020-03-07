@@ -46,6 +46,7 @@ class AllMonsterActivity : AppCompatActivity() {
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
 
+
             // use a linear layout manager
             layoutManager = viewManager
 
@@ -59,22 +60,24 @@ class AllMonsterActivity : AppCompatActivity() {
     }
 
     fun setupMonsterList() {
-        retrofit.create(DNDService::class.java).listMonsters()
-            .enqueue(object : Callback<MonsterResponse> {
-                override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
-                    Log.v("retrofit", "call failed")
-                }
 
-                override fun onResponse(
-                    call: Call<MonsterResponse>?,
-                    response: Response<MonsterResponse>?
-                ) {
-                    Log.d("AllMonsters", response.toString())
-                    monsterDataset = response?.body()?.results ?: ArrayList()
-                    viewAdapter.myDataset = monsterDataset
-                    viewAdapter.notifyDataSetChanged()
-                }
-            })
+        val myArg = object : Callback<MonsterResponse> {
+            override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
+                Log.v("retrofit", "call failed")
+            }
+
+            override fun onResponse(
+                call: Call<MonsterResponse>?,
+                response: Response<MonsterResponse>?
+            ) {
+                Log.d("AllMonsters", response.toString())
+                monsterDataset = response?.body()?.results ?: ArrayList()
+                viewAdapter.myDataset = monsterDataset
+                viewAdapter.notifyDataSetChanged()
+            }
+        }
+        retrofit.create(DNDService::class.java).listMonsters()
+            .enqueue(myArg)
     }
 
 }
