@@ -75,8 +75,6 @@ class MainActivity : AppCompatActivity() {
 
         setupMonsterList()
         setupRightFabClick()
-
-
         toListedMonsters.setOnClickListener {
             val intent = Intent(this, AllMonsterActivity::class.java)
             // start your next activity
