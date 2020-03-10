@@ -24,6 +24,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import kotlinx.android.synthetic.main.monster_layout.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -81,10 +85,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         toAttribute.setOnClickListener {
-            val intent = Intent(this, MonsterCard::class.java)
+            val intent = Intent(this, MonsterCardActivity::class.java)
+            intent.putExtra(toString(), i.toString(mon))
             // start your next activity
             startActivity(intent)
         }
+
     }
 
     private fun setupMonsterList() {
@@ -267,18 +273,21 @@ class MainActivity : AppCompatActivity() {
 
                         Log.d("Chosen Monster", monster.name)
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
+                        val i = randomMonster.name.toString()
                         val snackbarText = String.format(
-                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response!!.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickcount + " encounters"
+                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response!!.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickcount + " encounters" + i
                         )
+
 
                         Snackbar.make(
                             view,
                             snackbarText, Snackbar.LENGTH_LONG
                         ).show()
 
+
+
+
                         val experience = getEncounterXP(numberOfMonsters.toLong() * 2)
-
-
                         if (experience < 0) {
                             centertext.text =
                                 "\n ${centertext.text}${"$snackbarText (${getString(R.string.MAX)}) \n"}"
@@ -292,6 +301,7 @@ class MainActivity : AppCompatActivity() {
                             snackbarText, Snackbar.LENGTH_LONG
                         ).show()
                     }
+
                 }
             })
     }
