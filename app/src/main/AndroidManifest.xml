@@ -13,9 +13,13 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
         <activity
+                android:name=".MonsterCard"
+                android:label="@string/title_activity_monster_card"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
                 android:name=".mathactivity"
                 android:label="@string/title_activity_mathactivity"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity
                 android:name=".EncounterStatsActivity"
                 android:label="@string/title_activity_encounter_stats"
