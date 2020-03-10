@@ -1,33 +1,29 @@
 package com.justjoeking.dmotron
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.content_main.*
-import kotlin.collections.ArrayList
-import kotlin.math.ceil
-import retrofit2.Retrofit
-import android.util.Log
-import android.view.View
 import com.justjoeking.dmotron.MonsterUtil.Companion.DRAGON
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -111,14 +107,6 @@ class MainActivity : AppCompatActivity() {
         main_fab.setOnClickListener { view ->
 
 
-                clickcount=clickcount+1;
-                if(clickcount==1)
-                {
-                }
-                else
-                {
-                }
-
 
             val encounterCRInput = EditText(this)
             val lp = LinearLayout.LayoutParams(
@@ -152,6 +140,14 @@ class MainActivity : AppCompatActivity() {
                         "What are you a commoner", Toast.LENGTH_LONG
                     ).show()
                     return@setPositiveButton
+                }
+
+                clickcount=clickcount+1;
+                if(clickcount==1)
+                {
+                }
+                else
+                {
                 }
 
                 // Store Party CR
@@ -190,10 +186,16 @@ class MainActivity : AppCompatActivity() {
                                 encounterCRInput.text.toString().toInt(),
                                 allMonsters,
                                 view
-                            )
+
+                                )
                         }
+
                     })
             }
+
+
+
+
 
             builder.setNegativeButton(getString(R.string.no_thanks))
             { dialog, which ->
