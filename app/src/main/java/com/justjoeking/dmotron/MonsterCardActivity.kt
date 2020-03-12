@@ -84,7 +84,7 @@ class MonsterCardActivity : AppCompatActivity() {
             )
             monsterInput.layoutParams = lp
             monsterInput.inputType = InputType.TYPE_CLASS_TEXT
-            val monsterIndex = monsterInput.toString()
+            val monsterIndex = monsterInput.text
             val sharedPref = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE)
             sharedPref.getString("Orc", String.toString())
             monsterInput.hint = getText(R.string.Find_your_monster)
@@ -109,7 +109,7 @@ class MonsterCardActivity : AppCompatActivity() {
 //                    return@setPositiveButton
                 }
                 printStats(
-                    monsterIndex,
+                   monsterIndex.toString(),
                     view
                 )
             }
