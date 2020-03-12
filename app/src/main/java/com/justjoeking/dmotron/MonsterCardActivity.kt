@@ -86,7 +86,7 @@ class MonsterCardActivity : AppCompatActivity() {
             monsterInput.inputType = InputType.TYPE_CLASS_TEXT
             val monsterIndex = monsterInput.toString()
             val sharedPref = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE)
-            sharedPref.getInt("Orc", 0)
+            sharedPref.getString("Orc", String.toString())
             monsterInput.hint = getText(R.string.Find_your_monster)
 
             var builder = AlertDialog.Builder(this)
@@ -101,12 +101,12 @@ class MonsterCardActivity : AppCompatActivity() {
                         "What are you a NPC?", Toast.LENGTH_LONG
                     ).show()
                     return@setPositiveButton
-                } else if (Integer.parseInt(monsterInput.text.toString()) == 0) {
-                    Toast.makeText(
-                        applicationContext,
-                        "What are you a commoner", Toast.LENGTH_LONG
-                    ).show()
-                    return@setPositiveButton
+//                } else if (Integer.parseInt(monsterInput.text.toString()) == 0) {
+//                    Toast.makeText(
+//                        applicationContext,
+//                        "What are you a commoner", Toast.LENGTH_LONG
+//                    ).show()
+//                    return@setPositiveButton
                 }
                 printStats(
                     monsterIndex,
@@ -130,7 +130,7 @@ class MonsterCardActivity : AppCompatActivity() {
     // sharedPrefEdit.apply()
     fun printStats(monsterIndex: String, view: View) {
         val snackbarText = String.format(
-            "\n\nEncounter for Party Level " + monsterIndex
+            "\n\nEncounter for Party Level " + monsterIndex.toString()
         )
 
 
@@ -142,8 +142,7 @@ class MonsterCardActivity : AppCompatActivity() {
             snackbarText, Snackbar.LENGTH_LONG
         ).show()
 
-        centertext.text =
-            "\n ${centertext.text}${"$snackbarText (${getString(R.string.MAX)}) \n"}"
+        centertext.text = "\n\n" + monsterIndex
 
 
 
