@@ -23,11 +23,12 @@
     <include layout="@layout/content_monster_card" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/ic_dialog_email" />
+            android:clickable="true"
+            app:srcCompat="@drawable/monster"
+            android:layout_gravity="bottom|center"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

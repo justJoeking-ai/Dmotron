@@ -24,10 +24,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import kotlinx.android.synthetic.main.monster_layout.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,8 +34,6 @@ class MainActivity : AppCompatActivity() {
 
     var rollhistory = ArrayList<Int>(0)
     var clickcount = 0
-
-
 
 
 //    https://play.google.com/apps/publish/?account=9031693838262703476#AdminPlace
@@ -55,7 +49,12 @@ class MainActivity : AppCompatActivity() {
         EASY,
         NORMAL,
         HARD
+//    }
+//    fun test():String {
+//        return "\n\n\n\nHello World"
+//
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -78,20 +77,25 @@ class MainActivity : AppCompatActivity() {
 
         setupMonsterList()
         setupRightFabClick()
+//        setupTest()
 
+        // To Monster Listing
         toListedMonsters.setOnClickListener {
             val intent = Intent(this, AllMonsterActivity::class.java)
             // start your next activity
             startActivity(intent)
         }
+
+        //Monster Card
         toAttribute.setOnClickListener {
             val intent = Intent(this, MonsterCardActivity::class.java)
-            intent.putExtra(toString(), i.toString(mon))
+
             // start your next activity
             startActivity(intent)
         }
 
     }
+
 
     private fun setupMonsterList() {
         retrofit.create(DNDService::class.java).listMonsters()
@@ -111,7 +115,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRightFabClick() {
         main_fab.setOnClickListener { view ->
-
 
 
             val encounterCRInput = EditText(this)
@@ -148,12 +151,9 @@ class MainActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
-                clickcount=clickcount+1;
-                if(clickcount==1)
-                {
-                }
-                else
-                {
+                clickcount = clickcount+1;
+                if (clickcount == 1) {
+                } else {
                 }
 
                 // Store Party CR
@@ -163,9 +163,6 @@ class MainActivity : AppCompatActivity() {
                     Integer.parseInt(encounterCRInput.text.toString())
                 )
                 sharedPrefEdit.apply()
-
-
-
 
 
                 // Fetch monsters
@@ -193,7 +190,7 @@ class MainActivity : AppCompatActivity() {
                                 allMonsters,
                                 view
 
-                                )
+                            )
                         }
 
                     })
@@ -223,7 +220,6 @@ class MainActivity : AppCompatActivity() {
         val randomMonster = allMonsters.get(RandomUtils.randInt(0, allMonsters.size - 1))
         val monsterIndex = randomMonster.index
         Log.v("retrofit", monsterIndex)
-       // COunt encounters
 
 
         // Fetch individual monster
@@ -248,7 +244,7 @@ class MainActivity : AppCompatActivity() {
                         return
                     } else {
                         val monster = response.body()
-                        var truecount = encountercount + 1
+
                         if (monster!!.challenge_rating == 0f) {
                             monster.challenge_rating = 1f
                         }
@@ -272,19 +268,23 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         Log.d("Chosen Monster", monster.name)
+                        var currentMonster = randomMonster.name
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
                         val i = randomMonster.name.toString()
                         val snackbarText = String.format(
-                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response!!.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickcount + " encounters" + i
+                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response!!.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickcount + " encounters"
+
+
                         )
+
+
+
 
 
                         Snackbar.make(
                             view,
                             snackbarText, Snackbar.LENGTH_LONG
                         ).show()
-
-
 
 
                         val experience = getEncounterXP(numberOfMonsters.toLong() * 2)
@@ -302,11 +302,10 @@ class MainActivity : AppCompatActivity() {
                         ).show()
                     }
 
+
                 }
             })
     }
-
-
 
 
     private fun getEncounterXP(cr: Long): Int {

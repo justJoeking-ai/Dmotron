@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
-
 private lateinit var recyclerView: RecyclerView
 private lateinit var viewAdapter: MonsterAdapter
 private lateinit var viewManager: RecyclerView.LayoutManager
