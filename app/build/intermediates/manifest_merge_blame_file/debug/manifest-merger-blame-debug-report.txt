@@ -1,0 +1,231 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.justjoeking.dmotron"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:5:5-67
+11-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:24:5-79
+12-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:24:22-76
+13    <uses-permission android:name="android.permission.WAKE_LOCK" />
+13-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:25:5-68
+13-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:25:22-65
+14    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+14-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:26:5-110
+14-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:26:22-107
+15    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+15-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:26:5-82
+15-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:26:22-79
+16
+17    <application
+17-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:7:5-51:19
+18        android:allowBackup="true"
+18-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:8:13-39
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.1.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/d30c5a573ae345b6b0247037ffad7851/core-1.1.0/AndroidManifest.xml:24:18-86
+20        android:debuggable="true"
+21        android:icon="@mipmap/ic_launcher"
+21-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:9:13-47
+22        android:label="@string/app_name"
+22-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:10:13-45
+23        android:roundIcon="@mipmap/ic_launcher_round"
+23-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:11:13-58
+24        android:supportsRtl="true"
+24-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:12:13-39
+25        android:testOnly="true"
+26        android:theme="@style/AppTheme"
+26-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:13:13-44
+27        android:usesCleartextTraffic="true" >
+27-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:14:13-48
+28        <activity
+28-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:15:9-18:72
+29            android:name="com.justjoeking.dmotron.mathactivity"
+29-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:16:17-45
+30            android:label="@string/title_activity_mathactivity"
+30-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:17:17-68
+31            android:theme="@style/AppTheme.NoActionBar" />
+31-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:18:17-60
+32        <activity
+32-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:19:9-22:63
+33            android:name="com.justjoeking.dmotron.EncounterStatsActivity"
+33-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:20:17-55
+34            android:label="@string/title_activity_encounter_stats"
+34-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:21:17-71
+35            android:theme="@style/AppTheme.NoActionBar" />
+35-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:22:17-60
+36        <activity
+36-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:23:9-32:20
+37            android:name="com.justjoeking.dmotron.AllMonsterActivity"
+37-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:24:17-51
+38            android:label="@string/title_activity_all_monster"
+38-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:25:17-67
+39            android:theme="@style/AppTheme.NoActionBar" >
+39-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:26:17-60
+40            <intent-filter>
+40-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:27:13-31:29
+41                <action android:name="android.intent.action.MAIN" />
+41-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:28:17-69
+41-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:28:25-66
+42
+43                <category android:name="android.intent.category.LAUNCHER" />
+43-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:30:17-77
+43-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:30:27-74
+44            </intent-filter>
+45        </activity>
+46        <activity
+46-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:33:9-36:63
+47            android:name="com.justjoeking.dmotron.MonsterDetails"
+47-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:34:17-47
+48            android:label="@string/title_activity_monster_details"
+48-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:35:17-71
+49            android:theme="@style/AppTheme.NoActionBar" />
+49-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:36:17-60
+50        <activity
+50-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:37:9-40:63
+51            android:name="com.justjoeking.dmotron.TestActivity"
+51-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:38:17-45
+52            android:label="@string/title_activity_test"
+52-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:39:17-60
+53            android:theme="@style/AppTheme.NoActionBar" />
+53-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:40:17-60
+54        <activity
+54-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:41:9-50:20
+55            android:name="com.justjoeking.dmotron.MainActivity"
+55-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:42:17-45
+56            android:label="@string/app_name"
+56-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:43:17-49
+57            android:theme="@style/AppTheme.NoActionBar" >
+57-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:44:17-60
+58            <intent-filter>
+58-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:27:13-31:29
+59                <action android:name="android.intent.action.MAIN" />
+59-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:28:17-69
+59-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:28:25-66
+60
+61                <category android:name="android.intent.category.LAUNCHER" />
+61-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:30:17-77
+61-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:30:27-74
+62            </intent-filter>
+63        </activity>
+64
+65        <receiver
+65-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:29:9-33:20
+66            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+66-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:30:13-85
+67            android:enabled="true"
+67-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:31:13-35
+68            android:exported="false" >
+68-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:32:13-37
+69        </receiver>
+70        <receiver
+70-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:34:9-42:20
+71            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+71-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:35:13-100
+72            android:enabled="true"
+72-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:36:13-35
+73            android:exported="true"
+73-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:37:13-36
+74            android:permission="android.permission.INSTALL_PACKAGES" >
+74-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:38:13-69
+75            <intent-filter>
+75-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:39:13-41:29
+76                <action android:name="com.android.vending.INSTALL_REFERRER" />
+76-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:40:17-79
+76-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:40:25-76
+77            </intent-filter>
+78        </receiver>
+79
+80        <service
+80-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:44:9-47:40
+81            android:name="com.google.android.gms.measurement.AppMeasurementService"
+81-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:45:13-84
+82            android:enabled="true"
+82-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:46:13-35
+83            android:exported="false" />
+83-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:47:13-37
+84        <service
+84-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:48:9-52:72
+85            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+85-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:49:13-87
+86            android:enabled="true"
+86-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:50:13-35
+87            android:exported="false"
+87-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:51:13-37
+88            android:permission="android.permission.BIND_JOB_SERVICE" />
+88-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/f5efa405ffcc428efa5a9fd598a08d7e/play-services-measurement-17.2.2/AndroidManifest.xml:52:13-69
+89        <service
+89-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/1eacad68819fb4d1cf75c137dc93c993/play-services-measurement-api-17.2.2/AndroidManifest.xml:27:9-33:19
+90            android:name="com.google.firebase.components.ComponentDiscoveryService"
+90-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/1eacad68819fb4d1cf75c137dc93c993/play-services-measurement-api-17.2.2/AndroidManifest.xml:28:13-84
+91            android:directBootAware="true"
+91-->[com.google.firebase:firebase-common:19.3.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/5a70d5725c83b7948c72ae87f9b9b258/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+92            android:exported="false" >
+92-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/1eacad68819fb4d1cf75c137dc93c993/play-services-measurement-api-17.2.2/AndroidManifest.xml:29:13-37
+93            <meta-data
+93-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/1eacad68819fb4d1cf75c137dc93c993/play-services-measurement-api-17.2.2/AndroidManifest.xml:30:13-32:85
+94                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+94-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/1eacad68819fb4d1cf75c137dc93c993/play-services-measurement-api-17.2.2/AndroidManifest.xml:31:17-139
+95                android:value="com.google.firebase.components.ComponentRegistrar" />
+95-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/1eacad68819fb4d1cf75c137dc93c993/play-services-measurement-api-17.2.2/AndroidManifest.xml:32:17-82
+96            <meta-data
+96-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:32:13-34:85
+97                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+97-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:33:17-96
+98                android:value="com.google.firebase.components.ComponentRegistrar" />
+98-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:34:17-82
+99        </service>
+100
+101        <receiver
+101-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:37:9-44:20
+102            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+102-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:38:13-78
+103            android:exported="true"
+103-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:39:13-36
+104            android:permission="com.google.android.c2dm.permission.SEND" >
+104-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:40:13-73
+105            <intent-filter>
+105-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:41:13-43:29
+106                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+106-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:42:17-81
+106-->[com.google.firebase:firebase-iid:20.0.2] /Users/joe/.gradle/caches/transforms-2/files-2.1/5fcbe92f00d935105eb1899c88e3bf79/firebase-iid-20.0.2/AndroidManifest.xml:42:25-78
+107            </intent-filter>
+108        </receiver>
+109
+110        <provider
+110-->[com.google.firebase:firebase-common:19.3.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/5a70d5725c83b7948c72ae87f9b9b258/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+111            android:name="com.google.firebase.provider.FirebaseInitProvider"
+111-->[com.google.firebase:firebase-common:19.3.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/5a70d5725c83b7948c72ae87f9b9b258/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+112            android:authorities="com.justjoeking.dmotron.firebaseinitprovider"
+112-->[com.google.firebase:firebase-common:19.3.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/5a70d5725c83b7948c72ae87f9b9b258/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+113            android:exported="false"
+113-->[com.google.firebase:firebase-common:19.3.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/5a70d5725c83b7948c72ae87f9b9b258/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+114            android:initOrder="100" />
+114-->[com.google.firebase:firebase-common:19.3.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/5a70d5725c83b7948c72ae87f9b9b258/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+115
+116        <activity
+116-->[com.google.android.gms:play-services-base:17.0.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/9d21cb0c0698d9b60ade8949b757ccc4/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+117            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+117-->[com.google.android.gms:play-services-base:17.0.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/9d21cb0c0698d9b60ade8949b757ccc4/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+118            android:exported="false"
+118-->[com.google.android.gms:play-services-base:17.0.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/9d21cb0c0698d9b60ade8949b757ccc4/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+119            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+119-->[com.google.android.gms:play-services-base:17.0.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/9d21cb0c0698d9b60ade8949b757ccc4/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+120
+121        <meta-data
+121-->[com.google.android.gms:play-services-basement:17.0.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/a6b0415e3df71fb9f2bb1bcb357d5f08/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+122            android:name="com.google.android.gms.version"
+122-->[com.google.android.gms:play-services-basement:17.0.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/a6b0415e3df71fb9f2bb1bcb357d5f08/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+123            android:value="@integer/google_play_services_version" />
+123-->[com.google.android.gms:play-services-basement:17.0.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/a6b0415e3df71fb9f2bb1bcb357d5f08/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+124    </application>
+125
+126</manifest>
