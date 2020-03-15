@@ -1,33 +1,29 @@
 package com.justjoeking.dmotron
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import android.content.Intent
-
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.content_main.*
-import kotlin.collections.ArrayList
-import kotlin.math.ceil
-import retrofit2.Retrofit
-import android.util.Log
-import android.view.View
 import com.justjoeking.dmotron.MonsterUtil.Companion.DRAGON
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     // https://www.stilldrinking.org/programming-sucks
 
     var rollhistory = ArrayList<Int>(0)
+    var clickcount = 0
+
 
 //    https://play.google.com/apps/publish/?account=9031693838262703476#AdminPlace
 
@@ -51,7 +49,12 @@ class MainActivity : AppCompatActivity() {
         EASY,
         NORMAL,
         HARD
+//    }
+//    fun test():String {
+//        return "\n\n\n\nHello World"
+//
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -74,15 +77,25 @@ class MainActivity : AppCompatActivity() {
 
         setupMonsterList()
         setupRightFabClick()
+//        setupTest()
 
-
+        // To Monster Listing
         toListedMonsters.setOnClickListener {
             val intent = Intent(this, AllMonsterActivity::class.java)
             // start your next activity
             startActivity(intent)
         }
 
+        //Monster Card
+        toAttribute.setOnClickListener {
+            val intent = Intent(this, MonsterCardActivity::class.java)
+
+            // start your next activity
+            startActivity(intent)
+        }
+
     }
+
 
     private fun setupMonsterList() {
         retrofit.create(DNDService::class.java).listMonsters()
@@ -103,6 +116,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupRightFabClick() {
         main_fab.setOnClickListener { view ->
 
+
             val encounterCRInput = EditText(this)
             val lp = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -116,6 +130,7 @@ class MainActivity : AppCompatActivity() {
             sharedPref.getInt("Party CR", 5)
             encounterCRInput.setText(sharedPref.getInt("Party CR", 5).toString())
             encounterCRInput.hint = getString(R.string.party_level_hint)
+
             var builder = AlertDialog.Builder(this)
             builder.setView(encounterCRInput)
 
@@ -136,6 +151,11 @@ class MainActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
+                clickcount = clickcount+1;
+                if (clickcount == 1) {
+                } else {
+                }
+
                 // Store Party CR
                 val sharedPrefEdit = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
                 sharedPrefEdit.putInt(
@@ -143,6 +163,7 @@ class MainActivity : AppCompatActivity() {
                     Integer.parseInt(encounterCRInput.text.toString())
                 )
                 sharedPrefEdit.apply()
+
 
                 // Fetch monsters
                 retrofit.create(DNDService::class.java).listMonsters()
@@ -154,6 +175,8 @@ class MainActivity : AppCompatActivity() {
                         override fun onResponse(
                             call: Call<MonsterResponse>?,
                             response: Response<MonsterResponse>?
+
+
                         ) {
                             var allMonsters = response!!.body()!!.results
                             Log.v("Monster", allMonsters.get(0).name)
@@ -166,10 +189,16 @@ class MainActivity : AppCompatActivity() {
                                 encounterCRInput.text.toString().toInt(),
                                 allMonsters,
                                 view
+
                             )
                         }
+
                     })
             }
+
+
+
+
 
             builder.setNegativeButton(getString(R.string.no_thanks))
             { dialog, which ->
@@ -192,6 +221,7 @@ class MainActivity : AppCompatActivity() {
         val monsterIndex = randomMonster.index
         Log.v("retrofit", monsterIndex)
 
+
         // Fetch individual monster
         retrofit.create(DNDService::class.java).getMonster(monsterIndex)
             .enqueue(object : Callback<Monster> {
@@ -201,18 +231,20 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     Log.v("retrofit", "call failed")
                     Log.e("Call failure", "Aw shit", t)
+
                 }
 
                 override fun onResponse(
                     call: Call<Monster>?,
                     response: Response<Monster>?
                 ) {
-
+                    var encountercount = 1
                     if (response?.body() == null) {
                         // @todo: throw error
                         return
                     } else {
                         val monster = response.body()
+
                         if (monster!!.challenge_rating == 0f) {
                             monster.challenge_rating = 1f
                         }
@@ -224,8 +256,10 @@ class MainActivity : AppCompatActivity() {
                                 allMonsters,
                                 view
                             )
+
                         }
                         if (!monster.isTerrestrial()) {
+
                             return fetchIndividualMonster(
                                 encounterCR,
                                 allMonsters,
@@ -234,21 +268,29 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         Log.d("Chosen Monster", monster.name)
+                        var currentMonster = randomMonster.name
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
+                        val i = randomMonster.name.toString()
                         val snackbarText = String.format(
-                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response!!.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt()
+                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response!!.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickcount + " encounters"
+
+
                         )
+
+
+
+
 
                         Snackbar.make(
                             view,
                             snackbarText, Snackbar.LENGTH_LONG
                         ).show()
 
-                        val experience = getEncounterXP(numberOfMonsters.toLong() * 2)
 
+                        val experience = getEncounterXP(numberOfMonsters.toLong() * 2)
                         if (experience < 0) {
                             centertext.text =
-                                "${centertext.text}${"$snackbarText (${getString(R.string.MAX)}) \n"}"
+                                "\n ${centertext.text}${"$snackbarText (${getString(R.string.MAX)}) \n"}"
                         } else {
                             centertext.text =
                                 "${centertext.text}${"$snackbarText ($experience) \n"}"
@@ -259,9 +301,12 @@ class MainActivity : AppCompatActivity() {
                             snackbarText, Snackbar.LENGTH_LONG
                         ).show()
                     }
+
+
                 }
             })
     }
+
 
     private fun getEncounterXP(cr: Long): Int {
 
