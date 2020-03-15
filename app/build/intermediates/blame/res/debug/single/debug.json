@@ -120,10 +120,6 @@
         "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/bbe4cde4d4ff8704e556fcc036ce57dd/appcompat-1.1.0/res/drawable-xhdpi-v4/abc_popup_background_mtrl_mult.9.png"
     },
     {
-        "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/layout_activity_encounter_stats.xml.flat",
-        "source": "/Users/joe/Desktop/Dmotron/app/src/main/res/layout/activity_encounter_stats.xml"
-    },
-    {
         "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/layout_abc_screen_simple.xml.flat",
         "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/bbe4cde4d4ff8704e556fcc036ce57dd/appcompat-1.1.0/res/layout/abc_screen_simple.xml"
     },
@@ -1140,6 +1136,10 @@
         "source": "/Users/joe/Desktop/Dmotron/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_launcher_background.png"
     },
     {
+        "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/layout_content_monster_card.xml.flat",
+        "source": "/Users/joe/Desktop/Dmotron/app/src/main/res/layout/content_monster_card.xml"
+    },
+    {
         "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/drawable_design_fab_background.xml.flat",
         "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/8a93f1b5ede7ace52c1c5094cf97d20a/material-1.1.0-alpha10/res/drawable/design_fab_background.xml"
     },
@@ -1688,10 +1688,6 @@
         "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/9d21cb0c0698d9b60ade8949b757ccc4/play-services-base-17.0.0/res/drawable-hdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
-        "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/layout_content_encounter_stats.xml.flat",
-        "source": "/Users/joe/Desktop/Dmotron/app/src/main/res/layout/content_encounter_stats.xml"
-    },
-    {
         "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_design_ic_visibility_off.png.flat",
         "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/8a93f1b5ede7ace52c1c5094cf97d20a/material-1.1.0-alpha10/res/drawable-xxxhdpi-v4/design_ic_visibility_off.png"
     },
@@ -1814,6 +1810,10 @@
     {
         "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/color_abc_background_cache_hint_selector_material_light.xml.flat",
         "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/bbe4cde4d4ff8704e556fcc036ce57dd/appcompat-1.1.0/res/color/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/layout_activity_monster_card.xml.flat",
+        "source": "/Users/joe/Desktop/Dmotron/app/src/main/res/layout/activity_monster_card.xml"
     },
     {
         "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_star_half_black_48dp.png.flat",

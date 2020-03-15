@@ -761,7 +761,10 @@
     <item quantity="one"><ns1:g id="count">%d</ns1:g> new notification</item>
     <item quantity="other"><ns1:g id="count">%d</ns1:g> new notifications</item>
   </plurals>
+    <string name="Find_your_monster">Find a monster</string>
     <string name="MAX">MAX!!!</string>
+    <string name="Monster">Monster</string>
+    <string name="Orc">Orc</string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_up_description">Navigate up</string>
     <string name="abc_action_menu_overflow_description">More options</string>
@@ -966,6 +969,7 @@
     <string name="title_activity_encounter_stats">EncounterStats</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_mathactivity">mathactivity</string>
+    <string name="title_activity_monster_card">MonsterCard</string>
     <string name="title_activity_monster_details">MonsterDetails</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="you_encountered">\n You encountered a </string>

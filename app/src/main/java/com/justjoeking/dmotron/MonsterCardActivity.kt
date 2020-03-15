@@ -1,61 +1,28 @@
 package com.justjoeking.dmotron
 
 
-//import android.os.Bundle
-//import android.os.Message
-//import android.util.Log
-//import com.google.android.material.snackbar.Snackbar
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.recyclerview.widget.LinearLayoutManager
-//import androidx.recyclerview.widget.RecyclerView
-//import kotlinx.android.synthetic.main.activity_all_Monster.*
-//import kotlinx.android.synthetic.main.activity_main.*
-//import kotlinx.android.synthetic.main.activity_Monster_card.*
-//import kotlinx.android.synthetic.main.Monster_layout.*
-//import retrofit2.Call
-//import retrofit2.Callback
-//import retrofit2.Response
-//import retrofit2.Retrofit
-//import retrofit2.converter.gson.GsonConverterFactory
-//import androidx.recyclerview.widget.DividerItemDecoration
-//import androidx.core.app.ComponentActivity.ExtraData
-//import androidx.core.content.ContextCompat.getSystemService
-//import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.content.Context
-import android.content.res.ColorStateList
-import android.os.Bundle
-import android.util.Log
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 //import kotlinx.android.synthetic.main.MonsterCardActivity.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.app.AlertDialog
+import android.content.Context
+import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_all_monster.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_monster_card.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.content_monster_card.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 private lateinit var recyclerView: RecyclerView
 private lateinit var viewAdapter: MonsterAdapter
 private lateinit var viewManager: RecyclerView.LayoutManager
-
 
 class MonsterCardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,19 +44,22 @@ class MonsterCardActivity : AppCompatActivity() {
                 .baseUrl("http://www.dnd5eapi.co/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-            val monsterInput = EditText(this)
+
+            var builder = AlertDialog.Builder(this)
+
+            // todo preferably don't setup box, use xml to layout dialog
+            // and add listener for text
+            val monsterInput = EditText(this).toString()
             val lp = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
             )
-            monsterInput.layoutParams = lp
-            monsterInput.inputType = InputType.TYPE_CLASS_TEXT
+
             val monsterIndex = monsterInput.toString()
             val sharedPref = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE)
             sharedPref.getString("Orc", String.toString())
             monsterInput.hint = getText(R.string.Find_your_monster)
 
-            var builder = AlertDialog.Builder(this)
             builder.setView(monsterInput)
 
             builder.setTitle("Search for Your Monster! ${MonsterUtil.DRAGON}")
@@ -122,7 +92,6 @@ class MonsterCardActivity : AppCompatActivity() {
             }
             builder.show()
 
-
         }
 
     }
@@ -133,18 +102,12 @@ class MonsterCardActivity : AppCompatActivity() {
             "\n\nEncounter for Party Level " + monsterIndex.toString()
         )
 
-
-
-
-
         Snackbar.make(
             view,
             snackbarText, Snackbar.LENGTH_LONG
         ).show()
 
         centertext.text = "\n\n" + monsterIndex
-
-
 
         Snackbar.make(
             view,
@@ -153,8 +116,6 @@ class MonsterCardActivity : AppCompatActivity() {
 
 
     }
-
-
 }
 
 

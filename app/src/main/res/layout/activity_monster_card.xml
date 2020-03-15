@@ -26,9 +26,8 @@
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
             android:clickable="true"
-            app:srcCompat="@drawable/monster"
-            android:layout_gravity="bottom|center"/>
-
+            app:srcCompat="@drawable/monster" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -26,6 +26,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
         <activity
+            android:name="com.justjoeking.dmotron.MonsterCardActivity"
+            android:label="@string/title_activity_monster_card"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="com.justjoeking.dmotron.mathactivity"
             android:label="@string/title_activity_mathactivity"
             android:theme="@style/AppTheme.NoActionBar" />

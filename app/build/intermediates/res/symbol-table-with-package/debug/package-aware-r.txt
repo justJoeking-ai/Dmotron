@@ -1547,6 +1547,7 @@ id filled
 id filter_chip
 id fitToContents
 id fixed
+id floatingActionButton
 id forever
 id ghost_view
 id gone
@@ -1704,6 +1705,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id toAttribute
 id toListedMonsters
 id toolbar
 id toolbar_layout
@@ -1788,13 +1790,13 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_all_monster
-layout activity_encounter_stats
 layout activity_main
+layout activity_monster_card
 layout activity_test
 layout content_all_monster
-layout content_encounter_stats
 layout content_main
 layout content_mathactivity
+layout content_monster_card
 layout content_test
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -1870,7 +1872,10 @@ menu menu_main2
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
+string Find_your_monster
 string MAX
+string Monster
+string Orc
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -1987,6 +1992,7 @@ string title_activity_all_monster
 string title_activity_encounter_stats
 string title_activity_main2
 string title_activity_mathactivity
+string title_activity_monster_card
 string title_activity_monster_details
 string title_activity_test
 string you_encountered
