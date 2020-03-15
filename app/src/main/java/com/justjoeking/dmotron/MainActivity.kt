@@ -221,7 +221,6 @@ class MainActivity : AppCompatActivity() {
         val monsterIndex = randomMonster.index
         Log.v("retrofit", monsterIndex)
 
-
         // Fetch individual monster
         retrofit.create(DNDService::class.java).getMonster(monsterIndex)
             .enqueue(object : Callback<Monster> {

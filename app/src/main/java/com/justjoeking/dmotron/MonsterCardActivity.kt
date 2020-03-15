@@ -9,7 +9,7 @@ package com.justjoeking.dmotron
 //import androidx.recyclerview.widget.LinearLayoutManager
 //import androidx.recyclerview.widget.RecyclerView
 //import kotlinx.android.synthetic.main.activity_all_Monster.*
-//import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.*
 //import kotlinx.android.synthetic.main.activity_Monster_card.*
 //import kotlinx.android.synthetic.main.Monster_layout.*
 //import retrofit2.Call
@@ -21,6 +21,7 @@ package com.justjoeking.dmotron
 //import androidx.core.app.ComponentActivity.ExtraData
 //import androidx.core.content.ContextCompat.getSystemService
 //import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.accounts.AccountManager.get
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -45,12 +46,14 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatDrawableManager.get
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_all_monster.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_monster_card.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.lang.reflect.Array.get
 
 private lateinit var recyclerView: RecyclerView
 private lateinit var viewAdapter: MonsterAdapter
@@ -109,7 +112,7 @@ class MonsterCardActivity : AppCompatActivity() {
 //                    return@setPositiveButton
                 }
                 printStats(
-                   monsterIndex.toString(),
+                    monsterIndex.toString(),
                     view
                 )
             }
@@ -128,34 +131,60 @@ class MonsterCardActivity : AppCompatActivity() {
     }
 
     // sharedPrefEdit.apply()
-    fun printStats(monsterIndex: String, view: View) {
-        val snackbarText = String.format(
-            "\n\nEncounter for Party Level " + monsterIndex.toString()
-        )
-
-
-
-
-
-        Snackbar.make(
-            view,
-            snackbarText, Snackbar.LENGTH_LONG
-        ).show()
-
-        centertext.text = "\n\n" + monsterIndex
-
-
-
-        Snackbar.make(
-            view,
-            snackbarText, Snackbar.LENGTH_LONG
-        ).show()
+    fun fetchMonster(monsterIndex: String) {
 
 
     }
 
+    private fun printStats(monsterIndex: String, view: View) {
 
-}
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://www.dnd5eapi.co/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val monsterId = monsterIndex.replace("\\s".toRegex(), "-").toLowerCase()
+
+        retrofit.create(DNDService::class.java).getMonster(monsterId)
+            .enqueue(object : Callback<Monster> {
+                override fun onFailure(
+                    call: Call<Monster>?,
+                    t: Throwable?
+                ) {
+                    Log.v("retrofit", "call failed")
+                    Log.e("Call failure", "Aw shit", t)}
+                override fun onResponse(
+                        call: Call<Monster>?,
+                        response: Response<Monster>?
+                    ) {
+                        val monster: Monster? = response?.body()
+
+
+                        val snackbarText = String.format(
+                            "\n\nEncounter for Party Level " + monsterIndex.toString()
+                        )
+
+
+                        Snackbar.make(
+                            view,
+                            snackbarText, Snackbar.LENGTH_LONG
+                        ).show()
+
+                        centertext.text = "\n\n" + monster?.name + monster?.hit_dice.toString()
+
+
+
+                        Snackbar.make(
+                            view,
+                            snackbarText, Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                })
+            }
+    }
+
+
+
+
 
 
 
