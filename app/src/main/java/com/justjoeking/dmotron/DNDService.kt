@@ -15,8 +15,6 @@ interface DNDService {
     @GET("monsters/{monsterName}/")
     fun getMonsterbyName(@Path("monsterName") monsterName: String): Call<Monster>
 
-
-
     @GET("spells/")
     fun listSpell(): Call<SpellResponse>
 

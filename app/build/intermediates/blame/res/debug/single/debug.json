@@ -88,12 +88,12 @@
         "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/8a93f1b5ede7ace52c1c5094cf97d20a/material-1.1.0-alpha10/res/layout/design_text_input_end_icon.xml"
     },
     {
-        "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/drawable_abc_ic_clear_material.xml.flat",
-        "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/bbe4cde4d4ff8704e556fcc036ce57dd/appcompat-1.1.0/res/drawable/abc_ic_clear_material.xml"
-    },
-    {
         "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_light_focused.xml.flat",
         "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/9d21cb0c0698d9b60ade8949b757ccc4/play-services-base-17.0.0/res/drawable/common_google_signin_btn_text_light_focused.xml"
+    },
+    {
+        "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/drawable_abc_ic_clear_material.xml.flat",
+        "source": "/Users/joe/.gradle/caches/transforms-2/files-2.1/bbe4cde4d4ff8704e556fcc036ce57dd/appcompat-1.1.0/res/drawable/abc_ic_clear_material.xml"
     },
     {
         "merged": "/Users/joe/Desktop/Dmotron/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",

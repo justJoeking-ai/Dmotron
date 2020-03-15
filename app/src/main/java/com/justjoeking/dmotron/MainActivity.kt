@@ -116,7 +116,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupRightFabClick() {
         main_fab.setOnClickListener { view ->
 
-
             val encounterCRInput = EditText(this)
             val lp = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -220,7 +219,6 @@ class MainActivity : AppCompatActivity() {
         val randomMonster = allMonsters.get(RandomUtils.randInt(0, allMonsters.size - 1))
         val monsterIndex = randomMonster.index
         Log.v("retrofit", monsterIndex)
-
 
         // Fetch individual monster
         retrofit.create(DNDService::class.java).getMonster(monsterIndex)

@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -17,6 +18,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_monster_card.*
 import kotlinx.android.synthetic.main.content_monster_card.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -45,8 +49,8 @@ class MonsterCardActivity : AppCompatActivity() {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-            var builder = AlertDialog.Builder(this)
 
+            var builder = AlertDialog.Builder(this)
             // todo preferably don't setup box, use xml to layout dialog
             // and add listener for text
             val monsterInput = EditText(this).toString()
@@ -91,32 +95,58 @@ class MonsterCardActivity : AppCompatActivity() {
                 ).show()
             }
             builder.show()
-
         }
-
     }
 
     // sharedPrefEdit.apply()
     fun printStats(monsterIndex: String, view: View) {
-        val snackbarText = String.format(
-            "\n\nEncounter for Party Level " + monsterIndex.toString()
-        )
-
-        Snackbar.make(
-            view,
-            snackbarText, Snackbar.LENGTH_LONG
-        ).show()
-
-        centertext.text = "\n\n" + monsterIndex
-
-        Snackbar.make(
-            view,
-            snackbarText, Snackbar.LENGTH_LONG
-        ).show()
 
 
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://www.dnd5eapi.co/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        retrofit.create(DNDService::class.java).getMonster(monsterIndex)
+            .enqueue(object : Callback<Monster> {
+                override fun onFailure(
+                    call: Call<Monster>?,
+                    t: Throwable?
+                ) {
+                    Log.v("retrofit", "call failed")
+                    Log.e("Call failure", "Aw shit", t)
+
+                }
+
+                override fun onResponse(
+                    call: Call<Monster>?,
+                    response: Response<Monster>?
+                ) {
+                    //todo: here handle the case that the server returned a good returne a good result
+
+                    response.body(!!).armor_class
+
+                }
+
+                val snackbarText = String.format(
+                    "\n\nEncounter for Party Level " + monsterIndex.toString()
+                )
+
+                Snackbar.make(
+                view,
+                snackbarText, Snackbar.LENGTH_LONG
+                ).show()
+
+                centertext.text = "\n\n" + monsterIndex
+
+                Snackbar.make(
+                view,
+                snackbarText, Snackbar.LENGTH_LONG
+                ).show()
+
+
+            }
     }
-}
 
 
 
