@@ -10,6 +10,14 @@ class Monster(public var name: String, public var url: String) {
         }
         return true
     }
+//    fun isProficient(): Boolean {
+//        if (proficiencies != null) {
+//            if (proficiencies.name.isEmpty()) {
+//                return false
+//            }
+//        }
+//        return true
+//    }
 
     var fl: Float = 1.0f
     val id = ""
@@ -24,11 +32,12 @@ class Monster(public var name: String, public var url: String) {
     val hit_dice = ""
     val speed: Speed? = null
     val strength = 0f
-//    val dexterity = 0f
-//    val constitution = 0f
-//    val intelligence = 0f
-//    val wisdom = 0f
-//    val charisma = 0f
+    val dexterity = 0f
+    val constitution = 0f
+    val intelligence = 0f
+    val wisdom = 0f
+    val charisma = 0f
+//    val proficiencies = arrayListOf<ProficienciesListing>()
 //    val dexterity_save = 0f
 //    val constitution_save = 0f
 //    val wisdom_save = 0f

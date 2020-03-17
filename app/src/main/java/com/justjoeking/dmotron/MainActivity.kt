@@ -191,6 +191,12 @@ class MainActivity : AppCompatActivity() {
                                 view
 
                             )
+                            val sharedPrefMonster = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
+                            sharedPrefMonster.putString(
+                                "Saved Monster",
+                               sharedPrefMonster.toString()
+                            )
+                            sharedPrefMonster.apply()
                         }
 
                     })

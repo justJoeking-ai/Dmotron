@@ -142,7 +142,7 @@ class MonsterCardActivity : AppCompatActivity() {
             .baseUrl("http://www.dnd5eapi.co/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
+        
         val monsterId = monsterIndex.replace("\\s".toRegex(), "-").toLowerCase()
 
         retrofit.create(DNDService::class.java).getMonster(monsterId)
@@ -173,24 +173,31 @@ class MonsterCardActivity : AppCompatActivity() {
                     ).show()
 
                     centertext.text =
-                        "\n\n" + monster?.name + "\n" + "Hit Points: " + monster?.hit_points.toString() + "\n" + "AC: " + monster?.armor_class?.toLong() +
-//                    "\n"+ " id: " +  monster?.
-//                    "\n"+ " index: " +  monster?.
-                    "\n"+ " Size: " +  monster?.size+
-                    "\n"+ " Type: " +  monster?.type+
-                    "\n"+ " Challenge_rating: " +  monster?.challenge_rating+
-                    "\n"+ " Subtype: " +  monster?.subtype+
-                    "\n"+ " Alignment: " +  monster?.alignment+
-                    "\n"+ " Armor_class: " +  monster?.armor_class+
-                    "\n"+ " Hit_points: " +  monster?.hit_points+
-                    "\n"+ " Hit_dice: " +  monster?.hit_dice+
-                    "\n"+ " Speed "+ monster?.speed
-//                    "\n"+ " Strength: " +  monster?.strength
-//                    "\n"+ " Dexterity: " +  monster?.dexterity+
-//                    "\n"+ " Constitution: " +  monster?.constitution+
-//                    "\n"+ " Intelligence: " +  monster?.intelligence+
-//                    "\n"+ " Wisdom: " +  monster?.wisdom+
-//                    "\n"+ " Charisma: " +  monster?.charisma+
+                                "\n\n" + monster?.name +
+                                "\n" + "Hit Points: " + monster?.hit_points.toString() +
+                                "\n" + "AC: " + monster?.armor_class?.toLong() +
+//                              "\n"+ " id: " +  monster?.
+//                              "\n"+ " index: " +  monster?.
+                                "\n" + " Size: " + monster?.size +
+                                "\n" + " Type: " + monster?.type +
+                                "\n" + " Challenge_rating: " + monster?.challenge_rating +
+                                "\n" + " Subtype: " + monster?.subtype +
+                                "\n" + " Alignment: " + monster?.alignment +
+                                "\n" + " Armor_class: " + monster?.armor_class +
+                                "\n" + " Hit_points: " + monster?.hit_points +
+                                "\n" + " Hit_dice: " + monster?.hit_dice +
+                                "\n" + " Speed:" +
+                                "\n" + "Walk: " + monster?.speed?.walk +
+//                                "\n" + "Fly: " + monster?.speed?.fly +
+//                                "\n" + "Swim: " + monster?.speed?.swim +
+//                                "\n" + "Burrow: " + monster?.speed?.burrow
+
+                    "\n"+ " Strength: " +  monster?.strength+
+                    "\n"+ " Dexterity: " +  monster?.dexterity+
+                    "\n"+ " Constitution: " +  monster?.constitution+
+                    "\n"+ " Intelligence: " +  monster?.intelligence+
+                    "\n"+ " Wisdom: " +  monster?.wisdom
+//                    "\n"+ " Charisma: " +  monster?.charisma + monster?.proficiencies?.name
 //                    "\n"+ " Dexterity_save: " +  monster?.dexterity_save+
 //                    "\n"+ " Constitution_save: " +  monster?.constitution_save+
 //                    "\n"+ " Wisdom_save: " +  monster?.wisdom_save+
@@ -203,10 +210,10 @@ class MonsterCardActivity : AppCompatActivity() {
 //                    "\n"+ " Condition_immunities: " +  monster?.condition_immunities
 
 
-                                Snackbar.make(
-                                    view,
-                                    snackbarText, Snackbar.LENGTH_LONG
-                                ).show()
+                    Snackbar.make(
+                        view,
+                        snackbarText, Snackbar.LENGTH_LONG
+                    ).show()
                 }
             })
     }
