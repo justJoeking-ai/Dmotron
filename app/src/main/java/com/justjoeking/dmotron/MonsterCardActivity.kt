@@ -142,7 +142,7 @@ class MonsterCardActivity : AppCompatActivity() {
             .baseUrl("http://www.dnd5eapi.co/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        
+
         val monsterId = monsterIndex.replace("\\s".toRegex(), "-").toLowerCase()
 
         retrofit.create(DNDService::class.java).getMonster(monsterId)
