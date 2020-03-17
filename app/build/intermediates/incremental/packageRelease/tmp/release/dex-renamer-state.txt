@@ -1,4 +1,0 @@
-#Sat Oct 05 15:50:16 MDT 2019
-base.0=/Users/joe/Desktop/Dmotron/app/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

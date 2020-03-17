@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MonsterAdapter :
+class MonsterAdapter() :
     RecyclerView.Adapter<MonsterAdapter.MyViewHolder>() {
 
     public var myDataset: ArrayList<MonsterListing> = ArrayList()

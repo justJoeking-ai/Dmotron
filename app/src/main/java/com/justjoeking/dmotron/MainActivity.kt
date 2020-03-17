@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupRightFabClick() {
         main_fab.setOnClickListener { view ->
 
+
             val encounterCRInput = EditText(this)
             val lp = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
