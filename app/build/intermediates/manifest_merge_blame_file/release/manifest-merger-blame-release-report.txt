@@ -1,0 +1,65 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.justjoeking.dmotron"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:31:5-67
+11-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:31:22-64
+12
+13    <application
+13-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:5:5-30:19
+14        android:allowBackup="true"
+14-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:6:13-39
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.1.0] /Users/joe/.gradle/caches/transforms-2/files-2.1/1c734545f05a84a4ad12ce77fba32aed/core-1.1.0/AndroidManifest.xml:24:18-86
+16        android:icon="@mipmap/ic_launcher"
+16-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:7:13-47
+17        android:label="@string/app_name"
+17-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:8:13-45
+18        android:roundIcon="@mipmap/ic_launcher_round"
+18-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:9:13-58
+19        android:supportsRtl="true"
+19-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:10:13-39
+20        android:theme="@style/AppTheme"
+20-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:11:13-44
+21        android:usesCleartextTraffic="true" >
+21-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:12:13-48
+22        <activity
+22-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:14:9-18:20
+23            android:name="com.justjoeking.dmotron.TestActivity"
+23-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:15:17-45
+24            android:label="@string/title_activity_test"
+24-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:16:17-60
+25            android:theme="@style/AppTheme.NoActionBar" >
+25-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:17:17-60
+26        </activity>
+27        <activity
+27-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:19:9-28:20
+28            android:name="com.justjoeking.dmotron.MainActivity"
+28-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:20:17-45
+29            android:label="@string/app_name"
+29-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:21:17-49
+30            android:theme="@style/AppTheme.NoActionBar" >
+30-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:22:17-60
+31            <intent-filter>
+31-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:23:13-27:29
+32                <action android:name="android.intent.action.MAIN" />
+32-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:24:17-68
+32-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:24:25-66
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:26:17-76
+34-->/Users/joe/Desktop/Dmotron/app/src/main/AndroidManifest.xml:26:27-74
+35            </intent-filter>
+36        </activity>
+37    </application>
+38
+39</manifest>
