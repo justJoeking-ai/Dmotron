@@ -25,7 +25,7 @@
       </configuration>
     </facet>
     <facet type="kotlin-language" name="Kotlin">
-      <configuration version="3" platform="JVM 1.6" allPlatforms="JVM [1.6]" useProjectSettings="false" pureKotlinSourceFolders="C:\Users\joe\OneDrive\Documents\GitHub\Dmotron\app\src\debug\kotlin;C:\Users\joe\OneDrive\Documents\GitHub\Dmotron\app\src\debug\java;C:\Users\joe\OneDrive\Documents\GitHub\Dmotron\app\src\release\kotlin;C:\Users\joe\OneDrive\Documents\GitHub\Dmotron\app\src\release\java;C:\Users\joe\OneDrive\Documents\GitHub\Dmotron\app\src\debugAndroidTest\kotlin;C:\Users\joe\OneDrive\Documents\GitHub\Dmotron\app\src\debugUnitTest\kotlin;C:\Users\joe\OneDrive\Documents\GitHub\Dmotron\app\src\releaseUnitTest\kotlin">
+      <configuration version="3" platform="JVM 1.6" allPlatforms="JVM [1.6]" useProjectSettings="false">
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
