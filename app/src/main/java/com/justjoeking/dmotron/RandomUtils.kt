@@ -1,6 +1,6 @@
 package com.justjoeking.dmotron
 
-import java.util.Random
+import java.util.*
 
 object RandomUtils {
 
