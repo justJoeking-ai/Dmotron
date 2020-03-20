@@ -57,25 +57,25 @@ class MonsterCardActivity : AppCompatActivity() {
             .baseUrl("http://www.dnd5eapi.co/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val monsterInput = findViewById<TextView>(android.R.id.content)
-//        val lp = LinearLayout.LayoutParams(
-//            LinearLayout.LayoutParams.MATCH_PARENT,
-//            LinearLayout.LayoutParams.MATCH_PARENT
-//        )
-//        monsterInput.layoutParams = lp
-        val `in` = intent
-        val monsterIndex = `in`.extras
-        // check null
-        // check null
-        if (monsterIndex == null) {
-            val content: String = "orc"
-            printStats(monsterIndex.toString(), monsterInput)
-        }
-        else{
-            val content: String = "orc"
-            printStats(monsterIndex.toString(), monsterInput)
-
-        }
+//        val monsterInput = findViewById<TextView>(android.R.id.content)
+////        val lp = LinearLayout.LayoutParams(
+////            LinearLayout.LayoutParams.MATCH_PARENT,
+////            LinearLayout.LayoutParams.MATCH_PARENT
+////        )
+////        monsterInput.layoutParams = lp
+//        val `in` = intent
+//        val monsterIndex = `in`.extras
+//        // check null
+//        // check null
+//        if (monsterIndex == null) {
+//            val content: String = "orc"
+//            printStats(monsterIndex.toString(), monsterInput)
+//        }
+//        else{
+//            val content: String = "orc"
+//            printStats(monsterIndex.toString(), monsterInput)
+//
+//        }
         setupFabClick()
 
     }

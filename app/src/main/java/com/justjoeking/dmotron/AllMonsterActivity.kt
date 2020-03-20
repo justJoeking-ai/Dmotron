@@ -37,6 +37,7 @@ class AllMonsterActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
+
         viewManager = LinearLayoutManager(this)
         viewAdapter = MonsterAdapter()
 

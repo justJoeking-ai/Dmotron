@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 public class MonsterAdapter() :
+
     RecyclerView.Adapter<MonsterAdapter.MyViewHolder>() {
 
     public var myDataset: ArrayList<MonsterListing> = ArrayList()
