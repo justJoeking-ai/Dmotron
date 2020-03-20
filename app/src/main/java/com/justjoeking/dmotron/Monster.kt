@@ -1,6 +1,6 @@
 package com.justjoeking.dmotron
 
-class Monster(public var name: String, public var url: String) {
+class Monster(var name: String, var url: String) {
 
     fun isTerrestrial(): Boolean {
         if (speed != null) {

@@ -1,11 +1,11 @@
 package com.justjoeking.dmotron
 
-class SpellListing() {
+class SpellListing {
 
     val name = ""
     val url = ""
 
-    public fun Int (){
+    fun Int() {
         // TODO: get id of spell
     }
 

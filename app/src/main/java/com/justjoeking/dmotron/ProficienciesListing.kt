@@ -3,5 +3,5 @@ package com.justjoeking.dmotron
 class ProficienciesListing {
     val name = ""
     val url = ""
-    val  value = 0f
+    val value = 0f
 }

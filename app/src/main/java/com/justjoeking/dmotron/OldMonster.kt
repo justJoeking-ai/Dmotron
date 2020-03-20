@@ -1,6 +1,3 @@
 package com.justjoeking.dmotron
 
-class OldMonster(var name: String, var fl: Float) {
-
-
-}
+class OldMonster(var name: String, var fl: Float)

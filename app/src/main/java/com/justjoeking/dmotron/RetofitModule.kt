@@ -2,7 +2,7 @@ package com.justjoeking.dmotron
 
 import retrofit2.Retrofit
 
-public class Retrofit {
+class Retrofit {
 
     var retrofit = Retrofit.Builder()
         .baseUrl("https://dnd5eapi.co/api/")
