@@ -1,6 +1,8 @@
 *.iml
 .gradle
+.gradle/*
 /local.properties
+local.properties
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -13,7 +15,4 @@
 .externalNativeBuild
 *.bin
 *.lock
-*.bin
-*.bin
-*.xml
 *.iml
