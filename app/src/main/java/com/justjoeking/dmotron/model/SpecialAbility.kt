@@ -1,4 +1,4 @@
-package com.justjoeking.dmotron
+package com.justjoeking.dmotron.model
 
 class SpecialAbility {
     val attack_bonus = 0

@@ -32,7 +32,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_monster_card.*
@@ -42,10 +41,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-private lateinit var recyclerView: RecyclerView
-private lateinit var viewAdapter: MonsterAdapter
-private lateinit var viewManager: RecyclerView.LayoutManager
 
 
 class MonsterCardActivity : AppCompatActivity() {
@@ -258,44 +253,6 @@ class MonsterCardActivity : AppCompatActivity() {
             view,
             snackbarText, Snackbar.LENGTH_LONG
         ).show()
-
-        centertext.text = "\n\n\n\n\n" + "\n\n" + monsterIndex
-//                        "\n\n" + monster?.name +
-//                                "\n" + "Hit Points: " + monster?.hit_points.toString() +
-//                                "\n" + "AC: " + monster?.armor_class?.toLong() +
-////                              "\n"+ " id: " +  monster?.
-////                              "\n"+ " index: " +  monster?.
-//                                "\n" + " Size: " + monster?.size +
-//                                "\n" + " Type: " + monster?.type +
-//                                "\n" + " Challenge_rating: " + monster?.challenge_rating +
-//                                "\n" + " Subtype: " + monster?.subtype +
-//                                "\n" + " Alignment: " + monster?.alignment +
-//                                "\n" + " Armor_class: " + monster?.armor_class +
-//                                "\n" + " Hit_points: " + monster?.hit_points +
-//                                "\n" + " Hit_dice: " + monster?.hit_dice +
-//                                "\n" + " Speed:" +
-//                                "\n" + "Walk: " + monster?.speed?.walk +
-////                                "\n" + "Fly: " + monster?.speed?.fly +
-////                                "\n" + "Swim: " + monster?.speed?.swim +
-////                                "\n" + "Burrow: " + monster?.speed?.burrow
-//
-//                                "\n"+ " Strength: " +  monster?.strength+
-//                                "\n"+ " Dexterity: " +  monster?.dexterity+
-//                                "\n"+ " Constitution: " +  monster?.constitution+
-//                                "\n"+ " Intelligence: " +  monster?.intelligence+
-//                                "\n"+ " Wisdom: " +  monster?.wisdom
-//                    "\n"+ " Charisma: " +  monster?.charisma + monster?.proficiencies?.name
-//                    "\n"+ " Dexterity_save: " +  monster?.dexterity_save+
-//                    "\n"+ " Constitution_save: " +  monster?.constitution_save+
-//                    "\n"+ " Wisdom_save: " +  monster?.wisdom_save+
-//                    "\n"+ " Charisma_save: " +  monster?.charisma_save+
-//                    "\n"+ " Perception: " +  monster?.perception+
-//                    "\n"+ " Stealth: " +  monster?.stealth+
-//                    "\n"+ " Damage_vulnerabilities: " +  monster?.damage_vulnerabilities+
-//                    "\n"+ " Damage_resistances: " +  monster?.damage_resistances+
-//                    "\n"+ " Damage_immunities: " +  monster?.damage_immunities+
-//                    "\n"+ " Condition_immunities: " +  monster?.condition_immunities
-
 
         Snackbar.make(
             view,
