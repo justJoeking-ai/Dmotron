@@ -5,15 +5,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:gravity="center_horizontal"
         android:textAlignment="center"
         tools:context=".AllMonsterActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             android:fitsSystemWindows="true"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
             android:theme="@style/AppTheme.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -21,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
+                android:gravity="center_horizontal"
                 android:textAlignment="center"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -30,21 +33,23 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
+                    android:gravity="center_horizontal"
                     android:textAlignment="center"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    />
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
             android:id="@+id/include"
-            android:textAlignment="center"
             layout="@layout/content_all_monster"
+            android:layout_width="0dp"
             android:layout_height="316dp"
+            android:textAlignment="center"
             app:layout_anchor="@+id/include"
-            app:layout_anchorGravity="center" />
+            app:layout_anchorGravity="center"
+            android:gravity="center_horizontal" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
