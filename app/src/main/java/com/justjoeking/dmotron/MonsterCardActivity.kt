@@ -58,11 +58,19 @@ class MonsterCardActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 //        val monsterInput = findViewById<TextView>(android.R.id.content)
+<<<<<<< Updated upstream
 ////        val lp = LinearLayout.LayoutParams(
 ////            LinearLayout.LayoutParams.MATCH_PARENT,
 ////            LinearLayout.LayoutParams.MATCH_PARENT
 ////        )
 ////        monsterInput.layoutParams = lp
+=======
+//        val lp = LinearLayout.LayoutParams(
+//            LinearLayout.LayoutParams.MATCH_PARENT,
+//            LinearLayout.LayoutParams.MATCH_PARENT
+//        )
+//        monsterInput.layoutParams = lp
+>>>>>>> Stashed changes
 //        val `in` = intent
 //        val monsterIndex = `in`.extras
 //        // check null
@@ -70,8 +78,12 @@ class MonsterCardActivity : AppCompatActivity() {
 //        if (monsterIndex == null) {
 //            val content: String = "orc"
 //            printStats(monsterIndex.toString(), monsterInput)
+<<<<<<< Updated upstream
 //        }
 //        else{
+=======
+//        } else {
+>>>>>>> Stashed changes
 //            val content: String = "orc"
 //            printStats(monsterIndex.toString(), monsterInput)
 //
