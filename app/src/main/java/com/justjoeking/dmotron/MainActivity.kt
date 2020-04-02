@@ -64,14 +64,12 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
-        main_fab.setBackgroundTintList(
-            ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    this,
-                    R.color.Btncolor
+        main_fab.backgroundTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(
+                this,
+                R.color.Btncolor
 
 
-                )
             )
         )
 
@@ -151,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
-                clickcount = clickcount+1;
+                clickcount = clickcount + 1
                 if (clickcount == 1) {
                 } else {
                 }
@@ -191,10 +189,11 @@ class MainActivity : AppCompatActivity() {
                                 view
 
                             )
-                            val sharedPrefMonster = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
+                            val sharedPrefMonster =
+                                getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
                             sharedPrefMonster.putString(
                                 "Saved Monster",
-                               sharedPrefMonster.toString()
+                                sharedPrefMonster.toString()
                             )
                             sharedPrefMonster.apply()
                         }
@@ -254,7 +253,7 @@ class MainActivity : AppCompatActivity() {
                             monster.challenge_rating = 1f
                         }
 
-                        if (monster!!.challenge_rating > encounterCR) {
+                        if (monster.challenge_rating > encounterCR) {
                             // we need to check again
                             return fetchIndividualMonster(
                                 encounterCR,
@@ -277,7 +276,7 @@ class MainActivity : AppCompatActivity() {
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
                         val i = randomMonster.name.toString()
                         val snackbarText = String.format(
-                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response!!.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickcount + " encounters"
+                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickcount + " encounters"
 
 
                         )

@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface DNDService {
-    
+
     @GET("monsters/")
     fun listMonsters(): Call<MonsterResponse>
 
@@ -14,7 +14,6 @@ interface DNDService {
 
     @GET("monsters/{monsterName}/")
     fun getMonsterbyName(@Path("monsterName") monsterName: String): Call<Monster>
-
 
 
     @GET("spells/")

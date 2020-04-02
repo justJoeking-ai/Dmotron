@@ -47,7 +47,6 @@ private lateinit var recyclerView: RecyclerView
 private lateinit var viewAdapter: MonsterAdapter
 private lateinit var viewManager: RecyclerView.LayoutManager
 
-
 class MonsterCardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,20 +56,8 @@ class MonsterCardActivity : AppCompatActivity() {
             .baseUrl("http://www.dnd5eapi.co/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-//        val monsterInput = findViewById<TextView>(android.R.id.content)
-<<<<<<< Updated upstream
-////        val lp = LinearLayout.LayoutParams(
-////            LinearLayout.LayoutParams.MATCH_PARENT,
-////            LinearLayout.LayoutParams.MATCH_PARENT
-////        )
-////        monsterInput.layoutParams = lp
-=======
-//        val lp = LinearLayout.LayoutParams(
-//            LinearLayout.LayoutParams.MATCH_PARENT,
-//            LinearLayout.LayoutParams.MATCH_PARENT
-//        )
-//        monsterInput.layoutParams = lp
->>>>>>> Stashed changes
+        val monsterInput = findViewById<TextView>(android.R.id.content)
+
 //        val `in` = intent
 //        val monsterIndex = `in`.extras
 //        // check null
@@ -78,16 +65,21 @@ class MonsterCardActivity : AppCompatActivity() {
 //        if (monsterIndex == null) {
 //            val content: String = "orc"
 //            printStats(monsterIndex.toString(), monsterInput)
-<<<<<<< Updated upstream
 //        }
 //        else{
-=======
-//        } else {
->>>>>>> Stashed changes
 //            val content: String = "orc"
 //            printStats(monsterIndex.toString(), monsterInput)
 //
 //        }
+        val monsterIndex = intent.extras?.getString("monster_id") // eg. "Adult Black Dragon"
+        if (monsterIndex == null) {
+            val content: String = "orc"
+            printStats(monsterIndex.toString(), monsterInput)
+        } else {
+            val content: String = "orc"
+            printStats(monsterIndex.toString(), monsterInput)
+
+        }
         setupFabClick()
 
     }
@@ -191,7 +183,7 @@ class MonsterCardActivity : AppCompatActivity() {
                     ).show()
 
                     centertext.text =
-                                "\n\n" + monster?.name +
+                        "\n\n" + monster?.name +
                                 "\n" + "Hit Points: " + monster?.hit_points.toString() +
                                 "\n" + "AC: " + monster?.armor_class?.toLong() +
 //                              "\n"+ " id: " +  monster?.
@@ -210,11 +202,11 @@ class MonsterCardActivity : AppCompatActivity() {
 //                                "\n" + "Swim: " + monster?.speed?.swim +
 //                                "\n" + "Burrow: " + monster?.speed?.burrow
 
-                    "\n"+ " Strength: " +  monster?.strength+
-                    "\n"+ " Dexterity: " +  monster?.dexterity+
-                    "\n"+ " Constitution: " +  monster?.constitution+
-                    "\n"+ " Intelligence: " +  monster?.intelligence+
-                    "\n"+ " Wisdom: " +  monster?.wisdom
+                                "\n" + " Strength: " + monster?.strength +
+                                "\n" + " Dexterity: " + monster?.dexterity +
+                                "\n" + " Constitution: " + monster?.constitution +
+                                "\n" + " Intelligence: " + monster?.intelligence +
+                                "\n" + " Wisdom: " + monster?.wisdom
 //                    "\n"+ " Charisma: " +  monster?.charisma + monster?.proficiencies?.name
 //                    "\n"+ " Dexterity_save: " +  monster?.dexterity_save+
 //                    "\n"+ " Constitution_save: " +  monster?.constitution_save+
@@ -235,6 +227,7 @@ class MonsterCardActivity : AppCompatActivity() {
                 }
             })
     }
+
     private fun printStat(monsterIndex: String, view: View) {
 
         val retrofit = Retrofit.Builder()
@@ -261,17 +254,17 @@ class MonsterCardActivity : AppCompatActivity() {
 //                                val monster: Monster? = response?.body()
 
 
-                    val snackbarText = String.format(
-                        "\n\nEncounter for Party Level " + "\n" + monsterIndex.toString()
-                    )
+        val snackbarText = String.format(
+            "\n\nEncounter for Party Level " + "\n" + monsterIndex.toString()
+        )
 
 
-                    Snackbar.make(
-                        view,
-                        snackbarText, Snackbar.LENGTH_LONG
-                    ).show()
+        Snackbar.make(
+            view,
+            snackbarText, Snackbar.LENGTH_LONG
+        ).show()
 
-                    centertext.text = "\n\n\n\n\n" + "\n\n" + monsterIndex
+        centertext.text = "\n\n\n\n\n" + "\n\n" + monsterIndex
 //                        "\n\n" + monster?.name +
 //                                "\n" + "Hit Points: " + monster?.hit_points.toString() +
 //                                "\n" + "AC: " + monster?.armor_class?.toLong() +
@@ -309,11 +302,12 @@ class MonsterCardActivity : AppCompatActivity() {
 //                    "\n"+ " Condition_immunities: " +  monster?.condition_immunities
 
 
-                    Snackbar.make(
-                        view,
-                        snackbarText, Snackbar.LENGTH_LONG
-                    ).show()
-                }}
+        Snackbar.make(
+            view,
+            snackbarText, Snackbar.LENGTH_LONG
+        ).show()
+    }
+}
 //            })
 //    }
 //

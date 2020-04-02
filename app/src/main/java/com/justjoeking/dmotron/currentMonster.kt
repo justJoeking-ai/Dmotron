@@ -1,11 +1,9 @@
 package com.justjoeking.dmotron
 
-public class currentMonster {
+class currentMonster {
 
     var isCurrent = ""
     var monsterIndex = ""
-
-
 
 
 }
