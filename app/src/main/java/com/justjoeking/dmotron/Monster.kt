@@ -37,7 +37,8 @@ class Monster(var name: String, var url: String) {
     val intelligence = 0f
     val wisdom = 0f
     val charisma = 0f
-//    val proficiencies = arrayListOf<ProficienciesListing>()
+
+    val proficiencies: Proficiencies? = null
 //    val dexterity_save = 0f
 //    val constitution_save = 0f
 //    val wisdom_save = 0f

@@ -1,7 +1,8 @@
 package com.justjoeking.dmotron
 
-class ProficienciesListing {
+class Proficiency() {
     val name = ""
     val url = ""
     val value = 0f
+
 }

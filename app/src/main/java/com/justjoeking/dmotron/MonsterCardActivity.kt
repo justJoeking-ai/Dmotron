@@ -167,6 +167,7 @@ class MonsterCardActivity : AppCompatActivity() {
                     val monster: Monster? = response?.body()
 
 
+
                     val snackbarText = String.format(
                         "\n\nEncounter for Party Level " + "\n" + monsterIndex.toString()
                     )
@@ -201,7 +202,8 @@ class MonsterCardActivity : AppCompatActivity() {
                                 "\n" + " Dexterity: " + monster?.dexterity +
                                 "\n" + " Constitution: " + monster?.constitution +
                                 "\n" + " Intelligence: " + monster?.intelligence +
-                                "\n" + " Wisdom: " + monster?.wisdom
+                                "\n" + " Wisdom: " + monster?.wisdom+
+                    "\n" + " Wisdom: " + monster?.proficiencies
 //                    "\n"+ " Charisma: " +  monster?.charisma + monster?.proficiencies?.name
 //                    "\n"+ " Dexterity_save: " +  monster?.dexterity_save+
 //                    "\n"+ " Constitution_save: " +  monster?.constitution_save+
