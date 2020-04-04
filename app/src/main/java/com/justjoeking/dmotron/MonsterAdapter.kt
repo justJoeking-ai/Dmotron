@@ -44,7 +44,7 @@ class MonsterAdapter :
             val monsterId = myDataset[position].name
             val mIntent = Intent(holder.linearLayout.context, MonsterCardActivity::class.java)
             val mBundle = Bundle()
-            mBundle.putString("monster_id", monsterId)
+            mBundle.putString(MonsterCardActivity.MONSTER_ID, monsterId)
             mIntent.putExtras(mBundle)
             startActivity(holder.linearLayout.context, mIntent, mBundle)
         }

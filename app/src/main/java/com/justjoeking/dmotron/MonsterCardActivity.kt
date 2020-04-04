@@ -71,7 +71,7 @@ class MonsterCardActivity : AppCompatActivity() {
 //            printStats(monsterIndex.toString(), monsterInput)
 //
 //        }
-        val monsterIndex = intent.extras?.getString("monster_id") // eg. "Adult Black Dragon"
+        val monsterIndex = intent.extras?.getString(MONSTER_ID) // eg. "Adult Black Dragon"
         if (monsterIndex == null) {
             val content: String = "orc"
             printStats(monsterIndex.toString(), monsterInput)
@@ -306,6 +306,10 @@ class MonsterCardActivity : AppCompatActivity() {
             view,
             snackbarText, Snackbar.LENGTH_LONG
         ).show()
+    }
+
+    companion object {
+       public const val MONSTER_ID = "monster_id"
     }
 }
 //            })
