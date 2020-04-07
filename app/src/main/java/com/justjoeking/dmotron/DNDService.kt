@@ -1,5 +1,6 @@
 package com.justjoeking.dmotron
 
+import com.justjoeking.dmotron.model.Monster
 import com.justjoeking.dmotron.model.Spell
 import retrofit2.Call
 import retrofit2.http.GET

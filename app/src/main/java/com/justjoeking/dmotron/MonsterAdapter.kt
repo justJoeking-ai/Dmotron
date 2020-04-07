@@ -9,12 +9,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.justjoeking.dmotron.model.Monster
 
 
-class MonsterAdapter :
+ class MonsterAdapter:
     RecyclerView.Adapter<MonsterAdapter.MyViewHolder>() {
 
-    var myDataset: ArrayList<MonsterListing> = ArrayList()
+     var myDataset: ArrayList<MonsterListing> = ArrayList()
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -39,13 +40,12 @@ class MonsterAdapter :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.linearLayout.findViewById<TextView>(R.id.monster_name).text =
-            myDataset[position].name
+        holder.linearLayout.findViewById<TextView>(R.id.monster_name).text = myDataset[position].name
         holder.linearLayout.setOnClickListener(View.OnClickListener { view ->
             val monsterId = myDataset[position].name
-            val mIntent = (Intent(holder.linearLayout.context, MonsterCardActivity::class.java))
+            val mIntent =  (Intent (holder.linearLayout.context, MonsterCardActivity::class.java));
             val mBundle = Bundle()
-            mBundle.putString("name", monsterId)
+            mBundle.putString("name", monsterId);
             mIntent.putExtras(mBundle)
             startActivity(holder.linearLayout.context, mIntent, mBundle)
 

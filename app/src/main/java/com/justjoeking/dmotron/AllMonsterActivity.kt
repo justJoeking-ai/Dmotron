@@ -2,6 +2,7 @@ package com.justjoeking.dmotron
 
 import android.os.Bundle
 import android.util.Log
+import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 private lateinit var recyclerView: RecyclerView
@@ -19,7 +24,8 @@ private lateinit var viewManager: RecyclerView.LayoutManager
 
 class AllMonsterActivity : AppCompatActivity() {
 
-    private var monsterDataset: ArrayList<MonsterListing> = ArrayList()
+
+    var monsterDataset: ArrayList<MonsterListing> = ArrayList()
 
     val retrofit = Retrofit.Builder()
         .baseUrl("http://www.dnd5eapi.co/api/")
@@ -28,8 +34,9 @@ class AllMonsterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_all_monster)
+        setContentView(R.layout.content_all_monster)
         setSupportActionBar(toolbar)
+
 
 
         viewManager = LinearLayoutManager(this)

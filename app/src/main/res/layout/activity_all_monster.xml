@@ -17,6 +17,14 @@
             android:gravity="center_horizontal"
             android:textAlignment="center"
             android:theme="@style/AppTheme.AppBarOverlay">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/large_text"
+                android:visibility="gone"
+                android:textColor="@color/Gray"
+                />
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
@@ -51,5 +59,11 @@
             app:layout_anchorGravity="center"
             android:gravity="center_horizontal" />
 
-
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/monster_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

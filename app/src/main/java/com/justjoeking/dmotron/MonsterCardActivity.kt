@@ -33,6 +33,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.justjoeking.dmotron.model.Monster
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_monster_card.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -197,8 +198,8 @@ class MonsterCardActivity : AppCompatActivity() {
                                 "\n" + " Dexterity: " + monster?.dexterity +
                                 "\n" + " Constitution: " + monster?.constitution +
                                 "\n" + " Intelligence: " + monster?.intelligence +
-                                "\n" + " Wisdom: " + monster?.wisdom+
-                    "\n" + " Wisdom: " + monster?.proficiencies
+                                "\n" + " Wisdom: " + monster?.wisdom
+//                    "\n" + " Wisdom: " + monster?.proficiencies
 //                    "\n"+ " Charisma: " +  monster?.charisma + monster?.proficiencies?.name
 //                    "\n"+ " Dexterity_save: " +  monster?.dexterity_save+
 //                    "\n"+ " Constitution_save: " +  monster?.constitution_save+

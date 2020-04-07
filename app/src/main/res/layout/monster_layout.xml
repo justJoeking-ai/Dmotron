@@ -8,7 +8,7 @@
             android:id="@+id/monster_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorBlue"
             android:textSize="32sp"
             tools:height="60dp"
             tools:text="Not an Aboleth" />
