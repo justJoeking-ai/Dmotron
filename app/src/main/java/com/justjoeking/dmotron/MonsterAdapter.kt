@@ -8,8 +8,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.justjoeking.dmotron.model.Monster
 
-class MonsterAdapter :
+
+class MonsterAdapter:
     RecyclerView.Adapter<MonsterAdapter.MyViewHolder>() {
 
      var myDataset: ArrayList<MonsterListing> = ArrayList()
