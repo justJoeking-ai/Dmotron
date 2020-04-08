@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.justjoeking.dmotron.MonsterUtil.Companion.DRAGON
+import com.justjoeking.dmotron.model.Monster
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
         //Monster Card
         toAttribute.setOnClickListener {
-            val intent = Intent(this, MonsterCardActivity::class.java)
+            val intent = Intent(this, MonsterDetailActivity::class.java)
 
             // start your next activity
             startActivity(intent)

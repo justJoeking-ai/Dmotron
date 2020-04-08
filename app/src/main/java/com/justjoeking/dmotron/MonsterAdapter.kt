@@ -3,7 +3,6 @@ package com.justjoeking.dmotron
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MonsterAdapter :
     RecyclerView.Adapter<MonsterAdapter.MyViewHolder>() {
 
-    var myDataset: ArrayList<MonsterListing> = ArrayList()
+     var myDataset: ArrayList<MonsterListing> = ArrayList()
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -42,9 +41,9 @@ class MonsterAdapter :
             myDataset[position].name
         holder.linearLayout.setOnClickListener { view ->
             val monsterId = myDataset[position].name
-            val mIntent = Intent(holder.linearLayout.context, MonsterCardActivity::class.java)
+            val mIntent = Intent(holder.linearLayout.context, MonsterDetailActivity::class.java)
             val mBundle = Bundle()
-            mBundle.putString(MonsterCardActivity.MONSTER_ID, monsterId)
+            mBundle.putString(MonsterDetailActivity.MONSTER_ID, monsterId)
             mIntent.putExtras(mBundle)
             startActivity(holder.linearLayout.context, mIntent, mBundle)
         }

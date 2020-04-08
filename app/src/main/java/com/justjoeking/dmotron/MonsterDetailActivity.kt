@@ -1,6 +1,5 @@
 package com.justjoeking.dmotron
 
-
 //import android.os.Bundle
 //import android.os.Message
 //import android.util.Log
@@ -32,10 +31,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.justjoeking.dmotron.model.Monster
 import kotlinx.android.synthetic.main.activity_main.toolbar
-import kotlinx.android.synthetic.main.activity_monster_card.*
+import kotlinx.android.synthetic.main.activity_monster_detail.*
 import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,14 +42,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private lateinit var recyclerView: RecyclerView
-private lateinit var viewAdapter: MonsterAdapter
-private lateinit var viewManager: RecyclerView.LayoutManager
-
-class MonsterCardActivity : AppCompatActivity() {
+class MonsterDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_monster_card)
+        setContentView(R.layout.activity_monster_detail)
         setSupportActionBar(toolbar)
         val retrofit = Retrofit.Builder()
             .baseUrl("http://www.dnd5eapi.co/api/")
@@ -100,7 +95,7 @@ class MonsterCardActivity : AppCompatActivity() {
             sharedPref.getString("Orc", String.toString())
             monsterInput.hint = getText(R.string.Find_your_monster)
 
-            var builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(this)
             builder.setView(monsterInput)
 
             builder.setTitle("Search for Your Monster! ${MonsterUtil.DRAGON}")
@@ -169,6 +164,7 @@ class MonsterCardActivity : AppCompatActivity() {
                     val monster: Monster? = response?.body()
 
 
+
                     val snackbarText = String.format(
                         "\n\nEncounter for Party Level " + "\n" + monsterIndex.toString()
                     )
@@ -204,6 +200,7 @@ class MonsterCardActivity : AppCompatActivity() {
                                 "\n" + " Constitution: " + monster?.constitution +
                                 "\n" + " Intelligence: " + monster?.intelligence +
                                 "\n" + " Wisdom: " + monster?.wisdom
+//                    "\n" + " Wisdom: " + monster?.proficiencies
 //                    "\n"+ " Charisma: " +  monster?.charisma + monster?.proficiencies?.name
 //                    "\n"+ " Dexterity_save: " +  monster?.dexterity_save+
 //                    "\n"+ " Constitution_save: " +  monster?.constitution_save+
@@ -260,44 +257,6 @@ class MonsterCardActivity : AppCompatActivity() {
             view,
             snackbarText, Snackbar.LENGTH_LONG
         ).show()
-
-        centertext.text = "\n\n\n\n\n" + "\n\n" + monsterIndex
-//                        "\n\n" + monster?.name +
-//                                "\n" + "Hit Points: " + monster?.hit_points.toString() +
-//                                "\n" + "AC: " + monster?.armor_class?.toLong() +
-////                              "\n"+ " id: " +  monster?.
-////                              "\n"+ " index: " +  monster?.
-//                                "\n" + " Size: " + monster?.size +
-//                                "\n" + " Type: " + monster?.type +
-//                                "\n" + " Challenge_rating: " + monster?.challenge_rating +
-//                                "\n" + " Subtype: " + monster?.subtype +
-//                                "\n" + " Alignment: " + monster?.alignment +
-//                                "\n" + " Armor_class: " + monster?.armor_class +
-//                                "\n" + " Hit_points: " + monster?.hit_points +
-//                                "\n" + " Hit_dice: " + monster?.hit_dice +
-//                                "\n" + " Speed:" +
-//                                "\n" + "Walk: " + monster?.speed?.walk +
-////                                "\n" + "Fly: " + monster?.speed?.fly +
-////                                "\n" + "Swim: " + monster?.speed?.swim +
-////                                "\n" + "Burrow: " + monster?.speed?.burrow
-//
-//                                "\n"+ " Strength: " +  monster?.strength+
-//                                "\n"+ " Dexterity: " +  monster?.dexterity+
-//                                "\n"+ " Constitution: " +  monster?.constitution+
-//                                "\n"+ " Intelligence: " +  monster?.intelligence+
-//                                "\n"+ " Wisdom: " +  monster?.wisdom
-//                    "\n"+ " Charisma: " +  monster?.charisma + monster?.proficiencies?.name
-//                    "\n"+ " Dexterity_save: " +  monster?.dexterity_save+
-//                    "\n"+ " Constitution_save: " +  monster?.constitution_save+
-//                    "\n"+ " Wisdom_save: " +  monster?.wisdom_save+
-//                    "\n"+ " Charisma_save: " +  monster?.charisma_save+
-//                    "\n"+ " Perception: " +  monster?.perception+
-//                    "\n"+ " Stealth: " +  monster?.stealth+
-//                    "\n"+ " Damage_vulnerabilities: " +  monster?.damage_vulnerabilities+
-//                    "\n"+ " Damage_resistances: " +  monster?.damage_resistances+
-//                    "\n"+ " Damage_immunities: " +  monster?.damage_immunities+
-//                    "\n"+ " Condition_immunities: " +  monster?.condition_immunities
-
 
         Snackbar.make(
             view,

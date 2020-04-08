@@ -1,4 +1,4 @@
-package com.justjoeking.dmotron
+package com.justjoeking.dmotron.model
 
 class Action {
     var attack_bonus = 0
