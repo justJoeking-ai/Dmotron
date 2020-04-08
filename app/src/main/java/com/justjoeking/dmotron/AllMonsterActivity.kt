@@ -6,7 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_all_monster.*
+import kotlinx.android.synthetic.main.activity_monster_detail.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,8 +36,6 @@ class AllMonsterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_all_monster)
         setSupportActionBar(toolbar)
-
-
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = MonsterAdapter()

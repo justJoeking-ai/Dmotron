@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
         //Monster Card
         toAttribute.setOnClickListener {
-            val intent = Intent(this, MonsterCardActivity::class.java)
+            val intent = Intent(this, MonsterDetailActivity::class.java)
 
             // start your next activity
             startActivity(intent)

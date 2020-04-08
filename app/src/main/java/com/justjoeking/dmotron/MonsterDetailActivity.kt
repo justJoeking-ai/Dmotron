@@ -1,6 +1,5 @@
 package com.justjoeking.dmotron
 
-
 //import android.os.Bundle
 //import android.os.Message
 //import android.util.Log
@@ -35,7 +34,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.justjoeking.dmotron.model.Monster
 import kotlinx.android.synthetic.main.activity_main.toolbar
-import kotlinx.android.synthetic.main.activity_monster_card.*
+import kotlinx.android.synthetic.main.activity_monster_detail.*
 import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,22 +42,16 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-class MonsterCardActivity : AppCompatActivity() {
+class MonsterDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_monster_card)
+        setContentView(R.layout.activity_monster_detail)
         setSupportActionBar(toolbar)
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl("http://www.dnd5eapi.co/api/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//        val monsterInput = findViewById<TextView>(android.R.id.content)
-////        val lp = LinearLayout.LayoutParams(
-////            LinearLayout.LayoutParams.MATCH_PARENT,
-////            LinearLayout.LayoutParams.MATCH_PARENT
-////        )
-////        monsterInput.layoutParams = lp
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://www.dnd5eapi.co/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val monsterInput = findViewById<TextView>(android.R.id.content)
 //        val `in` = intent
 //        val monsterIndex = `in`.extras
 //        // check null
@@ -71,8 +64,16 @@ class MonsterCardActivity : AppCompatActivity() {
 //            printStats(monsterIndex.toString(), monsterInput)
 //
 //        }
-        setupFabClick()
+        val monsterIndex = intent.extras?.getString(MONSTER_ID) // eg. "Adult Black Dragon"
+        if (monsterIndex == null) {
+            val content: String = "orc"
+            printStats(monsterIndex.toString(), monsterInput)
+        } else {
+            val content: String = "orc"
+            printStats(monsterIndex.toString(), monsterInput)
 
+        }
+      setupFabClick()
     }
 
 
@@ -94,7 +95,7 @@ class MonsterCardActivity : AppCompatActivity() {
             sharedPref.getString("Orc", String.toString())
             monsterInput.hint = getText(R.string.Find_your_monster)
 
-            var builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(this)
             builder.setView(monsterInput)
 
             builder.setTitle("Search for Your Monster! ${MonsterUtil.DRAGON}")
@@ -261,6 +262,10 @@ class MonsterCardActivity : AppCompatActivity() {
             view,
             snackbarText, Snackbar.LENGTH_LONG
         ).show()
+    }
+
+    companion object {
+       public const val MONSTER_ID = "monster_id"
     }
 }
 //            })

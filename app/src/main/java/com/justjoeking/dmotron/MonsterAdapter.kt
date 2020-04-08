@@ -3,7 +3,6 @@ package com.justjoeking.dmotron
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.justjoeking.dmotron.model.Monster
 
 
- class MonsterAdapter:
+class MonsterAdapter:
     RecyclerView.Adapter<MonsterAdapter.MyViewHolder>() {
 
      var myDataset: ArrayList<MonsterListing> = ArrayList()
@@ -40,17 +39,16 @@ import com.justjoeking.dmotron.model.Monster
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.linearLayout.findViewById<TextView>(R.id.monster_name).text = myDataset[position].name
-        holder.linearLayout.setOnClickListener(View.OnClickListener { view ->
+        holder.linearLayout.findViewById<TextView>(R.id.monster_name).text =
+            myDataset[position].name
+        holder.linearLayout.setOnClickListener { view ->
             val monsterId = myDataset[position].name
-            val mIntent =  (Intent (holder.linearLayout.context, MonsterCardActivity::class.java));
+            val mIntent = Intent(holder.linearLayout.context, MonsterDetailActivity::class.java)
             val mBundle = Bundle()
-            mBundle.putString("name", monsterId);
+            mBundle.putString(MonsterDetailActivity.MONSTER_ID, monsterId)
             mIntent.putExtras(mBundle)
             startActivity(holder.linearLayout.context, mIntent, mBundle)
-
-        })
-
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
