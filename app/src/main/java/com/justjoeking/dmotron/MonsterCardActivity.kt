@@ -57,7 +57,6 @@ class MonsterCardActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val monsterInput = findViewById<TextView>(android.R.id.content)
-
 //        val `in` = intent
 //        val monsterIndex = `in`.extras
 //        // check null
@@ -65,8 +64,7 @@ class MonsterCardActivity : AppCompatActivity() {
 //        if (monsterIndex == null) {
 //            val content: String = "orc"
 //            printStats(monsterIndex.toString(), monsterInput)
-//        }
-//        else{
+//        } else {
 //            val content: String = "orc"
 //            printStats(monsterIndex.toString(), monsterInput)
 //
@@ -80,8 +78,7 @@ class MonsterCardActivity : AppCompatActivity() {
             printStats(monsterIndex.toString(), monsterInput)
 
         }
-        setupFabClick()
-
+      setupFabClick()
     }
 
 
