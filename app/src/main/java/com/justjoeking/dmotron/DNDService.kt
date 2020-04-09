@@ -8,6 +8,8 @@ import retrofit2.http.Path
 
 interface DNDService {
 
+    // todo: build repository layer with caching!
+
     @GET("monsters/")
     fun listMonsters(): Call<MonsterResponse>
 
@@ -15,8 +17,7 @@ interface DNDService {
     fun getMonster(@Path("monsterIndex") monsterIndex: String): Call<Monster>
 
     @GET("monsters/{monsterName}/")
-    fun getMonsterbyName(@Path("monsterName") monsterName: String): Call<Monster>
-
+    fun getMonsterByName(@Path("monsterName") monsterName: String): Call<Monster>
 
     @GET("spells/")
     fun listSpell(): Call<SpellResponse>

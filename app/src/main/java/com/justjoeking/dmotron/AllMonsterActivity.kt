@@ -2,7 +2,6 @@ package com.justjoeking.dmotron
 
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,11 +11,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
 
 private lateinit var recyclerView: RecyclerView
 private lateinit var viewAdapter: MonsterAdapter
@@ -24,10 +18,9 @@ private lateinit var viewManager: RecyclerView.LayoutManager
 
 class AllMonsterActivity : AppCompatActivity() {
 
+    var monsterDataList: ArrayList<MonsterListing> = ArrayList()
 
-    var monsterDataset: ArrayList<MonsterListing> = ArrayList()
-
-    val retrofit = Retrofit.Builder()
+    private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://www.dnd5eapi.co/api/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
@@ -45,21 +38,16 @@ class AllMonsterActivity : AppCompatActivity() {
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
 
-
             // use a linear layout manager
             layoutManager = viewManager
 
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
-
-
         }
-
         setupMonsterList()
     }
 
-    fun setupMonsterList() {
-
+    private fun setupMonsterList() {
         val myArg = object : Callback<MonsterResponse> {
             override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
                 Log.v("retrofit", "call failed")
@@ -70,14 +58,12 @@ class AllMonsterActivity : AppCompatActivity() {
                 response: Response<MonsterResponse>?
             ) {
                 Log.d("AllMonsters", response.toString())
-                monsterDataset = response?.body()?.results ?: ArrayList()
-                viewAdapter.myDataset = monsterDataset
+                monsterDataList = response?.body()?.results ?: ArrayList()
+                viewAdapter.monsterList = monsterDataList
                 viewAdapter.notifyDataSetChanged()
             }
         }
         retrofit.create(DNDService::class.java).listMonsters()
             .enqueue(myArg)
     }
-
 }
-

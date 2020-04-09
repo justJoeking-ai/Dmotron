@@ -106,4 +106,5 @@
     <string name="title_activity_encounter_stats">EncounterStats</string>
     <string name="title_activity_mathactivity">mathactivity</string>
     <string name="title_activity_monster_card">MonsterCard</string>
+    <string name="encounter_for_party_level">\"Encounter for Party Level \"</string>
 </resources>
