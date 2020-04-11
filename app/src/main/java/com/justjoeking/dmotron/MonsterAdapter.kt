@@ -8,13 +8,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.justjoeking.dmotron.model.Monster
 
-
-class MonsterAdapter:
+class MonsterAdapter :
     RecyclerView.Adapter<MonsterAdapter.MyViewHolder>() {
 
-     var myDataset: ArrayList<MonsterListing> = ArrayList()
+    var monsterList: ArrayList<MonsterListing> = ArrayList()
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -40,17 +38,17 @@ class MonsterAdapter:
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.linearLayout.findViewById<TextView>(R.id.monster_name).text =
-            myDataset[position].name
+            monsterList[position].name
         holder.linearLayout.setOnClickListener { view ->
-            val monsterId = myDataset[position].name
+            val monsterIndex = monsterList[position].index
             val mIntent = Intent(holder.linearLayout.context, MonsterDetailActivity::class.java)
             val mBundle = Bundle()
-            mBundle.putString(MonsterDetailActivity.MONSTER_ID, monsterId)
+            mBundle.putString(MonsterDetailActivity.MONSTER_ID, monsterIndex)
             mIntent.putExtras(mBundle)
             startActivity(holder.linearLayout.context, mIntent, mBundle)
         }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = myDataset.size
+    override fun getItemCount() = monsterList.size
 }
