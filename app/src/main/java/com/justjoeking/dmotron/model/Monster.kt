@@ -20,7 +20,6 @@ class Monster(var name: String, var url: String) {
 //    }
 
     var fl: Float = 1.0f
-    val id = ""
     val index = ""
     val size = ""
     val type = ""
