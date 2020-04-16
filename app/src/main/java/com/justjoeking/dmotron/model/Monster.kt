@@ -1,5 +1,7 @@
 package com.justjoeking.dmotron.model
 
+import com.justjoeking.dmotron.Proficiency
+
 class Monster(var name: String, var url: String) {
 
     fun isTerrestrial(): Boolean {
@@ -19,17 +21,18 @@ class Monster(var name: String, var url: String) {
 //        return true
 //    }
 
-    var fl: Float = 1.0f
-    val index = ""
-    val size = ""
-    val type = ""
-    var challenge_rating = 0f
-    val subtype = ""
-    val alignment = ""
-    val armor_class = 0f
-    val hit_points = 0f
-    val hit_dice = ""
+    val id = "" // "5e8b834d0b1bb138c54a54f7", doesn't seem to be in wide use
+    val index = "" // "aboleth"
+    val size = "" // "Large"
+    val type = "" // "aberration"
+    val subtype = "" // null
+    val alignment = "" // "lawful evil"
+
+    val armor_class = 0f // 17
+    val hit_points = 0f // 135
+    val hit_dice = "" // "18d10"
     val speed: Speed? = null
+
     val strength = 0f
     val dexterity = 0f
     val constitution = 0f
@@ -37,14 +40,12 @@ class Monster(var name: String, var url: String) {
     val wisdom = 0f
     val charisma = 0f
 
-//    val proficiencies: Proficiencies? = null
-//    val dexterity_save = 0f
-//    val constitution_save = 0f
-//    val wisdom_save = 0f
-//    val charisma_save = 0f
-//    val perception = 0f
-//    val stealth = 0f
-//    val damage_vulnerabilities = ""
+    var proficiencies = ArrayList<Proficiency>()
+
+    var fl: Float = 1.0f
+    var challenge_rating = 0f
+
+//    val damage_vulnerabilities = ArrayList<>()
 //    val damage_resistances = ""
 //    val damage_immunities = ""
 //    val condition_immunities = ""

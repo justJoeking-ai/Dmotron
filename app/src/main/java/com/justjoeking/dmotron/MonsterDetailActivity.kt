@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.justjoeking.dmotron.model.Monster
+import com.justjoeking.dmotron.network.HttpClient
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
@@ -22,6 +23,7 @@ class MonsterDetailActivity : AppCompatActivity() {
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://www.dnd5eapi.co/api/")
         .addConverterFactory(GsonConverterFactory.create())
+        .client(HttpClient.client)
         .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +45,7 @@ class MonsterDetailActivity : AppCompatActivity() {
         val retrofit = Retrofit.Builder()
             .baseUrl("http://www.dnd5eapi.co/api/")
             .addConverterFactory(GsonConverterFactory.create())
+            .client(HttpClient.client)
             .build()
 
         retrofit.create(DNDService::class.java).getMonster(monsterIndex)
@@ -98,6 +101,13 @@ class MonsterDetailActivity : AppCompatActivity() {
 
             if (monster.speed.burrow.isNotEmpty()) {
                 monsterDetailsText += "\n" + "Burrow: " + monster.speed.burrow
+            }
+        }
+
+        if (monster.proficiencies.isNotEmpty()) {
+            monsterDetailsText += "\n" + "Proficiencies: "
+            for (prof in monster.proficiencies) {
+                monsterDetailsText += "\n" + prof.name
             }
         }
 //        newText += "\n" + " Dexterity_save: " + monster.dexterity_save +
