@@ -118,6 +118,11 @@ class MainActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
+                clickCount = clickCount + 1
+                if (clickCount == 1) {
+                } else {
+                }
+
                 // Store Party CR
                 val sharedPrefEdit = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
                 sharedPrefEdit.putInt(
@@ -152,6 +157,11 @@ class MainActivity : AppCompatActivity() {
                                 view
 
                             )
+                            var clickcount = clickCount + 1;
+                            if (clickcount == 1) {
+                            } else {
+
+                            }
                             val sharedPrefMonster =
                                 getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
                             sharedPrefMonster.putString(

@@ -1,10 +1,18 @@
 package com.justjoeking.dmotron
 
+import android.content.Context
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.justjoeking.dmotron.model.Monster
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.activity_monster_card.*
 import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,6 +26,7 @@ class MonsterDetailActivity : AppCompatActivity() {
         const val MONSTER_ID = "monster_id"
     }
 
+
     private lateinit var monsterDetail: Monster
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://www.dnd5eapi.co/api/")
@@ -28,15 +37,70 @@ class MonsterDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monster_detail)
         setSupportActionBar(toolbar)
+        setupFabClick()
 
         val monsterIndex = intent.extras?.getString(MONSTER_ID) // eg. "Adult Black Dragon"
 
         if (monsterIndex.isNullOrEmpty()) {
             Log.e("Error", "Monster not found in bundle")
-            finish()
+            fetchMonster("orc")
         } else {
             fetchMonster(monsterIndex)
         }
+    }
+
+    private fun setupFabClick() {
+        floatingActionButton.setOnClickListener { view ->
+            val retrofit = Retrofit.Builder()
+                .baseUrl("http://www.dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+            val monsterInput = EditText(this)
+            val lp = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+            )
+            monsterInput.layoutParams = lp
+            monsterInput.inputType = InputType.TYPE_CLASS_TEXT
+            val monsterIndex = monsterInput.text
+            val sharedPref = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE)
+            sharedPref.getString("Orc", String.toString())
+            monsterInput.hint = getText(R.string.Find_your_monster)
+
+            var builder = AlertDialog.Builder(this)
+            builder.setView(monsterInput)
+
+            builder.setTitle("Search for Your Monster! ${MonsterUtil.DRAGON}")
+            builder.setPositiveButton(getText(R.string.Find_your_monster)) { dialog, which ->
+                if (monsterInput.text.toString().isEmpty()) {
+                    Toast.makeText(
+                        applicationContext,
+                        "What are you a NPC?", Toast.LENGTH_LONG
+                    ).show()
+                    return@setPositiveButton
+//                } else if (Integer.parseInt(monsterInput.text.toString()) == 0) {
+//                    Toast.makeText(
+//                        applicationContext,
+//                        "What are you a commoner", Toast.LENGTH_LONG
+//                    ).show()
+//                    return@setPositiveButton
+                }
+                fetchMonster(
+                    monsterIndex.toString()
+                )
+            }
+            builder.setNegativeButton(getString(R.string.no_thanks))
+            { dialog, which ->
+                Toast.makeText(
+                    applicationContext,
+                    android.R.string.no, Toast.LENGTH_SHORT
+                ).show()
+            }
+            builder.show()
+
+
+        }
+
     }
 
     private fun fetchMonster(monsterIndex: String) {
