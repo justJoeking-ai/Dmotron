@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.justjoeking.dmotron.MonsterUtil.Companion.DRAGON
 import com.justjoeking.dmotron.model.Monster
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,7 +27,11 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
+
 class MainActivity : AppCompatActivity() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
 
     var clickCount = 0
 
@@ -36,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         main_fab.backgroundTintList = ColorStateList.valueOf(
@@ -46,7 +51,8 @@ class MainActivity : AppCompatActivity() {
                 R.color.Btncolor
             )
         )
-
+        val bundle = Bundle()
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
         setupMonsterList()
         setupRightFabClick()
 

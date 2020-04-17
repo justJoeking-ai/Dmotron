@@ -27,10 +27,6 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".MonsterDetails"
-                android:label="@string/title_activity_monster_details"
-                android:theme="@style/AppTheme.NoActionBar" />
-        <activity
                 android:name=".TestActivity"
                 android:label="@string/title_activity_test"
                 android:theme="@style/AppTheme.NoActionBar" />

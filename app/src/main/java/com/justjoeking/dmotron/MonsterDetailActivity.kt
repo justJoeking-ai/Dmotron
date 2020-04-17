@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.justjoeking.dmotron.model.Monster
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
-import kotlinx.android.synthetic.main.activity_monster_card.*
+import kotlinx.android.synthetic.main.activity_monster_detail.*
 import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
