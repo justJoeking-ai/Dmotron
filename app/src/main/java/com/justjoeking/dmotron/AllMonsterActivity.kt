@@ -6,14 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.justjoeking.dmotron.network.HttpClient
-import kotlinx.android.synthetic.main.activity_monster_detail.*
+import kotlinx.android.synthetic.main.activity_all_monster.*
+import kotlinx.android.synthetic.main.activity_monster_detail.toolbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private lateinit var recyclerView: RecyclerView
+private lateinit var recyclerView: MonsterRecyclerView
 private lateinit var viewAdapter: MonsterAdapter
 private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -35,7 +36,7 @@ class AllMonsterActivity : AppCompatActivity() {
         viewManager = LinearLayoutManager(this)
         viewAdapter = MonsterAdapter()
 
-        recyclerView = findViewById<RecyclerView>(R.id.monster_list).apply {
+        recyclerView = monster_list.apply {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
