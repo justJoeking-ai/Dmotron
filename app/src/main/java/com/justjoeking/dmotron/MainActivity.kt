@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.justjoeking.dmotron.MonsterUtil.Companion.DRAGON
 import com.justjoeking.dmotron.model.Monster
+import com.justjoeking.dmotron.network.HttpClient
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     val retrofit = Retrofit.Builder()
         .baseUrl("http://www.dnd5eapi.co/api/")
         .addConverterFactory(GsonConverterFactory.create())
+        .client(HttpClient.client)
         .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.justjoeking.dmotron.network.HttpClient
 import kotlinx.android.synthetic.main.activity_monster_detail.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,6 +25,7 @@ class AllMonsterActivity : AppCompatActivity() {
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://www.dnd5eapi.co/api/")
         .addConverterFactory(GsonConverterFactory.create())
+        .client(HttpClient.client)
         .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {

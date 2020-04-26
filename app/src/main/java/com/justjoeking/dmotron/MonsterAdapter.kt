@@ -2,6 +2,7 @@ package com.justjoeking.dmotron
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -28,8 +29,8 @@ class MonsterAdapter :
         // create a new view
         val layout = LayoutInflater.from(parent.context)
             .inflate(R.layout.monster_layout, parent, false) as LinearLayout
-        // set the view's size, margins, paddings and layout parameters
 
+        // set the view's size, margins, paddings and layout parameters
         return MyViewHolder(layout)
     }
 

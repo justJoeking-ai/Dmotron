@@ -1,19 +1,14 @@
 <resources>
     <string name="app_name">DMOTRON</string>
     <string name="action_settings">Settings</string>
-    <string name="dm_otron">DM Otron</string>
     <string name="party_level_hint">Input party level</string>
-    <string name="Find_your_monster">Find a monster</string>
     <string name="no_thanks">No thanks</string>
     <string name="let_roll">Let\'s Roll!</string>
-    <string name="Orc">Orc</string>
-    <string name= "Monster">Monster</string>
     <string name="title_activity_test">TestActivity</string>
-    <string name="you_encountered">\n You encountered a </string>
     <string name="MAX">MAX!!!</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_monster_details">MonsterDetails</string>
+    <string name="title_activity_monster_details">Monster Details</string>
     <string name="title_activity_all_monster">Monster List</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -103,8 +98,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="title_activity_encounter_stats">EncounterStats</string>
-    <string name="title_activity_mathactivity">mathactivity</string>
-    <string name="title_activity_monster_card">MonsterCard</string>
-    <string name="encounter_for_party_level">\"Encounter for Party Level \"</string>
+    <string name="title_activity_monster_detail_activity">MonsterCard</string>
 </resources>
