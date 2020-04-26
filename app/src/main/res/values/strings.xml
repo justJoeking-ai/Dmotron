@@ -6,7 +6,6 @@
     <string name="let_roll">Let\'s Roll!</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="MAX">MAX!!!</string>
-    <string name="title_activity_monster_details">Monster Details</string>
     <string name="title_activity_all_monster">Monster List</string>
 
     <string name="large_text">
@@ -99,4 +98,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_monster_detail_activity">MonsterCard</string>
+    <string name="find_your_monster">Find your Monster</string>
 </resources>
