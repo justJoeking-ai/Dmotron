@@ -81,14 +81,15 @@ class MainActivity : AppCompatActivity() {
         retrofit.create(DNDService::class.java).listMonsters()
             .enqueue(object : Callback<MonsterResponse> {
                 override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
-                    Log.v("retrofit", "call failed")
+                    Timber.e("call failed")
                 }
 
                 override fun onResponse(
                     call: Call<MonsterResponse>?,
                     response: Response<MonsterResponse>?
                 ) {
-                    Log.d("AllMonsters", response.toString())
+                    Timber.d("AllMonsters:")
+                    Timber.d(response.toString())
                 }
             })
     }
@@ -146,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                 retrofit.create(DNDService::class.java).listMonsters()
                     .enqueue(object : Callback<MonsterResponse> {
                         override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
-                            Log.v("retrofit", "call failed")
+                            Timber.e("call failed")
                         }
 
                         override fun onResponse(
@@ -155,11 +156,11 @@ class MainActivity : AppCompatActivity() {
 
 
                         ) {
-                            var allMonsters = response!!.body()!!.results
-                            Log.v("Monster", allMonsters.get(0).name)
-                            Log.v("Monster", allMonsters.get(1).name)
-                            Log.v("Monster", allMonsters.get(2).name)
-                            Log.v("Monster", allMonsters.get(3).name)
+                            val allMonsters = response!!.body()!!.results
+                            Timber.v(allMonsters[0].name)
+                            Timber.v(allMonsters[1].name)
+                            Timber.v(allMonsters[2].name)
+                            Timber.v(allMonsters[3].name)
 
                             // do this until we get a monster whose CR is not above the party level
                             fetchIndividualMonster(
@@ -168,7 +169,7 @@ class MainActivity : AppCompatActivity() {
                                 view
 
                             )
-                            var clickcount = clickCount + 1;
+                            val clickcount = clickCount + 1
                             if (clickcount == 1) {
                             } else {
 
@@ -213,8 +214,8 @@ class MainActivity : AppCompatActivity() {
                     call: Call<Monster>?,
                     t: Throwable?
                 ) {
-                    Log.v("retrofit", "call failed")
-                    Log.e("Call failure", "Uh oh", t)
+                    Timber.v("call failed")
+                    Timber.e(t)
                 }
 
                 override fun onResponse(
@@ -248,7 +249,7 @@ class MainActivity : AppCompatActivity() {
                             )
                         }
 
-                        Log.d("Chosen Monster", monster.name)
+                        Timber.d("Chosen Monster" + monster.name)
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
                         val i = randomMonster.name
                         val snackBarText = String.format(
