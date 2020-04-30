@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         main_fab.backgroundTintList = ColorStateList.valueOf(
             ContextCompat.getColor(
                 this,
-                R.color.Btncolor
+                R.color.colorButton
             )
         )
         val bundle = Bundle()
