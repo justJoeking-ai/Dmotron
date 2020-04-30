@@ -20,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 
 class MonsterDetailActivity : AppCompatActivity() {
     companion object {
@@ -44,7 +45,7 @@ class MonsterDetailActivity : AppCompatActivity() {
         val monsterIndex = intent.extras?.getString(MONSTER_ID) // eg. "Adult Black Dragon"
 
         if (monsterIndex.isNullOrEmpty()) {
-            Log.e("Error", "Monster not found in bundle")
+            Timber.e("Monster not found in bundle")
             fetchMonster("orc")
         } else {
             fetchMonster(monsterIndex)
@@ -67,13 +68,13 @@ class MonsterDetailActivity : AppCompatActivity() {
             val monsterIndex = monsterInput.text
             val sharedPref = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE)
             sharedPref.getString("Orc", String.toString())
-            monsterInput.hint = getText(R.string.Find_your_monster)
+            monsterInput.hint = getText(R.string.find_your_monster)
 
             var builder = AlertDialog.Builder(this)
             builder.setView(monsterInput)
 
             builder.setTitle("Search for Your Monster! ${MonsterUtil.DRAGON}")
-            builder.setPositiveButton(getText(R.string.Find_your_monster)) { dialog, which ->
+            builder.setPositiveButton(getText(R.string.find_your_monster)) { dialog, which ->
                 if (monsterInput.text.toString().isEmpty()) {
                     Toast.makeText(
                         applicationContext,
@@ -118,8 +119,8 @@ class MonsterDetailActivity : AppCompatActivity() {
                     call: Call<Monster>?,
                     t: Throwable?
                 ) {
-                    Log.v("retrofit", "call failed")
-                    Log.e("getMonster Call failure", "Throwable:", t)
+                    Timber.v("retrofit call failed")
+                    Timber.e(t)
                 }
 
                 override fun onResponse(
@@ -197,14 +198,14 @@ class MonsterDetailActivity : AppCompatActivity() {
     private fun setupMonsterDetail(monsterIndex: String) {
         val myArg = object : Callback<Monster> {
             override fun onFailure(call: Call<Monster>?, t: Throwable?) {
-                Log.v("retrofit", "call failed")
+                Timber.v("call failed")
             }
 
             override fun onResponse(
                 call: Call<Monster>?,
                 response: Response<Monster>?
             ) {
-                Log.d("AllMonsters", response.toString())
+                Timber.d("AllMonsters:" + response.toString())
                 monsterDetail = response?.body() ?: Monster(name = "", url = "")
             }
         }

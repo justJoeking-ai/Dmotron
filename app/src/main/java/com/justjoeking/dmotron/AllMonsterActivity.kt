@@ -13,6 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 
 private lateinit var recyclerView: MonsterRecyclerView
 private lateinit var viewAdapter: MonsterAdapter
@@ -53,14 +54,14 @@ class AllMonsterActivity : AppCompatActivity() {
     private fun setupMonsterList() {
         val myArg = object : Callback<MonsterResponse> {
             override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
-                Log.v("retrofit", "call failed")
+                Timber.v("retrofit call failed")
             }
 
             override fun onResponse(
                 call: Call<MonsterResponse>?,
                 response: Response<MonsterResponse>?
             ) {
-                Log.d("AllMonsters", response.toString())
+                Timber.d( response.toString())
                 monsterDataList = response?.body()?.results ?: ArrayList()
                 viewAdapter.monsterList = monsterDataList
                 viewAdapter.notifyDataSetChanged()
