@@ -20,18 +20,6 @@
             android:gravity="center_horizontal"
             android:textAlignment="center">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:divider="@android:color/black"
-                android:dividerHeight="200dp"
-                android:gravity="center_horizontal"
-                android:text="@string/large_text"
-                android:textAlignment="center"
-                android:textColor="@color/Gray"
-                android:visibility="gone" />
-
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/monster_list"
                 android:layout_width="match_parent"
@@ -42,7 +30,5 @@
                 android:orientation="vertical"
                 android:scrollbars="vertical"
                 android:textAlignment="center" />
-
     </LinearLayout>
-
 </androidx.core.widget.NestedScrollView>
