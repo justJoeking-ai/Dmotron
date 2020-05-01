@@ -1,12 +1,7 @@
 package com.justjoeking.dmotron.network
 
-import android.util.Log
-import okhttp3.*
+import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import java.net.ConnectException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
-import javax.net.ssl.SSLHandshakeException
 
 
 object HttpClient {

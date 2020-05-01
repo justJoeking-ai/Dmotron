@@ -17,4 +17,26 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!--Text Styles-->
+    <style name="Body" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/dmotron_grey</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Body.0">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Body.1">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Body.2">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Body.3">
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
