@@ -1,18 +1,12 @@
 package com.justjoeking.dmotron
 
-import android.content.Context
 import android.os.Bundle
-import android.text.InputType
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.justjoeking.dmotron.model.Monster
 import com.justjoeking.dmotron.network.HttpClient
 import kotlinx.android.synthetic.main.activity_main.toolbar
-import kotlinx.android.synthetic.main.activity_monster_detail.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.content_monster_detail.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +19,6 @@ class MonsterDetailActivity : AppCompatActivity() {
         // Nice to have the bundle keys as constants
         const val MONSTER_ID = "monster_id"
     }
-
 
     private lateinit var monsterDetail: Monster
     private val retrofit: Retrofit = Retrofit.Builder()
@@ -77,6 +70,44 @@ class MonsterDetailActivity : AppCompatActivity() {
     }
 
     private fun updateViews(monster: Monster) {
+
+        // Name (toolbar)
+        title = monster.name
+
+        // Name (main view)
+        monster_name.text = monster.name
+
+        // Medium Humanoid (Human), lawful neutral
+        var monsterDetails = ""
+        monsterDetails += monster.size + " "
+        monsterDetails += monster.type
+        if (!monster.subtype.isNullOrEmpty()) {
+            monsterDetails += " (${monster.subtype})"
+        }
+
+        monsterDetails += ", ${monster.alignment}"
+        monster_detail.text = "($monsterDetails) "
+        monster_ac.text = monster.armor_class.toString()
+
+        // =======
+        // Armor Class 10
+        // Hit Points 10
+        // Speed 30 ft., sly 120ft.
+        // =======
+        // Stat block SDCIWC
+        // =======
+        // Saving Throws Dex +3, Con +4, Cha +6
+        // Damage Resistances cold; bludgeoning
+        // Damage Immunities
+        // Condition Immunities
+        // Senses
+        // Languages
+        // Challenge
+        // =======
+        // Special Thingies
+        // Actions
+
+
         var monsterDetailsText = "\n\n" + monster.name
         monsterDetailsText += "\n" + "Hit Points: " + monster.hit_points.toString()
         monsterDetailsText += "\n" + "AC: " + monster.armor_class.toLong()
@@ -135,7 +166,7 @@ class MonsterDetailActivity : AppCompatActivity() {
             monsterDetailsText += "\n" + " index: " + monster.index
         }
 
-        centertext.text = monsterDetailsText
+//        monster_name.text = monsterDetailsText
     }
 
     private fun setupMonsterDetail(monsterIndex: String) {

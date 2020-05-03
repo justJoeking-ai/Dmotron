@@ -1,6 +1,7 @@
 package com.justjoeking.dmotron
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -114,77 +115,79 @@ class MainActivity : AppCompatActivity() {
             builder.setView(encounterCRInput)
 
             builder.setTitle("Create an Encounter! $DRAGON")
-            builder.setPositiveButton(getString(R.string.let_roll)) { dialog, which ->
-                // TODO: Match names to not create duplicates
-                if (encounterCRInput.text.toString().isEmpty()) {
-                    Toast.makeText(
-                        applicationContext,
-                        "What are you a NPC?", Toast.LENGTH_LONG
-                    ).show()
-                    return@setPositiveButton
-                } else if (Integer.parseInt(encounterCRInput.text.toString()) == 0) {
-                    Toast.makeText(
-                        applicationContext,
-                        "What are you a commoner", Toast.LENGTH_LONG
-                    ).show()
-                    return@setPositiveButton
-                }
+            val positiveButton = builder.setPositiveButton(getString(R.string.let_roll),
+                fun(_: DialogInterface, _: Int) {
+                    // TODO: Match names to not create duplicates
+                    if (encounterCRInput.text.toString().isEmpty()) {
+                        Toast.makeText(
+                            applicationContext,
+                            "What are you a NPC?", Toast.LENGTH_LONG
+                        ).show()
+                        return
+                    } else if (Integer.parseInt(encounterCRInput.text.toString()) == 0) {
+                        Toast.makeText(
+                            applicationContext,
+                            "What are you a commoner", Toast.LENGTH_LONG
+                        ).show()
+                        return
+                    }
 
-                clickCount = clickCount + 1
-                if (clickCount == 1) {
-                } else {
-                }
+                    clickCount = clickCount + 1
+                    if (clickCount == 1) {
+                    } else {
+                    }
 
-                // Store Party CR
-                val sharedPrefEdit = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
-                sharedPrefEdit.putInt(
-                    "Party CR",
-                    Integer.parseInt(encounterCRInput.text.toString())
-                )
-                sharedPrefEdit.apply()
+                    // Store Party CR
+                    val sharedPrefEdit =
+                        getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
+                    sharedPrefEdit.putInt(
+                        "Party CR",
+                        Integer.parseInt(encounterCRInput.text.toString())
+                    )
+                    sharedPrefEdit.apply()
 
-                // Fetch monsters
-                retrofit.create(DNDService::class.java).listMonsters()
-                    .enqueue(object : Callback<MonsterResponse> {
-                        override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
-                            Timber.e("call failed")
-                        }
-
-                        override fun onResponse(
-                            call: Call<MonsterResponse>?,
-                            response: Response<MonsterResponse>?
-
-
-                        ) {
-                            val allMonsters = response!!.body()!!.results
-                            Timber.v(allMonsters[0].name)
-                            Timber.v(allMonsters[1].name)
-                            Timber.v(allMonsters[2].name)
-                            Timber.v(allMonsters[3].name)
-
-                            // do this until we get a monster whose CR is not above the party level
-                            fetchIndividualMonster(
-                                encounterCRInput.text.toString().toInt(),
-                                allMonsters,
-                                view
-
-                            )
-                            val clickcount = clickCount + 1
-                            if (clickcount == 1) {
-                            } else {
-
+                    // Fetch monsters
+                    retrofit.create(DNDService::class.java).listMonsters()
+                        .enqueue(object : Callback<MonsterResponse> {
+                            override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
+                                Timber.e("call failed")
                             }
-                            val sharedPrefMonster =
-                                getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
-                            sharedPrefMonster.putString(
-                                "Saved Monster",
-                                sharedPrefMonster.toString()
-                            )
-                            sharedPrefMonster.apply()
-                        }
 
-                    })
-            }
+                            override fun onResponse(
+                                call: Call<MonsterResponse>?,
+                                response: Response<MonsterResponse>?
+
+
+                            ) {
+                                val allMonsters = response!!.body()!!.results
+                                Timber.v(allMonsters[0].name)
+                                Timber.v(allMonsters[1].name)
+                                Timber.v(allMonsters[2].name)
+                                Timber.v(allMonsters[3].name)
+
+                                // do this until we get a monster whose CR is not above the party level
+                                fetchIndividualMonster(
+                                    encounterCRInput.text.toString().toInt(),
+                                    allMonsters,
+                                    view
+
+                                )
+                                val clickcount = clickCount + 1
+                                if (clickcount == 1) {
+                                } else {
+
+                                }
+                                val sharedPrefMonster =
+                                    getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
+                                sharedPrefMonster.putString(
+                                    "Saved Monster",
+                                    sharedPrefMonster.toString()
+                                )
+                                sharedPrefMonster.apply()
+                            }
+
+                        })
+                })
 
             builder.setNegativeButton(getString(R.string.no_thanks))
             { dialog, which ->
@@ -263,11 +266,11 @@ class MainActivity : AppCompatActivity() {
 
                         val experience = getEncounterXP(numberOfMonsters.toLong() * 2)
                         if (experience < 0) {
-                            centertext.text =
-                                "\n ${centertext.text}${"$snackBarText (${getString(R.string.MAX)}) \n"}"
+                            title_text.text =
+                                "\n ${title_text.text}${"$snackBarText (${getString(R.string.MAX)}) \n"}"
                         } else {
-                            centertext.text =
-                                "${centertext.text}${"$snackBarText ($experience) \n"}"
+                            title_text.text =
+                                "${title_text.text}${"$snackBarText ($experience) \n"}"
                         }
 
                         Snackbar.make(

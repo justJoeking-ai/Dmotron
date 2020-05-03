@@ -59,7 +59,7 @@
             app:layout_anchor="@+id/include"
             app:layout_anchorGravity="center" />
 
-    <com.justjoeking.dmotron.MonsterRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/monster_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

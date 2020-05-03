@@ -20,7 +20,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <include layout="@layout/content_monster_card"
+    <include layout="@layout/content_monster_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
