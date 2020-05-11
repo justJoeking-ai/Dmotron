@@ -34,7 +34,6 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
-
     var clickCount = 0
 
     val retrofit = Retrofit.Builder()
@@ -256,7 +255,10 @@ class MainActivity : AppCompatActivity() {
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
                         val i = randomMonster.name
                         val snackBarText = String.format(
-                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickCount + " encounters"
+                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt()
+                                    + " " + randomMonster.name + "s \n" + "Size = " + response.body()!!.size
+                                    + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt()
+                                    + "\n" + "You have made " + clickCount + " encounters"
                         )
 
                         Snackbar.make(
