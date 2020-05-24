@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -59,14 +58,7 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle()
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
         setupMonsterList()
-        setupRightFabClick()
-
-        // To Monster Listing
-        toListedMonsters.setOnClickListener {
-            val intent = Intent(this, AllMonsterActivity::class.java)
-            // start your next activity
-            startActivity(intent)
-        }
+        setupFabClick()
     }
 
     private fun setupMonsterList() {
@@ -86,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private fun setupRightFabClick() {
+    private fun setupFabClick() {
         main_fab.setOnClickListener { view ->
             val encounterCRInput = EditText(this)
             val lp = LinearLayout.LayoutParams(
@@ -304,7 +296,12 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.search -> {
+                // @todo refactor to search provider (https://developer.android.com/training/search/setup) instead
+                val intent = Intent(this, AllMonsterActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

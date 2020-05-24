@@ -26,14 +26,6 @@
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@drawable/garg" />
 
-    <Button
-            android:id="@+id/toListedMonsters"
-            android:layout_width="119dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:text="@string/monster_list" />
-
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
