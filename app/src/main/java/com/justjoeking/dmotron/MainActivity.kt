@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.justjoeking.dmotron.MonsterUtil.Companion.DRAGON
 import com.justjoeking.dmotron.model.Monster
 import com.justjoeking.dmotron.network.HttpClient
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,11 +28,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
-
-    var clickCount = 0
 
     val retrofit = Retrofit.Builder()
         .baseUrl("http://www.dnd5eapi.co/api/")
@@ -97,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setView(encounterCRInput)
 
-            builder.setTitle("Create an Encounter! $DRAGON")
+            builder.setTitle(getString(R.string.create_an_encounter))
             val positiveButton = builder.setPositiveButton(getString(R.string.let_roll),
                 fun(_: DialogInterface, _: Int) {
                     // TODO: Match names to not create duplicates
@@ -113,11 +109,6 @@ class MainActivity : AppCompatActivity() {
                             "What are you a commoner", Toast.LENGTH_LONG
                         ).show()
                         return
-                    }
-
-                    clickCount = clickCount + 1
-                    if (clickCount == 1) {
-                    } else {
                     }
 
                     // Store Party CR
@@ -155,11 +146,7 @@ class MainActivity : AppCompatActivity() {
                                     view
 
                                 )
-                                val clickcount = clickCount + 1
-                                if (clickcount == 1) {
-                                } else {
 
-                                }
                                 val sharedPrefMonster =
                                     getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
                                 sharedPrefMonster.putString(
@@ -241,7 +228,6 @@ class MainActivity : AppCompatActivity() {
                             "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt()
                                     + " " + randomMonster.name + "s \nSize = " + response.body()!!.size
                                     + "\nAC = " + monster.armor_class.toInt() + "\nHP = " + monster.hit_points.toInt()
-                                    + "\nYou have made " + clickCount + " encounters"
                         )
 
                         Snackbar.make(
