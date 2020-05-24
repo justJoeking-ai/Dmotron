@@ -109,47 +109,55 @@ class MonsterDetailActivity : AppCompatActivity() {
 
 
         var monsterDetailsText = "\n\n" + monster.name
-        monsterDetailsText += "\n" + "Hit Points: " + monster.hit_points.toString()
-        monsterDetailsText += "\n" + "AC: " + monster.armor_class.toLong()
-        monsterDetailsText += "\n" + "Size: " + monster.size
-        monsterDetailsText += "\n" + "Type: " + monster.type
-        monsterDetailsText += "\n" + "CR: " + monster.challenge_rating
-        monsterDetailsText += "\n" + "Subtype: " + monster.subtype
-        monsterDetailsText += "\n" + "Alignment: " + monster.alignment
-        monsterDetailsText += "\n" + "HP: " + monster.hit_points
-        monsterDetailsText += "\n" + "Hit Dice: " + monster.hit_dice
-        monsterDetailsText += "\n" + "Strength: " + monster.strength.toLong()
-        monsterDetailsText += "\n" + "Dexterity: " + monster.dexterity.toLong()
-        monsterDetailsText += "\n" + "Constitution: " + monster.constitution.toLong()
-        monsterDetailsText += "\n" + "Intelligence: " + monster.intelligence.toLong()
-        monsterDetailsText += "\n" + "Wisdom: " + monster.wisdom.toLong()
-        monsterDetailsText += "\n" + "Charisma: " + monster.charisma.toLong()
+        monsterDetailsText += "\nHit Points: " + monster.hit_points.toString()
+        monsterDetailsText += "\nAC: " + monster.armor_class.toLong()
+        monsterDetailsText += "\nSize: " + monster.size
+        monsterDetailsText += "\nType: " + monster.type
+        monsterDetailsText += "\nCR: " + monster.challenge_rating
+        monsterDetailsText += "\nSubtype: " + monster.subtype
+        monsterDetailsText += "\nAlignment: " + monster.alignment
+        monsterDetailsText += "\nHP: " + monster.hit_points
+        monsterDetailsText += "\nHit Dice: " + monster.hit_dice
+        monsterDetailsText += "\nStrength: " + monster.strength.toLong()
+        monsterDetailsText += "\nDexterity: " + monster.dexterity.toLong()
+        monsterDetailsText += "\nConstitution: " + monster.constitution.toLong()
+        monsterDetailsText += "\nIntelligence: " + monster.intelligence.toLong()
+        monsterDetailsText += "\nWisdom: " + monster.wisdom.toLong()
+        monsterDetailsText += "\nCharisma: " + monster.charisma.toLong()
         if (monster.speed != null) {
-            monsterDetailsText += "\n" + "Speed: "
+            monsterDetailsText += "\nSpeed: "
             if (monster.speed.walk.isNotEmpty()) {
-                monsterDetailsText += "\n" + "Walk: " + monster.speed.walk
+                monsterDetailsText += "\nWalk: " + monster.speed.walk
             }
 
             if (monster.speed.fly.isNotEmpty()) {
-                monsterDetailsText += "\n" + "Fly: " + monster.speed.fly
+                monsterDetailsText += "\nFly: " + monster.speed.fly
             }
 
             if (monster.speed.swim.isNotEmpty()) {
-                monsterDetailsText += "\n" + "Swim: " + monster.speed.swim
+                monsterDetailsText += "\nSwim: " + monster.speed.swim
             }
 
             if (monster.speed.burrow.isNotEmpty()) {
-                monsterDetailsText += "\n" + "Burrow: " + monster.speed.burrow
+                monsterDetailsText += "\nBurrow: " + monster.speed.burrow
+            }
+
+            if (monster.speed.climb.isNotEmpty()) {
+                monsterDetailsText += "\nClimb: " + monster.speed.climb
+            }
+            
+            if (monster.speed.hover.isNotEmpty()) {
+                monsterDetailsText += "\nHover: " + monster.speed.hover
             }
         }
 
         if (monster.proficiencies.isNotEmpty()) {
-            monsterDetailsText += "\n" + "Proficiencies: "
+            monsterDetailsText += "\nProficiencies: "
             for (prof in monster.proficiencies) {
                 monsterDetailsText += "\n" + prof.name
             }
         }
-//        newText += "\n" + " Dexterity_save: " + monster.dexterity_save +
+//        newText += "\n Dexterity_save: " + monster.dexterity_save +
 //                    "\n"+ " Constitution_save: " +  monster.constitution_save+
 //                    "\n"+ " Wisdom_save: " +  monster.wisdom_save+
 //                    "\n"+ " Charisma_save: " +  monster.charisma_save+
@@ -163,7 +171,7 @@ class MonsterDetailActivity : AppCompatActivity() {
 
         // Only show this on debug builds
         if (BuildConfig.DEBUG) {
-            monsterDetailsText += "\n" + " index: " + monster.index
+            monsterDetailsText += "\n index: " + monster.index
         }
 
 //        monster_name.text = monsterDetailsText

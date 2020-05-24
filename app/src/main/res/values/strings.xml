@@ -99,4 +99,5 @@
     </string>
     <string name="title_activity_monster_detail_activity">MonsterCard</string>
     <string name="find_your_monster">Find your Monster</string>
+    <string name="monster_list">All Monsters</string>
 </resources>

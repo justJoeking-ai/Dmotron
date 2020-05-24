@@ -67,14 +67,6 @@ class MainActivity : AppCompatActivity() {
             // start your next activity
             startActivity(intent)
         }
-
-        // Monster Card
-        toAttribute.setOnClickListener {
-            val intent = Intent(this, MonsterDetailActivity::class.java)
-
-            // start your next activity
-            startActivity(intent)
-        }
     }
 
     private fun setupMonsterList() {
@@ -207,7 +199,6 @@ class MainActivity : AppCompatActivity() {
         // get a random monster
         val randomMonster = allMonsters.get(RandomUtils.randInt(0, allMonsters.size - 1))
         val monsterIndex = randomMonster.index
-        Log.v("retrofit", monsterIndex)
 
         // Fetch individual monster
         retrofit.create(DNDService::class.java).getMonster(monsterIndex)
@@ -251,14 +242,14 @@ class MainActivity : AppCompatActivity() {
                             )
                         }
 
-                        Timber.d("Chosen Monster" + monster.name)
+                        Timber.d("Chosen Monster:" + monster.name)
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
                         val i = randomMonster.name
                         val snackBarText = String.format(
                             "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt()
-                                    + " " + randomMonster.name + "s \n" + "Size = " + response.body()!!.size
-                                    + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt()
-                                    + "\n" + "You have made " + clickCount + " encounters"
+                                    + " " + randomMonster.name + "s \nSize = " + response.body()!!.size
+                                    + "\nAC = " + monster.armor_class.toInt() + "\nHP = " + monster.hit_points.toInt()
+                                    + "\nYou have made " + clickCount + " encounters"
                         )
 
                         Snackbar.make(
