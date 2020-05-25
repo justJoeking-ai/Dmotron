@@ -55,7 +55,7 @@ class MonsterDetailActivity : AppCompatActivity() {
                     call: Call<Monster>?,
                     t: Throwable?
                 ) {
-                    Timber.v("retrofit call failed")
+                    Timber.v("fetchMonster call failed")
                     Timber.e(t)
                 }
 
@@ -81,12 +81,12 @@ class MonsterDetailActivity : AppCompatActivity() {
         var monsterDetails = ""
         monsterDetails += monster.size + " "
         monsterDetails += monster.type
-        if (!monster.subtype.isNullOrEmpty()) {
+        if (!monster.subtype.isEmpty()) {
             monsterDetails += " (${monster.subtype})"
         }
 
         monsterDetails += ", ${monster.alignment}"
-        monster_detail.text = "($monsterDetails) "
+        monster_detail.text = "(" + monsterDetails + ") "
         monster_ac.text = monster.armor_class.toString()
 
         // =======
@@ -145,7 +145,7 @@ class MonsterDetailActivity : AppCompatActivity() {
             if (monster.speed.climb.isNotEmpty()) {
                 monsterDetailsText += "\nClimb: " + monster.speed.climb
             }
-            
+
             if (monster.speed.hover.isNotEmpty()) {
                 monsterDetailsText += "\nHover: " + monster.speed.hover
             }
@@ -173,25 +173,5 @@ class MonsterDetailActivity : AppCompatActivity() {
         if (BuildConfig.DEBUG) {
             monsterDetailsText += "\n index: " + monster.index
         }
-
-//        monster_name.text = monsterDetailsText
-    }
-
-    private fun setupMonsterDetail(monsterIndex: String) {
-        val myArg = object : Callback<Monster> {
-            override fun onFailure(call: Call<Monster>?, t: Throwable?) {
-                Timber.v("call failed")
-            }
-
-            override fun onResponse(
-                call: Call<Monster>?,
-                response: Response<Monster>?
-            ) {
-                Timber.d("AllMonsters:" + response.toString())
-                monsterDetail = response?.body() ?: Monster(name = "", url = "")
-            }
-        }
-        retrofit.create(DNDService::class.java).getMonster(monsterIndex = monsterIndex)
-            .enqueue(myArg)
     }
 }

@@ -51,22 +51,21 @@ class AllMonsterActivity : AppCompatActivity() {
     }
 
     private fun setupMonsterList() {
-        val myArg = object : Callback<MonsterResponse> {
-            override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
-                Timber.v("retrofit call failed")
-            }
-
-            override fun onResponse(
-                call: Call<MonsterResponse>?,
-                response: Response<MonsterResponse>?
-            ) {
-                Timber.d( response.toString())
-                monsterDataList = response?.body()?.results ?: ArrayList()
-                recyclerViewAdapter.monsterList = monsterDataList
-                recyclerViewAdapter.notifyDataSetChanged()
-            }
-        }
         retrofit.create(DNDService::class.java).listMonsters()
-            .enqueue(myArg)
+            .enqueue(object : Callback<MonsterResponse> {
+                override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
+                    Timber.v("setupMonsterList call failed")
+                }
+
+                override fun onResponse(
+                    call: Call<MonsterResponse>?,
+                    response: Response<MonsterResponse>?
+                ) {
+                    Timber.d(response.toString())
+                    monsterDataList = response?.body()?.results ?: ArrayList()
+                    recyclerViewAdapter.monsterList = monsterDataList
+                    recyclerViewAdapter.notifyDataSetChanged()
+                }
+            })
     }
 }

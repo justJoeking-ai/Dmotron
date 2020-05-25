@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity() {
             encounterCRInput.layoutParams = lp
             encounterCRInput.inputType = InputType.TYPE_CLASS_NUMBER
 
-            // TODO: spinner for EL instead of text?
             val sharedPref = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE)
             sharedPref.getInt("Party CR", 5)
             encounterCRInput.setText(sharedPref.getInt("Party CR", 5).toString())
@@ -130,8 +129,6 @@ class MainActivity : AppCompatActivity() {
                             override fun onResponse(
                                 call: Call<MonsterResponse>?,
                                 response: Response<MonsterResponse>?
-
-
                             ) {
                                 val allMonsters = response!!.body()!!.results
                                 Timber.v(allMonsters[0].name)
@@ -144,7 +141,6 @@ class MainActivity : AppCompatActivity() {
                                     encounterCRInput.text.toString().toInt(),
                                     allMonsters,
                                     view
-
                                 )
 
                                 val sharedPrefMonster =
@@ -194,10 +190,7 @@ class MainActivity : AppCompatActivity() {
                     call: Call<Monster>?,
                     response: Response<Monster>?
                 ) {
-                    if (response?.body() == null) {
-                        // @todo: throw error
-                        return
-                    } else {
+                    if (response?.body() != null) {
                         val monster = response.body()
 
                         if (monster!!.challenge_rating == 0f) {
