@@ -15,7 +15,6 @@
             android:usesCleartextTraffic="true">
         <activity
                 android:name=".MonsterDetailActivity"
-                android:label="@string/title_activity_monster_detail_activity"
                 android:theme="@style/AppTheme.NoActionBar" />
         <activity
                 android:name=".AllMonsterActivity"

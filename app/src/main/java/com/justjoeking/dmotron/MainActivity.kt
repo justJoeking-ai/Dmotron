@@ -1,11 +1,11 @@
 package com.justjoeking.dmotron
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.justjoeking.dmotron.MonsterUtil.Companion.DRAGON
 import com.justjoeking.dmotron.model.Monster
 import com.justjoeking.dmotron.network.HttpClient
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,12 +28,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
-
-
-    var clickCount = 0
 
     val retrofit = Retrofit.Builder()
         .baseUrl("http://www.dnd5eapi.co/api/")
@@ -59,22 +54,7 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle()
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
         setupMonsterList()
-        setupRightFabClick()
-
-        // To Monster Listing
-        toListedMonsters.setOnClickListener {
-            val intent = Intent(this, AllMonsterActivity::class.java)
-            // start your next activity
-            startActivity(intent)
-        }
-
-        // Monster Card
-        toAttribute.setOnClickListener {
-            val intent = Intent(this, MonsterDetailActivity::class.java)
-
-            // start your next activity
-            startActivity(intent)
-        }
+        setupFabClick()
     }
 
     private fun setupMonsterList() {
@@ -94,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private fun setupRightFabClick() {
+    private fun setupFabClick() {
         main_fab.setOnClickListener { view ->
             val encounterCRInput = EditText(this)
             val lp = LinearLayout.LayoutParams(
@@ -104,7 +84,6 @@ class MainActivity : AppCompatActivity() {
             encounterCRInput.layoutParams = lp
             encounterCRInput.inputType = InputType.TYPE_CLASS_NUMBER
 
-            // TODO: spinner for EL instead of text?
             val sharedPref = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE)
             sharedPref.getInt("Party CR", 5)
             encounterCRInput.setText(sharedPref.getInt("Party CR", 5).toString())
@@ -113,78 +92,68 @@ class MainActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setView(encounterCRInput)
 
-            builder.setTitle("Create an Encounter! $DRAGON")
-            builder.setPositiveButton(getString(R.string.let_roll)) { dialog, which ->
-                // TODO: Match names to not create duplicates
-                if (encounterCRInput.text.toString().isEmpty()) {
-                    Toast.makeText(
-                        applicationContext,
-                        "What are you a NPC?", Toast.LENGTH_LONG
-                    ).show()
-                    return@setPositiveButton
-                } else if (Integer.parseInt(encounterCRInput.text.toString()) == 0) {
-                    Toast.makeText(
-                        applicationContext,
-                        "What are you a commoner", Toast.LENGTH_LONG
-                    ).show()
-                    return@setPositiveButton
-                }
+            builder.setTitle(getString(R.string.create_an_encounter))
+            val positiveButton = builder.setPositiveButton(getString(R.string.let_roll),
+                fun(_: DialogInterface, _: Int) {
+                    // TODO: Match names to not create duplicates
+                    if (encounterCRInput.text.toString().isEmpty()) {
+                        Toast.makeText(
+                            applicationContext,
+                            "What are you a NPC?", Toast.LENGTH_LONG
+                        ).show()
+                        return
+                    } else if (Integer.parseInt(encounterCRInput.text.toString()) == 0) {
+                        Toast.makeText(
+                            applicationContext,
+                            "What are you a commoner", Toast.LENGTH_LONG
+                        ).show()
+                        return
+                    }
 
-                clickCount = clickCount + 1
-                if (clickCount == 1) {
-                } else {
-                }
+                    // Store Party CR
+                    val sharedPrefEdit =
+                        getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
+                    sharedPrefEdit.putInt(
+                        "Party CR",
+                        Integer.parseInt(encounterCRInput.text.toString())
+                    )
+                    sharedPrefEdit.apply()
 
-                // Store Party CR
-                val sharedPrefEdit = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
-                sharedPrefEdit.putInt(
-                    "Party CR",
-                    Integer.parseInt(encounterCRInput.text.toString())
-                )
-                sharedPrefEdit.apply()
-
-                // Fetch monsters
-                retrofit.create(DNDService::class.java).listMonsters()
-                    .enqueue(object : Callback<MonsterResponse> {
-                        override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
-                            Timber.e("call failed")
-                        }
-
-                        override fun onResponse(
-                            call: Call<MonsterResponse>?,
-                            response: Response<MonsterResponse>?
-
-
-                        ) {
-                            val allMonsters = response!!.body()!!.results
-                            Timber.v(allMonsters[0].name)
-                            Timber.v(allMonsters[1].name)
-                            Timber.v(allMonsters[2].name)
-                            Timber.v(allMonsters[3].name)
-
-                            // do this until we get a monster whose CR is not above the party level
-                            fetchIndividualMonster(
-                                encounterCRInput.text.toString().toInt(),
-                                allMonsters,
-                                view
-
-                            )
-                            val clickcount = clickCount + 1
-                            if (clickcount == 1) {
-                            } else {
-
+                    // Fetch monsters
+                    retrofit.create(DNDService::class.java).listMonsters()
+                        .enqueue(object : Callback<MonsterResponse> {
+                            override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
+                                Timber.e("call failed")
                             }
-                            val sharedPrefMonster =
-                                getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
-                            sharedPrefMonster.putString(
-                                "Saved Monster",
-                                sharedPrefMonster.toString()
-                            )
-                            sharedPrefMonster.apply()
-                        }
 
-                    })
-            }
+                            override fun onResponse(
+                                call: Call<MonsterResponse>?,
+                                response: Response<MonsterResponse>?
+                            ) {
+                                val allMonsters = response!!.body()!!.results
+                                Timber.v(allMonsters[0].name)
+                                Timber.v(allMonsters[1].name)
+                                Timber.v(allMonsters[2].name)
+                                Timber.v(allMonsters[3].name)
+
+                                // do this until we get a monster whose CR is not above the party level
+                                fetchIndividualMonster(
+                                    encounterCRInput.text.toString().toInt(),
+                                    allMonsters,
+                                    view
+                                )
+
+                                val sharedPrefMonster =
+                                    getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
+                                sharedPrefMonster.putString(
+                                    "Saved Monster",
+                                    sharedPrefMonster.toString()
+                                )
+                                sharedPrefMonster.apply()
+                            }
+
+                        })
+                })
 
             builder.setNegativeButton(getString(R.string.no_thanks))
             { dialog, which ->
@@ -205,7 +174,6 @@ class MainActivity : AppCompatActivity() {
         // get a random monster
         val randomMonster = allMonsters.get(RandomUtils.randInt(0, allMonsters.size - 1))
         val monsterIndex = randomMonster.index
-        Log.v("retrofit", monsterIndex)
 
         // Fetch individual monster
         retrofit.create(DNDService::class.java).getMonster(monsterIndex)
@@ -222,10 +190,7 @@ class MainActivity : AppCompatActivity() {
                     call: Call<Monster>?,
                     response: Response<Monster>?
                 ) {
-                    if (response?.body() == null) {
-                        // @todo: throw error
-                        return
-                    } else {
+                    if (response?.body() != null) {
                         val monster = response.body()
 
                         if (monster!!.challenge_rating == 0f) {
@@ -249,11 +214,13 @@ class MainActivity : AppCompatActivity() {
                             )
                         }
 
-                        Timber.d("Chosen Monster" + monster.name)
+                        Timber.d("Chosen Monster:" + monster.name)
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
                         val i = randomMonster.name
                         val snackBarText = String.format(
-                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt() + " " + randomMonster.name + "s \n" + "Size = " + response.body()!!.size + "\n" + "AC = " + monster.armor_class.toInt() + "\n" + "HP = " + monster.hit_points.toInt() + "\n" + "You have made " + clickCount + " encounters"
+                            "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt()
+                                    + " " + randomMonster.name + "s \nSize = " + response.body()!!.size
+                                    + "\nAC = " + monster.armor_class.toInt() + "\nHP = " + monster.hit_points.toInt()
                         )
 
                         Snackbar.make(
@@ -263,11 +230,11 @@ class MainActivity : AppCompatActivity() {
 
                         val experience = getEncounterXP(numberOfMonsters.toLong() * 2)
                         if (experience < 0) {
-                            centertext.text =
-                                "\n ${centertext.text}${"$snackBarText (${getString(R.string.MAX)}) \n"}"
+                            title_text.text =
+                                "\n ${title_text.text}${"$snackBarText (${getString(R.string.MAX)}) \n"}"
                         } else {
-                            centertext.text =
-                                "${centertext.text}${"$snackBarText ($experience) \n"}"
+                            title_text.text =
+                                "${title_text.text}${"$snackBarText ($experience) \n"}"
                         }
 
                         Snackbar.make(
@@ -308,7 +275,12 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.search -> {
+                // @todo refactor to search provider (https://developer.android.com/training/search/setup) instead
+                val intent = Intent(this, AllMonsterActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

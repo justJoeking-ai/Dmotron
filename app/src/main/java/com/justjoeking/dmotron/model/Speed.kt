@@ -6,5 +6,5 @@ class Speed {
     val swim = ""
     val burrow = ""
     val climb = ""
-    val hover = false
+    val hover = ""
 }

@@ -2,7 +2,6 @@ package com.justjoeking.dmotron
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -11,7 +10,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class MonsterAdapter :
-    RecyclerView.Adapter<MonsterAdapter.MyViewHolder>() {
+    RecyclerView.Adapter<MonsterAdapter.ViewHolder>() {
 
     var monsterList: ArrayList<MonsterListing> = ArrayList()
 
@@ -19,23 +18,23 @@ class MonsterAdapter :
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder.
     // Each data item is just a string in this case that is shown in a TextView.
-    class MyViewHolder(val linearLayout: LinearLayout) : RecyclerView.ViewHolder(linearLayout)
+    class ViewHolder(val linearLayout: LinearLayout) : RecyclerView.ViewHolder(linearLayout)
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MyViewHolder {
+    ): ViewHolder {
         // create a new view
         val layout = LayoutInflater.from(parent.context)
             .inflate(R.layout.monster_layout, parent, false) as LinearLayout
 
         // set the view's size, margins, paddings and layout parameters
-        return MyViewHolder(layout)
+        return ViewHolder(layout)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.linearLayout.findViewById<TextView>(R.id.monster_name).text =

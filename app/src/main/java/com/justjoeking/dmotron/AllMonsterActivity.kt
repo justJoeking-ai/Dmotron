@@ -1,7 +1,6 @@
 package com.justjoeking.dmotron
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,9 +14,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
-private lateinit var recyclerView: MonsterRecyclerView
-private lateinit var viewAdapter: MonsterAdapter
-private lateinit var viewManager: RecyclerView.LayoutManager
+private lateinit var recyclerView: RecyclerView
+private lateinit var recyclerViewAdapter: MonsterAdapter
+private lateinit var recyclerViewManager: RecyclerView.LayoutManager
 
 class AllMonsterActivity : AppCompatActivity() {
 
@@ -34,8 +33,8 @@ class AllMonsterActivity : AppCompatActivity() {
         setContentView(R.layout.content_all_monster)
         setSupportActionBar(toolbar)
 
-        viewManager = LinearLayoutManager(this)
-        viewAdapter = MonsterAdapter()
+        recyclerViewManager = LinearLayoutManager(this)
+        recyclerViewAdapter = MonsterAdapter()
 
         recyclerView = monster_list.apply {
             // use this setting to improve performance if you know that changes
@@ -43,31 +42,30 @@ class AllMonsterActivity : AppCompatActivity() {
             setHasFixedSize(true)
 
             // use a linear layout manager
-            layoutManager = viewManager
+            layoutManager = recyclerViewManager
 
             // specify an viewAdapter (see also next example)
-            adapter = viewAdapter
+            adapter = recyclerViewAdapter
         }
         setupMonsterList()
     }
 
     private fun setupMonsterList() {
-        val myArg = object : Callback<MonsterResponse> {
-            override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
-                Timber.v("retrofit call failed")
-            }
-
-            override fun onResponse(
-                call: Call<MonsterResponse>?,
-                response: Response<MonsterResponse>?
-            ) {
-                Timber.d( response.toString())
-                monsterDataList = response?.body()?.results ?: ArrayList()
-                viewAdapter.monsterList = monsterDataList
-                viewAdapter.notifyDataSetChanged()
-            }
-        }
         retrofit.create(DNDService::class.java).listMonsters()
-            .enqueue(myArg)
+            .enqueue(object : Callback<MonsterResponse> {
+                override fun onFailure(call: Call<MonsterResponse>?, t: Throwable?) {
+                    Timber.v("setupMonsterList call failed")
+                }
+
+                override fun onResponse(
+                    call: Call<MonsterResponse>?,
+                    response: Response<MonsterResponse>?
+                ) {
+                    Timber.d(response.toString())
+                    monsterDataList = response?.body()?.results ?: ArrayList()
+                    recyclerViewAdapter.monsterList = monsterDataList
+                    recyclerViewAdapter.notifyDataSetChanged()
+                }
+            })
     }
 }

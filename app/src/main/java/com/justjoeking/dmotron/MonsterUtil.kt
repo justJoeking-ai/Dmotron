@@ -1,10 +1,6 @@
 package com.justjoeking.dmotron
 
 class MonsterUtil {
-    companion object {
-        const val DRAGON = "🐉"
-    }
-
 
     // CR to XP converter
     fun crXPLookup(): ArrayList<Int> {
