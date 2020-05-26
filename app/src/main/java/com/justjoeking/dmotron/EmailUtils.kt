@@ -86,7 +86,7 @@ class EmailUtils {
     private fun getMonsterBlock(monster: Monster): Any? {
         return "<stat-block>\n    <creature-heading>\n      <h1>{name}</h1>\n      <h2>{" + monster.size + " " +
                 monster.type +
-                getFormattedSubtype(monster.subtype) +
+                monster.subtype?.let { getFormattedSubtype(it) } +
                 " (" + monster.alignment + ")</h2>\n    </creature-heading>\n\n    <top-stats>\n      <property-line>\n        " +
                 "<h4>Armor Class</h4>\n        <p>18 (natural armor)</p>\n      </property-line>\n      <property-line>\n        " +
                 "<h4>Hit Points</h4>\n        <p>" + monster.hit_points + " (" + monster.hit_dice + ")</p>\n      </property-line>\n      <property-line>\n        " +

@@ -6,38 +6,24 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="DM-o-Tron" />
 
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <ScrollView
-            android:id="@+id/scrollview"
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/monster_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:divider="@android:color/black"
+            android:dividerHeight="200dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
-
-        <TextView
-                android:id="@+id/title_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorBlue"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="THIS IS WHAT THIS TEXT LOOKS LIKE /n HEY HEY HEY" />
-    </ScrollView>
+            android:scrollbars="vertical"
+            android:textAlignment="center" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/main_fab"
@@ -47,11 +33,4 @@
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@drawable/gargoyle" />
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Saved Encounters" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

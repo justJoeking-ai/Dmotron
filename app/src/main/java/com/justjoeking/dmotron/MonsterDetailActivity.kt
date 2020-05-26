@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.justjoeking.dmotron.model.Monster
 import com.justjoeking.dmotron.network.HttpClient
 import kotlinx.android.synthetic.main.activity_main.toolbar
-import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.content_monster_detail.*
+import kotlinx.android.synthetic.main.activity_monster_detail.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -70,6 +69,10 @@ class MonsterDetailActivity : AppCompatActivity() {
     }
 
     private fun updateViews(monster: Monster) {
+        // Share Button
+        share_fab.setOnClickListener {
+            MonsterUtils().shareMonster(monster, this)
+        }
 
         // Name (toolbar)
         title = monster.name
@@ -81,10 +84,11 @@ class MonsterDetailActivity : AppCompatActivity() {
         var monsterDetails = ""
         monsterDetails += monster.size + " "
         monsterDetails += monster.type
-        if (!monster.subtype.isEmpty()) {
-            monsterDetails += " (${monster.subtype})"
+        monster.subtype?.let {
+            if (monster.subtype.isNotEmpty()) {
+                monsterDetails += " (${monster.subtype})"
+            }
         }
-
         monsterDetails += ", ${monster.alignment}"
         monster_detail.text = "(" + monsterDetails + ") "
         monster_ac.text = monster.armor_class.toString()

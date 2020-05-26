@@ -101,4 +101,6 @@
     <string name="find_your_monster">Find your Monster</string>
     <string name="monster_list">All Monsters</string>
     <string name="create_an_encounter">Create an Encounter!</string>
+    <string name="chosen_monster">Chosen Monster:%s</string>
+    <string name="monster_detail">Monster Detail</string>
 </resources>

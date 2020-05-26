@@ -1,6 +1,15 @@
 package com.justjoeking.dmotron
 
-class MonsterUtil {
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.text.Html
+import androidx.core.content.ContextCompat.startActivity
+import com.justjoeking.dmotron.model.Monster
+
+
+class MonsterUtils {
 
     // CR to XP converter
     fun crXPLookup(): ArrayList<Int> {
@@ -39,5 +48,18 @@ class MonsterUtil {
             135000,
             155000 // 30
         )
+    }
+
+    fun shareMonster(monster: Monster, context: Context) {
+        val shareIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "DM-o-Tron monster: " + monster.name)
+        shareIntent.putExtra(
+            Intent.EXTRA_HTML_TEXT,
+            Html.fromHtml(
+                "<h1>Blah blah blah TODO add monster html email</h1>"
+            )
+
+        )
+        startActivity(context, Intent.createChooser(shareIntent, "Send email..."), Bundle());
     }
 }
