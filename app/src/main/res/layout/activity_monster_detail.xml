@@ -34,11 +34,9 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -49,6 +47,9 @@
                         style="@style/Body.4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -64,30 +65,144 @@
                         app:layout_constraintTop_toBottomOf="@id/monster_name"
                         tools:text="Medium Humanoid (Human), lawful neutral" />
 
+                <ImageView
+                        android:id="@+id/redbar1"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_detail"
+                        app:srcCompat="@drawable/red_rapier" />
+
                 <TextView
                         android:id="@+id/monster_ac"
                         style="@style/Body.1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/monster_detail"
+                        app:layout_constraintTop_toBottomOf="@id/redbar1"
                         tools:text="Armor Class 20" />
 
-                <ImageView
-                        android:id="@+id/redbar1"
-                        android:layout_width="320dp"
-                        android:layout_height="4dp"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="4dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/red_rapier"
+                <TextView
+                        android:id="@+id/monster_hp"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/monster_ac" />
+                        app:layout_constraintTop_toBottomOf="@id/monster_ac"
+                        tools:text="Hit Points 20" />
+
+                <TextView
+                        android:id="@+id/monster_speed"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_hp"
+                        tools:text="Speed 30ft" />
+
+                <ImageView
+                        android:id="@+id/redbar2"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_speed"
+                        app:srcCompat="@drawable/red_rapier" />
+
+                <TextView
+                        android:id="@+id/monster_ab_1_label"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:textAllCaps="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/redbar2"
+                        tools:text="Str" />
+
+                <TextView
+                        android:id="@+id/monster_ab_1_score"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:textAllCaps="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_1_label"
+                        tools:text="18" />
+
+                <ImageView
+                        android:id="@+id/redbar3"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_1_score"
+                        app:srcCompat="@drawable/red_rapier" />
+
+                <TextView
+                        android:id="@+id/monster_actions"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/redbar3"
+                        tools:text="Saving Throws Con +10, Int +12, Wis +9
+Skills Arcana +18, History +12, Insight +9, Perception +9
+Damage Resistance Cold, Lightning, Necrotic
+Damage Immunities Poison; Bludgeoning, Piercing, and Slashing From Nonmagical Attacks
+Condition Immunities Charmed, Exhaustion, Frightened, Paralyzed, Poisoned
+Senses Truesight 120 Ft., passive Perception 19
+Languages Common Plus Up To Five Other Languages
+Challenge 21 (33,000 XP)" />
 
 
+                <ImageView
+                        android:id="@+id/redbar5"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_details2"
+                        app:srcCompat="@drawable/red_rapier" />
+
+                <TextView
+                        android:id="@+id/monster_details3"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/redbar5"
+                        tools:text="Actions
+Bite. Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: (1d10 + 4) piercing damage plus (1d6)fire damage.
+Fire Breath (Recharge 5-6). The dragon exhales fire in a 15-foot cone. Each creature in that area must make a DC l3 Dexterity saving throw, taking 24 (7d6) fire damage on a failed save, or half as much damage on a successful one." />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
