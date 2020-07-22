@@ -42,7 +42,7 @@ class EmailUtils {
         return getHeader() + "<br/>" + headerText + "<br/>" + monstersText + getFooter()
     }
 
-    private fun plurifyMonster(name: String): Any? {
+    private fun plurifyMonster(name: String): String {
         when {
             name.contains("Incubus") -> {
                 // Magic String
@@ -83,7 +83,7 @@ class EmailUtils {
         }
     }
 
-    private fun getMonsterBlock(monster: Monster): Any? {
+    private fun getMonsterBlock(monster: Monster): String {
         return "<stat-block>\n    <creature-heading>\n      <h1>{name}</h1>\n      <h2>{" + monster.size + " " +
                 monster.type +
                 monster.subtype?.let { getFormattedSubtype(it) } +

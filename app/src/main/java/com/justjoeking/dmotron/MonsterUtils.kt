@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.text.Html
 import androidx.core.content.ContextCompat.startActivity
 import com.justjoeking.dmotron.model.Monster
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 
 class MonsterUtils {
@@ -51,6 +54,7 @@ class MonsterUtils {
     }
 
     fun shareMonster(monster: Monster, context: Context) {
+
         val shareIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "DM-o-Tron monster: " + monster.name)
         shareIntent.putExtra(
@@ -58,7 +62,6 @@ class MonsterUtils {
             Html.fromHtml(
                 "<h1>Blah blah blah TODO add monster html email</h1>"
             )
-
         )
         startActivity(context, Intent.createChooser(shareIntent, "Send email..."), Bundle());
     }

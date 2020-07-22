@@ -90,7 +90,7 @@ class MonsterDetailActivity : AppCompatActivity() {
             }
         }
         monsterDetails += ", ${monster.alignment}"
-        monster_detail.text = "(" + monsterDetails + ") "
+        monster_type_alignment.text = "(" + monsterDetails + ") "
         monster_ac.text = monster.armor_class.toString()
 
         // =======
