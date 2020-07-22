@@ -25,7 +25,7 @@ class Monster(var name: String, var url: String) {
     val index = "" // "aboleth"
     val size = "" // "Large"
     val type = "" // "aberration"
-    val subtype = "" // null
+    val subtype: String? = null // null or "Dragon"
     val alignment = "" // "lawful evil"
 
     val armor_class = 0f // 17

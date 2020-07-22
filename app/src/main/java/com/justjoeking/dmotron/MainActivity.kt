@@ -20,7 +20,6 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.justjoeking.dmotron.model.Monster
 import com.justjoeking.dmotron.network.HttpClient
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -84,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             encounterCRInput.layoutParams = lp
             encounterCRInput.inputType = InputType.TYPE_CLASS_NUMBER
 
-            val sharedPref = getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE)
+            val sharedPref = getSharedPreferences("DM-o-Tron", Context.MODE_PRIVATE)
             sharedPref.getInt("Party CR", 5)
             encounterCRInput.setText(sharedPref.getInt("Party CR", 5).toString())
             encounterCRInput.hint = getString(R.string.party_level_hint)
@@ -95,24 +94,23 @@ class MainActivity : AppCompatActivity() {
             builder.setTitle(getString(R.string.create_an_encounter))
             val positiveButton = builder.setPositiveButton(getString(R.string.let_roll),
                 fun(_: DialogInterface, _: Int) {
-                    // TODO: Match names to not create duplicates
                     if (encounterCRInput.text.toString().isEmpty()) {
                         Toast.makeText(
                             applicationContext,
-                            "What are you a NPC?", Toast.LENGTH_LONG
+                            "Please enter a CR level (likely 1-30)", Toast.LENGTH_LONG
                         ).show()
                         return
                     } else if (Integer.parseInt(encounterCRInput.text.toString()) == 0) {
                         Toast.makeText(
                             applicationContext,
-                            "What are you a commoner", Toast.LENGTH_LONG
+                            "Please enter a valid CR level (likely 1-30)", Toast.LENGTH_LONG
                         ).show()
                         return
                     }
 
                     // Store Party CR
                     val sharedPrefEdit =
-                        getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
+                        getSharedPreferences("DM-o-Tron", Context.MODE_PRIVATE).edit()
                     sharedPrefEdit.putInt(
                         "Party CR",
                         Integer.parseInt(encounterCRInput.text.toString())
@@ -144,7 +142,7 @@ class MainActivity : AppCompatActivity() {
                                 )
 
                                 val sharedPrefMonster =
-                                    getSharedPreferences("Dm-Otron", Context.MODE_PRIVATE).edit()
+                                    getSharedPreferences("DM-o-Tron", Context.MODE_PRIVATE).edit()
                                 sharedPrefMonster.putString(
                                     "Saved Monster",
                                     sharedPrefMonster.toString()
@@ -214,7 +212,7 @@ class MainActivity : AppCompatActivity() {
                             )
                         }
 
-                        Timber.d("Chosen Monster:" + monster.name)
+                        Timber.d(getString(R.string.chosen_monster), monster.name)
                         val numberOfMonsters = (encounterCR / monster.challenge_rating)
                         val i = randomMonster.name
                         val snackBarText = String.format(
@@ -228,14 +226,7 @@ class MainActivity : AppCompatActivity() {
                             snackBarText, Snackbar.LENGTH_LONG
                         ).show()
 
-                        val experience = getEncounterXP(numberOfMonsters.toLong() * 2)
-                        if (experience < 0) {
-                            title_text.text =
-                                "\n ${title_text.text}${"$snackBarText (${getString(R.string.MAX)}) \n"}"
-                        } else {
-                            title_text.text =
-                                "${title_text.text}${"$snackBarText ($experience) \n"}"
-                        }
+//                        val experience = getEncounterXP(numberOfMonsters.toLong() * 2)
 
                         Snackbar.make(
                             view,
@@ -249,16 +240,16 @@ class MainActivity : AppCompatActivity() {
     private fun getEncounterXP(cr: Long): Int {
 
         return when (cr) {
-            .125.toLong() -> MonsterUtil().crXPLookup()[0]
-            .25.toLong() -> MonsterUtil().crXPLookup()[1]
-            .5.toLong() -> MonsterUtil().crXPLookup()[2]
-            1.toLong() -> MonsterUtil().crXPLookup()[3]
-            2.toLong() -> MonsterUtil().crXPLookup()[4]
+            .125.toLong() -> MonsterUtils().crXPLookup()[0]
+            .25.toLong() -> MonsterUtils().crXPLookup()[1]
+            .5.toLong() -> MonsterUtils().crXPLookup()[2]
+            1.toLong() -> MonsterUtils().crXPLookup()[3]
+            2.toLong() -> MonsterUtils().crXPLookup()[4]
             else -> {
-                if (cr + 2 > MonsterUtil().crXPLookup().size) {
+                if (cr + 2 > MonsterUtils().crXPLookup().size) {
                     -1
                 } else {
-                    MonsterUtil().crXPLookup()[(cr + 2).toInt()]
+                    MonsterUtils().crXPLookup()[(cr + 2).toInt()]
                 }
             }
         }

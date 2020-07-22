@@ -1,27 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
         tools:context=".MonsterDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-    </com.google.android.material.appbar.AppBarLayout>
+            android:theme="@style/AppTheme.AppBarOverlay" />
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/monster_detail" />
 
-    <include layout="@layout/content_monster_detail"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+                android:id="@+id/scrollview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/monster_name"
+                        style="@style/Body.4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Monster Name" />
+
+                <TextView
+                        android:id="@+id/monster_type_alignment"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_name"
+                        tools:text="Medium Humanoid (Human), lawful neutral" />
+
+                <ImageView
+                        android:id="@+id/redbar1"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_type_alignment"
+                        app:srcCompat="@drawable/red_rapier" />
+
+                <TextView
+                        android:id="@+id/monster_ac"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/redbar1"
+                        tools:text="Armor Class 20" />
+
+                <TextView
+                        android:id="@+id/monster_hp"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ac"
+                        tools:text="Hit Points 20" />
+
+                <TextView
+                        android:id="@+id/monster_speed"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_hp"
+                        tools:text="Speed 30ft" />
+
+                <ImageView
+                        android:id="@+id/redbar2"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_speed"
+                        app:srcCompat="@drawable/red_rapier" />
+
+                <TextView
+                        android:id="@+id/monster_ab_1_label"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        app:layout_constraintEnd_toStartOf="@+id/monster_ab_2_label"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/redbar2"
+                        tools:text="Str" />
+
+                <TextView
+                        android:id="@+id/monster_ab_2_label"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        app:layout_constraintEnd_toStartOf="@+id/monster_ab_3_label"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/monster_ab_1_label"
+                        app:layout_constraintTop_toBottomOf="@id/redbar2"
+                        tools:text="Dex" />
+
+                <TextView
+                        android:id="@+id/monster_ab_3_label"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        app:layout_constraintEnd_toStartOf="@+id/monster_ab_4_label"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/monster_ab_2_label"
+                        app:layout_constraintTop_toBottomOf="@id/redbar2"
+                        tools:text="Con" />
+
+                <TextView
+                        android:id="@+id/monster_ab_4_label"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        app:layout_constraintEnd_toStartOf="@+id/monster_ab_5_label"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/monster_ab_3_label"
+                        app:layout_constraintTop_toBottomOf="@id/redbar2"
+                        tools:text="Int" />
+
+                <TextView
+                        android:id="@+id/monster_ab_5_label"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        app:layout_constraintEnd_toStartOf="@+id/monster_ab_6_label"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/monster_ab_4_label"
+                        app:layout_constraintTop_toBottomOf="@id/redbar2"
+                        tools:text="Wis" />
+
+                <TextView
+                        android:id="@+id/monster_ab_6_label"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/monster_ab_5_label"
+                        app:layout_constraintTop_toBottomOf="@id/redbar2"
+                        tools:text="Cha" />
+
+                <TextView
+                        android:id="@+id/monster_ab_1_score"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        app:layout_constraintLeft_toLeftOf="@id/monster_ab_1_label"
+                        app:layout_constraintRight_toRightOf="@id/monster_ab_1_label"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_1_label"
+                        tools:text="18" />
+
+                <TextView
+                        android:id="@+id/monster_ab_2_score"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        app:layout_constraintLeft_toLeftOf="@id/monster_ab_2_label"
+                        app:layout_constraintRight_toRightOf="@id/monster_ab_2_label"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_2_label"
+                        tools:text="17" />
+
+                <TextView
+                        android:id="@+id/monster_ab_3_score"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        app:layout_constraintLeft_toLeftOf="@id/monster_ab_3_label"
+                        app:layout_constraintRight_toRightOf="@id/monster_ab_3_label"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_3_label"
+                        tools:text="17" />
+
+                <TextView
+                        android:id="@+id/monster_ab_4_score"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        app:layout_constraintLeft_toLeftOf="@id/monster_ab_4_label"
+                        app:layout_constraintRight_toRightOf="@id/monster_ab_4_label"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_4_label"
+                        tools:text="17" />
+
+                <TextView
+                        android:id="@+id/monster_ab_5_score"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        app:layout_constraintLeft_toLeftOf="@id/monster_ab_5_label"
+                        app:layout_constraintRight_toRightOf="@id/monster_ab_5_label"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_5_label"
+                        tools:text="17" />
+
+                <TextView
+                        android:id="@+id/monster_ab_6_score"
+                        style="@style/Body.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        app:layout_constraintLeft_toLeftOf="@id/monster_ab_6_label"
+                        app:layout_constraintRight_toRightOf="@id/monster_ab_6_label"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_6_label"
+                        tools:text="17" />
+
+                <ImageView
+                        android:id="@+id/redbar3"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/monster_ab_1_score"
+                        app:srcCompat="@drawable/red_rapier" />
+
+                <TextView
+                        android:id="@+id/monster_actions"
+                        style="@style/Body.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/redbar3"
+                        tools:text="@string/monster_actions_placeholder" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/share_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/gargoyle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

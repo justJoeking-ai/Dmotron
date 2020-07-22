@@ -30,7 +30,7 @@ class AllMonsterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.content_all_monster)
+        setContentView(R.layout.activity_all_monster)
         setSupportActionBar(toolbar)
 
         recyclerViewManager = LinearLayoutManager(this)

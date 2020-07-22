@@ -101,4 +101,7 @@
     <string name="find_your_monster">Find your Monster</string>
     <string name="monster_list">All Monsters</string>
     <string name="create_an_encounter">Create an Encounter!</string>
+    <string name="chosen_monster">Chosen Monster:%s</string>
+    <string name="monster_detail">Monster Detail</string>
+    <string name="monster_actions_placeholder">Saving Throws Con +10, Int +12, Wis +9 Skills Arcana +18, History +12, Insight +9, Perception +9 Damage Resistance Cold, Lightning, Necrotic Damage Immunities Poison; Bludgeoning, Piercing, and Slashing From Nonmagical Attacks Condition Immunities Charmed, Exhaustion, Frightened, Paralyzed, Poisoned Senses Truesight 120 Ft., passive Perception 19 Languages Common Plus Up To Five Other Languages Challenge 21 (33,000 XP)</string>
 </resources>

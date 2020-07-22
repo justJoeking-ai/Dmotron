@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface DNDService {
 
-    // todo: build repository layer with caching!
+    // TODO: build repository layer with caching
 
     @GET("monsters/")
     fun listMonsters(): Call<MonsterResponse>
