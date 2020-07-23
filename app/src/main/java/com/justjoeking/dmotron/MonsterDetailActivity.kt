@@ -90,8 +90,13 @@ class MonsterDetailActivity : AppCompatActivity() {
             }
         }
         monsterDetails += ", ${monster.alignment}"
-        monster_type_alignment.text = "(" + monsterDetails + ") "
-        monster_ac.text = monster.armor_class.toString()
+
+        // todo make bold the labels for following several items
+        monster_type_alignment.text = "(" + monsterDetails + ")"
+
+        monster_ac.text = "Armor Class: " + monster.armor_class.toString().format(2)
+        monster_hp.text = "Hit Points: " + monster.armor_class.toString().format(2)
+        monster_speed.text = "Speed: " + monster.armor_class.toString().format(2)
 
         // =======
         // Armor Class 10
