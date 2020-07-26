@@ -94,14 +94,14 @@ class MonsterDetailActivity : AppCompatActivity() {
         // todo make bold the labels for following several items
         monster_type_alignment.text = "(" + monsterDetails + ")"
 
-        monster_ac.text = "Armor Class: " + monster.armor_class.toString().format(2)
-        monster_hp.text = "Hit Points: " + monster.armor_class.toString().format(2)
-        monster_speed.text = "Speed: " + monster.armor_class.toString().format(2)
+        monster_ac.text = "Armor Class: " + monster.armorClass.toString()
+        monster_hp.text = "Hit Points: " + monster.hitPoints.toString() + "(" + monster.hitDice + ")"
+        monster_speed.text = "Speed: " + monster.armorClass.toString()
 
         // =======
         // Armor Class 10
         // Hit Points 10
-        // Speed 30 ft., sly 120ft.
+        // Speed 30 ft., fly 120ft.
         // =======
         // Stat block SDCIWC
         // =======
@@ -118,21 +118,21 @@ class MonsterDetailActivity : AppCompatActivity() {
 
 
         var monsterDetailsText = "\n\n" + monster.name
-        monsterDetailsText += "\nHit Points: " + monster.hit_points.toString()
-        monsterDetailsText += "\nAC: " + monster.armor_class.toLong()
+        monsterDetailsText += "\nHit Points: " + monster.hitPoints.toString()
+        monsterDetailsText += "\nAC: " + monster.armorClass.toLong()
         monsterDetailsText += "\nSize: " + monster.size
         monsterDetailsText += "\nType: " + monster.type
         monsterDetailsText += "\nCR: " + monster.challenge_rating
         monsterDetailsText += "\nSubtype: " + monster.subtype
         monsterDetailsText += "\nAlignment: " + monster.alignment
-        monsterDetailsText += "\nHP: " + monster.hit_points
-        monsterDetailsText += "\nHit Dice: " + monster.hit_dice
-        monsterDetailsText += "\nStrength: " + monster.strength.toLong()
-        monsterDetailsText += "\nDexterity: " + monster.dexterity.toLong()
-        monsterDetailsText += "\nConstitution: " + monster.constitution.toLong()
-        monsterDetailsText += "\nIntelligence: " + monster.intelligence.toLong()
-        monsterDetailsText += "\nWisdom: " + monster.wisdom.toLong()
-        monsterDetailsText += "\nCharisma: " + monster.charisma.toLong()
+        monsterDetailsText += "\nHP: " + monster.hitPoints
+        monsterDetailsText += "\nHit Dice: " + monster.hitDice
+        monsterDetailsText += "\nStrength: " + monster.strength
+        monsterDetailsText += "\nDexterity: " + monster.dexterity
+        monsterDetailsText += "\nConstitution: " + monster.constitution
+        monsterDetailsText += "\nIntelligence: " + monster.intelligence
+        monsterDetailsText += "\nWisdom: " + monster.wisdom
+        monsterDetailsText += "\nCharisma: " + monster.charisma
         if (monster.speed != null) {
             monsterDetailsText += "\nSpeed: "
             if (monster.speed.walk.isNotEmpty()) {

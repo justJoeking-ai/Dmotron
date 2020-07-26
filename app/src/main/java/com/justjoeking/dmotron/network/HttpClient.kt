@@ -3,7 +3,6 @@ package com.justjoeking.dmotron.network
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-
 object HttpClient {
 
     val client: OkHttpClient by lazy {

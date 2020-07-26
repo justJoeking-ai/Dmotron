@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">DMOTRON</string>
+    <string name="app_name">DMoTRON</string>
     <string name="action_settings">Settings</string>
-    <string name="party_level_hint">Input party level</string>
-    <string name="no_thanks">No thanks</string>
+    <string name="party_level_hint">Average PC Level</string>
+    <string name="cancel">Cancel</string>
     <string name="let_roll">Let\'s Roll!</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="MAX">MAX!!!</string>
@@ -16,7 +16,7 @@
         "technologically advanced and open to imagination and magic.\n"
         "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
         "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
+        "flexibility of the material creates new affordances that supersede those in the physical "
         "world, without breaking the rules of physics.\n"
         "The fundamentals of light, surface, and movement are key to conveying how objects move, "
         "interact, and exist in space and in relation to each other. Realistic lighting shows "
@@ -39,7 +39,7 @@
         "All action takes place in a single environment. Objects are presented to the user without "
         "breaking the continuity of experience even as they transform and reorganize.\n"
         "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+        "Feedback is subtle yet clear. Transitions are efficient yet coherent.\n\n"
 
         "3D world.\n\n"
 
@@ -104,4 +104,8 @@
     <string name="chosen_monster">Chosen Monster:%s</string>
     <string name="monster_detail">Monster Detail</string>
     <string name="monster_actions_placeholder">Saving Throws Con +10, Int +12, Wis +9 Skills Arcana +18, History +12, Insight +9, Perception +9 Damage Resistance Cold, Lightning, Necrotic Damage Immunities Poison; Bludgeoning, Piercing, and Slashing From Nonmagical Attacks Condition Immunities Charmed, Exhaustion, Frightened, Paralyzed, Poisoned Senses Truesight 120 Ft., passive Perception 19 Languages Common Plus Up To Five Other Languages Challenge 21 (33,000 XP)</string>
+    <string name="please_enter_cr">Please enter a CR level (likely 1–30)</string>
+    <string name="party_cr">Party CR</string>
+    <string name="send_email">Send email…</string>
+    <string name="dmotron_monster">\"DM-o-Tron monster: \"</string>
 </resources>

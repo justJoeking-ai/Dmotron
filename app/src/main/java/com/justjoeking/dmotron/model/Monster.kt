@@ -1,5 +1,6 @@
 package com.justjoeking.dmotron.model
 
+import com.google.gson.annotations.SerializedName
 import com.justjoeking.dmotron.Proficiency
 
 class Monster(var name: String, var url: String) {
@@ -12,6 +13,7 @@ class Monster(var name: String, var url: String) {
         }
         return true
     }
+
 //    fun isProficient(): Boolean {
 //        if (proficiencies != null) {
 //            if (proficiencies.name.isEmpty()) {
@@ -28,21 +30,27 @@ class Monster(var name: String, var url: String) {
     val subtype: String? = null // null or "Dragon"
     val alignment = "" // "lawful evil"
 
-    val armor_class = 0f // 17
-    val hit_points = 0f // 135
-    val hit_dice = "" // "18d10"
+    @SerializedName("armor_class")
+    val armorClass = 0 // 17
+
+    @SerializedName("hit_points")
+    val hitPoints = 0 // 135
+
+    @SerializedName("hit_dice")
+    val hitDice = "" // "18d10"
+
     val speed: Speed? = null
 
-    val strength = 0f
-    val dexterity = 0f
-    val constitution = 0f
-    val intelligence = 0f
-    val wisdom = 0f
-    val charisma = 0f
+    val strength = 0
+    val dexterity = 0
+    val constitution = 0
+    val intelligence = 0
+    val wisdom = 0
+    val charisma = 0
 
     var proficiencies = ArrayList<Proficiency>()
 
-    var fl: Float = 1.0f
+    @SerializedName("challenge_rating")
     var challenge_rating = 0f
 
 //    val damage_vulnerabilities = ArrayList<>()
@@ -55,6 +63,5 @@ class Monster(var name: String, var url: String) {
 //    val List<SpecialAbility> special_abilities = null;
 //      val List<Action> actions = null;
 //    val List<LegendaryAction> legendary_actions = null;
-
-
+    
 }

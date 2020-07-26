@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
             val sharedPref = getSharedPreferences("DM-o-Tron", Context.MODE_PRIVATE)
             sharedPref.getInt("Party CR", 5)
-            encounterCRInput.setText(sharedPref.getInt("Party CR", 5).toString())
+            encounterCRInput.setText(sharedPref.getInt(getString(R.string.party_cr), 5).toString())
             encounterCRInput.hint = getString(R.string.party_level_hint)
 
             val builder = AlertDialog.Builder(this)
@@ -97,13 +97,13 @@ class MainActivity : AppCompatActivity() {
                     if (encounterCRInput.text.toString().isEmpty()) {
                         Toast.makeText(
                             applicationContext,
-                            "Please enter a CR level (likely 1-30)", Toast.LENGTH_LONG
+                            getString(R.string.please_enter_cr), Toast.LENGTH_LONG
                         ).show()
                         return
                     } else if (Integer.parseInt(encounterCRInput.text.toString()) == 0) {
                         Toast.makeText(
                             applicationContext,
-                            "Please enter a valid CR level (likely 1-30)", Toast.LENGTH_LONG
+                            getString(R.string.please_enter_cr), Toast.LENGTH_LONG
                         ).show()
                         return
                     }
@@ -153,8 +153,8 @@ class MainActivity : AppCompatActivity() {
                         })
                 })
 
-            builder.setNegativeButton(getString(R.string.no_thanks))
-            { dialog, which ->
+            builder.setNegativeButton(getString(R.string.cancel))
+            { _, _ ->
                 Toast.makeText(
                     applicationContext,
                     android.R.string.no, Toast.LENGTH_SHORT
@@ -218,7 +218,7 @@ class MainActivity : AppCompatActivity() {
                         val snackBarText = String.format(
                             "\n\nEncounter for Party Level " + encounterCR + ":\n" + numberOfMonsters.toInt()
                                     + " " + randomMonster.name + "s \nSize = " + response.body()!!.size
-                                    + "\nAC = " + monster.armor_class.toInt() + "\nHP = " + monster.hit_points.toInt()
+                                    + "\nAC = " + monster.armorClass.toInt() + "\nHP = " + monster.hitPoints.toInt()
                         )
 
                         Snackbar.make(

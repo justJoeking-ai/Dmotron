@@ -56,13 +56,13 @@ class MonsterUtils {
     fun shareMonster(monster: Monster, context: Context) {
 
         val shareIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "DM-o-Tron monster: " + monster.name)
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.dmotron_monster) + monster.name)
         shareIntent.putExtra(
             Intent.EXTRA_HTML_TEXT,
             Html.fromHtml(
                 "<h1>Blah blah blah TODO add monster html email</h1>"
             )
         )
-        startActivity(context, Intent.createChooser(shareIntent, "Send email..."), Bundle());
+        startActivity(context, Intent.createChooser(shareIntent, context.getString(R.string.send_email)), Bundle());
     }
 }

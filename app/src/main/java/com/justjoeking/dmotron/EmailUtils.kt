@@ -16,7 +16,7 @@ class EmailUtils {
         for (monster in monsters) {
             val index = monsters.indexOf(monster)
             monstersText += getMonsterBlock(monster)
-            headerText += nums.get(index).toString() + " " + monster.name
+            headerText += nums[index].toString() + " " + monster.name
             headerText += plurifyMonster(monster.name)
 
             when (index) {
@@ -89,7 +89,7 @@ class EmailUtils {
                 monster.subtype?.let { getFormattedSubtype(it) } +
                 " (" + monster.alignment + ")</h2>\n    </creature-heading>\n\n    <top-stats>\n      <property-line>\n        " +
                 "<h4>Armor Class</h4>\n        <p>18 (natural armor)</p>\n      </property-line>\n      <property-line>\n        " +
-                "<h4>Hit Points</h4>\n        <p>" + monster.hit_points + " (" + monster.hit_dice + ")</p>\n      </property-line>\n      <property-line>\n        " +
+                "<h4>Hit Points</h4>\n        <p>" + monster.hitPoints + " (" + monster.hitDice + ")</p>\n      </property-line>\n      <property-line>\n        " +
                 "<h4>Speed</h4>\n        <p>" + monster.speed?.let { getFormattedSpeed(it) } + "</p>\n      </property-line>\n\n      " +
                 "<abilities-block " +
                 "data-cha=\"" + 1 + "\" " +
